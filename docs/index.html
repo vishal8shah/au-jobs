@@ -265,10 +265,10 @@ Respond with ONLY a JSON object:
     <div class="stat-section">
       <h3>Layer</h3>
       <div class="color-toggle" id="colorToggle">
-        <button data-mode="shortage" class="active">Shortage Status</button>
+        <button data-mode="shortage">Shortage Status</button>
         <button data-mode="pay">Median Pay</button>
         <button data-mode="education">Skill Level</button>
-        <button data-mode="exposure">Digital AI Exposure</button>
+        <button data-mode="exposure" class="active">Digital AI Exposure</button>
       </div>
     </div>
     <div class="gradient-legend">
@@ -315,7 +315,7 @@ Respond with ONLY a JSON object:
 
 // ── Color scales ────────────────────────────────────────────────────────
 
-let colorMode = "shortage";
+let colorMode = "exposure";
 
 function boostContrast(t) {
   const c = (t - 0.5) * 2;
