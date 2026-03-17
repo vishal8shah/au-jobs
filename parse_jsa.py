@@ -256,7 +256,7 @@ def main():
         shortage_status = match_shortage(title)
 
         slug = make_slug(title)
-        url = f"https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations/{slug}"
+        url = f"https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations/{code}-{slug}"
 
         occupations.append({
             "slug": slug,
