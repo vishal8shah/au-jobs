@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Downloaded data files (large binaries, re-downloadable)
+data/
+
+# Generated pipeline outputs (reproducible from pipeline)
+pages/
+scores.json
+occupations.csv
+occupations.json
+# NOTE: site/data.json is intentionally committed so GitHub Pages works out of the box
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

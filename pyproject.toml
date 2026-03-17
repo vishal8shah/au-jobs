@@ -1,0 +1,14 @@
+[project]
+name = "au-jobs"
+version = "0.1.0"
+description = "Australian Job Market Visualizer — interactive treemap of 358 occupations with AI exposure scoring"
+requires-python = ">=3.11"
+license = "MIT"
+readme = "README.md"
+dependencies = [
+  "pandas",
+  "openpyxl",
+  "google-genai",
+  "python-dotenv",
+  "httpx",
+]
