@@ -1,12 +1,12 @@
 """
-Build site/data.json by merging occupations.csv with scores.json.
+Build docs/data.json by merging occupations.csv with scores.json.
 
 Output format matches what the frontend expects:
   slug, title, category, anzsco_code, jobs, pay, growth, skill_level,
   shortage_status, url, exposure, exposure_rationale
 
 Usage:
-    uv run python build_site_data.py
+    uv run python build_docs_data.py
 """
 
 import json
@@ -68,15 +68,15 @@ def main():
     output.sort(key=lambda x: x["jobs"] if x["jobs"] is not None else 0, reverse=True)
 
     # Write output
-    site_dir = Path("site")
-    site_dir.mkdir(exist_ok=True)
+    docs_dir = Path("docs")
+    docs_dir.mkdir(exist_ok=True)
 
-    output_path = site_dir / "data.json"
+    output_path = docs_dir / "data.json"
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
     total_jobs = sum(e["jobs"] for e in output if e["jobs"])
-    print(f"\nBuilt site/data.json:")
+    print(f"\nBuilt docs/data.json:")
     print(f"  Occupations: {len(output)}")
     print(f"  With scores: {scored_count}")
     print(f"  Without scores: {len(output) - scored_count}")

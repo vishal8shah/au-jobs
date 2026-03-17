@@ -68,23 +68,24 @@ Options:
 uv run python build_site_data.py
 ```
 
-Merges `occupations.csv` and `scores.json` into `site/data.json`.
+Merges `occupations.csv` and `scores.json` into `docs/data.json`.
 
 ### 5. View the visualization
 
 ```bash
-cd site && python -m http.server 8000
+cd docs && python -m http.server 8000
 ```
 
 Open http://localhost:8000 in your browser.
 
 ## Deploying to GitHub Pages
 
-The site is two static files (`index.html` + `data.json`). To deploy:
+The site lives in the `docs/` folder (`index.html` + `data.json`). To deploy:
 
-1. Copy `site/index.html` and `site/data.json` to your GitHub Pages branch
-2. Enable Pages in repo settings
-3. Your site is live at `https://yourusername.github.io/repo-name/`
+1. Go to your repo → **Settings** → **Pages**
+2. Source: **Deploy from a branch**
+3. Branch: `main` / Folder: `/docs`
+4. Click Save — your site is live at `https://yourusername.github.io/repo-name/`
 
 ## Cost Estimate
 
