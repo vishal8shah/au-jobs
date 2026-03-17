@@ -17,9 +17,10 @@ __pycache__/
 *.pyo
 .venv/
 
-# IDE
+# IDE / Tools
 .vscode/
 .idea/
+.claude/
 
 # OS
 .DS_Store
