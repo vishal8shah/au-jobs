@@ -1,8 +1,15 @@
 # AU Job Market Visualizer
 
-An interactive treemap visualization of the Australian labour market, inspired by [karpathy/jobs](https://karpathy.ai/jobs). Covers **358 occupations** and **14.4M workers** using official ANZSCO data from Jobs and Skills Australia.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Data: Jobs & Skills Australia](https://img.shields.io/badge/Data-Jobs_%26_Skills_AU-green)](https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles)
+[![AI: Gemini 2.5 Flash](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-purple)](https://ai.google.dev)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://python.org)
+
+An interactive **treemap of 358 Australian occupations and 14.4M workers**, inspired by [karpathy/jobs](https://karpathy.ai/jobs). Built to answer: **which jobs does AI disrupt first?**
 
 Explore four data layers: **shortage status**, **median pay**, **skill level**, and **Digital AI Exposure** (scored by Google Gemini).
+
+---
 
 ## Data Sources & Credits
 
