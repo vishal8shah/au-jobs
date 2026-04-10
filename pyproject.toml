@@ -12,3 +12,8 @@ dependencies = [
   "python-dotenv",
   "httpx",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]

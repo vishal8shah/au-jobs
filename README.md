@@ -61,12 +61,13 @@ uv run python score.py --dry-run
 uv run python score.py
 ```
 
-Scores each occupation's Digital AI Exposure (0-10) using Google Gemini. Results are saved incrementally to `scores.json`.
+Scores each occupation's Digital AI Exposure (0-10) using Google Gemini with extended thinking for higher-quality reasoning. Results are saved incrementally to `scores.json` with run metadata. Previous scores are archived to `runs/` when re-scoring with `--force`.
 
 Options:
 - `--model MODEL` — Gemini model (default: `gemini-2.5-flash`)
+- `--thinking-budget N` — thinking token budget for reasoning (default: 2048, 0 to disable)
 - `--start N --end M` — score a batch range
-- `--force` — re-score already cached occupations
+- `--force` — re-score already cached occupations (archives previous run first)
 - `--delay SECONDS` — delay between API calls (default: 0.2)
 
 ### 4. Build site data
@@ -75,7 +76,7 @@ Options:
 uv run python build_site_data.py
 ```
 
-Merges `occupations.csv` and `scores.json` into `docs/data.json`.
+Merges `occupations.csv` and `scores.json` into `docs/data.json`. If previous scores exist in `runs/`, computes comparison fields (delta, safety check) for the "compare to last refresh" mode.
 
 ### 5. View the visualization
 
@@ -94,9 +95,19 @@ The site lives in the `docs/` folder (`index.html` + `data.json`). To deploy:
 3. Branch: `main` / Folder: `/docs`
 4. Click Save — your site is live at `https://yourusername.github.io/repo-name/`
 
+## Compare to Last Refresh
+
+When you re-score occupations (using `--force`), the previous `scores.json` is automatically archived to `runs/`. The build step then computes score deltas and adds a **"vs. Last Refresh"** toggle to the AI Exposure layer. This shows:
+
+- Tile colors by score change (blue = rising exposure, amber = falling)
+- Biggest upward and downward movers
+- Workforce share with rising/falling exposure
+
+**Comparison safety:** Comparisons are only shown as reliable when the scoring prompt, methodology version, and model family match across runs. If they differ, a warning is displayed and delta coloring is flagged.
+
 ## Cost Estimate
 
-Scoring all ~358 occupations with Gemini 2.5 Flash costs roughly A$0.50-2.00.
+Scoring all ~358 occupations with Gemini 2.5 Flash costs roughly A$0.50-2.00. With extended thinking enabled (default), costs may be slightly higher due to thinking tokens.
 
 ## Caveats
 
@@ -106,7 +117,7 @@ Scoring all ~358 occupations with Gemini 2.5 Flash costs roughly A$0.50-2.00.
 
 ## Customising the Scoring Prompt
 
-Edit the `SYSTEM_PROMPT` in `score.py` to score occupations by different criteria. For example, you could write prompts for:
+Edit the `SYSTEM_PROMPT` in `score.py` to score occupations by different criteria. Note: changing the prompt will cause the comparison safety check to flag run-to-run comparisons as unsafe (prompt version is auto-detected via hash). You could write prompts for:
 - Exposure to humanoid robotics
 - Offshoring risk
 - Climate impact on occupation

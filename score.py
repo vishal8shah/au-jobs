@@ -13,11 +13,14 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
+import shutil
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -77,6 +80,18 @@ def save_scores(scores: dict, scores_path: Path):
         json.dump(scores, f, indent=2, ensure_ascii=False)
 
 
+METHODOLOGY_VERSION = "1.0"
+
+RESPONSE_SCHEMA = types.Schema(
+    type=types.Type.OBJECT,
+    properties={
+        "exposure": types.Schema(type=types.Type.INTEGER),
+        "rationale": types.Schema(type=types.Type.STRING),
+    },
+    required=["exposure", "rationale"],
+)
+
+
 def extract_json(text: str) -> dict:
     """Extract JSON from response text, handling markdown code fences."""
     text = text.strip()
@@ -87,6 +102,46 @@ def extract_json(text: str) -> dict:
     return json.loads(text)
 
 
+def prompt_version() -> str:
+    """Return a short SHA-256 hash of SYSTEM_PROMPT for comparison safety."""
+    return hashlib.sha256(SYSTEM_PROMPT.encode()).hexdigest()[:12]
+
+
+def call_with_retry(client, model, content, config, max_retries=3):
+    """Call Gemini API with exponential backoff retry."""
+    for attempt in range(max_retries):
+        try:
+            return client.models.generate_content(
+                model=model, contents=content, config=config,
+            )
+        except Exception as e:
+            if attempt < max_retries - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"    Retry {attempt + 1}/{max_retries - 1} after {wait}s: {e}")
+                time.sleep(wait)
+            else:
+                raise
+
+
+def archive_previous_scores(scores_path: Path):
+    """Archive existing scores.json to runs/ before a new scoring run."""
+    if not scores_path.exists():
+        return
+    existing = load_scores(scores_path)
+    meta = existing.get("_meta")
+    if not meta:
+        return
+    runs_dir = scores_path.parent / "runs"
+    runs_dir.mkdir(exist_ok=True)
+    run_date = meta.get("run_date", "unknown")
+    archive_path = runs_dir / f"{run_date}_scores.json"
+    # Don't overwrite existing archives
+    if archive_path.exists():
+        return
+    shutil.copy2(scores_path, archive_path)
+    print(f"Archived previous scores to {archive_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Score occupations for AI exposure using Gemini")
     parser.add_argument("--model", default="gemini-2.5-flash", help="Gemini model name")
@@ -95,6 +150,7 @@ def main():
     parser.add_argument("--force", action="store_true", help="Re-score already cached occupations")
     parser.add_argument("--delay", type=float, default=0.2, help="Seconds between API calls")
     parser.add_argument("--dry-run", action="store_true", help="Print prompt for first occupation only")
+    parser.add_argument("--thinking-budget", type=int, default=2048, help="Thinking token budget (0 to disable)")
     args = parser.parse_args()
 
     # Load occupations
@@ -148,18 +204,37 @@ def main():
     client = genai.Client(api_key=api_key)
 
     scores_path = Path("scores.json")
+
+    # Archive previous run before starting new one
+    if args.force:
+        archive_previous_scores(scores_path)
+
     scores = load_scores(scores_path)
-    print(f"Existing scores: {len(scores)}")
+    # Filter out _meta when counting existing occupation scores
+    occ_score_count = sum(1 for k in scores if k != "_meta")
+    print(f"Existing scores: {occ_score_count}")
+
+    config = types.GenerateContentConfig(
+        system_instruction=SYSTEM_PROMPT,
+        temperature=0.2,
+        max_output_tokens=1024,
+        response_mime_type="application/json",
+        response_schema=RESPONSE_SCHEMA,
+        thinking_config=types.ThinkingConfig(thinking_budget=args.thinking_budget),
+    )
 
     scored = 0
     skipped = 0
     errors = 0
+    total_input_tokens = 0
+    total_output_tokens = 0
+    total_thinking_tokens = 0
 
     for i, occ in enumerate(batch):
         slug = occ["slug"]
 
         # Skip if already scored (unless --force)
-        if slug in scores and not args.force:
+        if slug in scores and slug != "_meta" and not args.force:
             skipped += 1
             continue
 
@@ -172,17 +247,13 @@ def main():
         content = page_path.read_text(encoding="utf-8")
 
         try:
-            response = client.models.generate_content(
-                model=args.model,
-                contents=content,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_PROMPT,
-                    temperature=0.2,
-                    max_output_tokens=1024,
-                    response_mime_type="application/json",
-                    thinking_config=types.ThinkingConfig(thinking_budget=0),
-                ),
-            )
+            response = call_with_retry(client, args.model, content, config)
+
+            # Track token usage
+            if response.usage_metadata:
+                total_input_tokens += response.usage_metadata.prompt_token_count or 0
+                total_output_tokens += response.usage_metadata.candidates_token_count or 0
+                total_thinking_tokens += response.usage_metadata.thoughts_token_count or 0
 
             result = extract_json(response.text)
 
@@ -211,8 +282,24 @@ def main():
         if args.delay > 0:
             time.sleep(args.delay)
 
+    # Update run metadata
+    now = datetime.now(timezone.utc)
+    scores["_meta"] = {
+        "run_id": now.isoformat(timespec="seconds"),
+        "run_date": now.strftime("%Y-%m-%d"),
+        "model": args.model,
+        "prompt_version": prompt_version(),
+        "methodology_version": METHODOLOGY_VERSION,
+        "thinking_budget": args.thinking_budget,
+        "occupations_scored": scored,
+    }
+    save_scores(scores, scores_path)
+
+    occ_score_count = sum(1 for k in scores if k != "_meta")
     print(f"\nDone: {scored} scored, {skipped} skipped, {errors} errors")
-    print(f"Total scores in scores.json: {len(scores)}")
+    print(f"Total scores in scores.json: {occ_score_count}")
+    if total_input_tokens or total_output_tokens:
+        print(f"Tokens used: {total_input_tokens:,} input, {total_output_tokens:,} output, {total_thinking_tokens:,} thinking")
 
 
 if __name__ == "__main__":

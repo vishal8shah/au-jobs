@@ -173,6 +173,39 @@ body {
   background: rgba(255,255,255,0.04);
 }
 
+.compare-toggle {
+  display: none;
+  gap: 4px;
+}
+.compare-toggle.visible { display: flex; }
+.compare-toggle button {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--fg2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.compare-toggle button.active {
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+  border-color: rgba(255,255,255,0.2);
+}
+.compare-toggle button:hover:not(.active) {
+  background: rgba(255,255,255,0.04);
+}
+.compare-warning {
+  display: none;
+  font-size: 11px;
+  color: #e8a838;
+  align-items: center;
+  gap: 4px;
+}
+.compare-warning.visible { display: flex; }
+
 .gradient-legend {
   display: flex;
   align-items: center;
@@ -271,6 +304,11 @@ Respond with ONLY a JSON object:
         <button data-mode="exposure" class="active">Digital AI Exposure</button>
       </div>
     </div>
+    <div class="compare-toggle" id="compareToggle">
+      <button data-compare="current" class="active">Current</button>
+      <button data-compare="delta">vs. Last Refresh</button>
+    </div>
+    <div class="compare-warning" id="compareWarning"></div>
     <div class="gradient-legend">
       <span id="legendLow">Surplus</span>
       <canvas id="gradientLegend" width="80" height="8"></canvas>
@@ -316,6 +354,8 @@ Respond with ONLY a JSON object:
 // ── Color scales ────────────────────────────────────────────────────────
 
 let colorMode = "exposure";
+let compareMode = "current"; // "current" or "delta"
+let dataMeta = {};
 
 function boostContrast(t) {
   const c = (t - 0.5) * 2;
@@ -374,7 +414,33 @@ function exposureColor(v, a) {
   return greenRedCSS(v / 10, a);
 }
 
+function deltaColor(delta, a) {
+  if (delta == null) return `rgba(128,128,128,${a})`;
+  // Positive delta (rising exposure) = blue/purple, negative = amber/orange
+  // Scale: -5 to +5 mapped to full range
+  const t = Math.max(-5, Math.min(5, delta)) / 5; // -1 to 1
+  const abs = Math.abs(t);
+  const boost = Math.pow(abs, 0.6); // contrast boost
+  let r, g, b;
+  if (t > 0) {
+    // Rising: blue/purple
+    r = Math.round(60 + boost * 80);
+    g = Math.round(80 + boost * 40);
+    b = Math.round(160 + boost * 95);
+  } else if (t < 0) {
+    // Falling: amber/orange
+    r = Math.round(180 + boost * 75);
+    g = Math.round(140 - boost * 40);
+    b = Math.round(30 + boost * 10);
+  } else {
+    // No change: neutral gray
+    r = 128; g = 128; b = 128;
+  }
+  return `rgba(${r},${g},${b},${a})`;
+}
+
 function tileColorCSS(d, alpha) {
+  if (colorMode === "exposure" && compareMode === "delta") return deltaColor(d.exposure_delta, alpha);
   if (colorMode === "exposure") return exposureColor(d.exposure, alpha);
   if (colorMode === "shortage") return shortageColor(d.shortage_status, alpha);
   if (colorMode === "pay") return payColor(d.pay, alpha);
@@ -388,6 +454,14 @@ function formatPay(n) {
 }
 
 function tileSubInfo(r) {
+  if (colorMode === "exposure" && compareMode === "delta") {
+    if (r.exposure_delta != null) {
+      const sign = r.exposure_delta > 0 ? "+" : "";
+      return sign + r.exposure_delta + " (" + (r.previous_exposure ?? "?") + "\u2192" + r.exposure + ")" +
+             (r.jobs ? " \u00b7 " + formatNumber(r.jobs) + " jobs" : "");
+    }
+    return "No comparison" + (r.jobs ? " \u00b7 " + formatNumber(r.jobs) + " jobs" : "");
+  }
   if (colorMode === "exposure") {
     return (r.exposure != null ? r.exposure + "/10" : "") +
            (r.jobs ? " \u00b7 " + formatNumber(r.jobs) + " jobs" : "");
@@ -548,6 +622,32 @@ function formatNumber(n) {
 }
 
 function tooltipHighlight(d) {
+  if (colorMode === "exposure" && compareMode === "delta") {
+    const v = d.exposure;
+    const pv = d.previous_exposure;
+    const delta = d.exposure_delta;
+    if (v == null) return "";
+    const color = deltaColor(delta, 1);
+    let html = `<span style="color:${color};font-weight:600;">`;
+    if (delta != null) {
+      const sign = delta > 0 ? "+" : "";
+      html += `Change: ${sign}${delta} (${pv ?? "?"} \u2192 ${v})`;
+    } else {
+      html += `Current: ${v}/10 (no previous data)`;
+    }
+    html += `</span>`;
+    if (delta != null) {
+      html += `<div style="margin-top:3px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;">` +
+        `<div style="height:100%;width:${Math.min(100, Math.abs(delta) * 20)}%;background:${color};border-radius:2px;"></div></div>`;
+    }
+    if (dataMeta.previous_run_date) {
+      html += `<div style="font-size:10px;color:var(--fg2);margin-top:3px;">Compared to ${dataMeta.previous_run_date} run</div>`;
+    }
+    if (!dataMeta.comparison_safe && dataMeta.comparison_note) {
+      html += `<div style="font-size:10px;color:#e8a838;margin-top:3px;">\u26a0 ${escapeHTML(dataMeta.comparison_note)}</div>`;
+    }
+    return html;
+  }
   if (colorMode === "exposure") {
     const v = d.exposure;
     if (v == null) return "";
@@ -586,7 +686,11 @@ function showTooltip(d, mx, my) {
     <span class="label">Skill level</span><span class="value">${escapeHTML(d.skill_level) || '\u2014'}</span>
     <span class="label">Growth</span><span class="value">${growthStr}</span>
     <span class="label">AI exposure</span><span class="value">${d.exposure != null ? d.exposure + '/10' : '\u2014'}</span>`;
-  tt.querySelector(".tt-rationale").textContent = colorMode === "exposure" ? (d.exposure_rationale || "") : "";
+  if (colorMode === "exposure" && compareMode === "delta") {
+    tt.querySelector(".tt-rationale").textContent = d.exposure_rationale || "";
+  } else {
+    tt.querySelector(".tt-rationale").textContent = colorMode === "exposure" ? (d.exposure_rationale || "") : "";
+  }
   const ttHeight = tt.offsetHeight || 200;
   let tx = mx + 16, ty = my - 16;
   if (tx + 340 > window.innerWidth) tx = mx - 356;
@@ -658,6 +762,7 @@ function updateStats() {
   if (colorMode === "shortage") updateShortageStats(totalJobs);
   else if (colorMode === "pay") updatePayStats(totalJobs);
   else if (colorMode === "education") updateEducationStats(totalJobs);
+  else if (colorMode === "exposure" && compareMode === "delta") updateCompareStats(totalJobs);
   else updateExposureStats(totalJobs);
 }
 
@@ -865,6 +970,69 @@ function updateExposureStats(totalJobs) {
     <div class="stat-label">scoring 7+ out of 10</div>`;
 }
 
+function updateCompareStats(totalJobs) {
+  // Headline: net direction
+  const withDelta = data.filter(d => d.exposure_delta != null);
+  const rising = withDelta.filter(d => d.exposure_delta > 0);
+  const falling = withDelta.filter(d => d.exposure_delta < 0);
+  const unchanged = withDelta.filter(d => d.exposure_delta === 0);
+
+  const risingJobs = rising.reduce((s, d) => s + (d.jobs || 0), 0);
+  const fallingJobs = falling.reduce((s, d) => s + (d.jobs || 0), 0);
+  const risingPct = totalJobs > 0 ? (risingJobs / totalJobs * 100) : 0;
+
+  document.getElementById("block2").innerHTML = `<h3>Rising exposure</h3>
+    <div class="stat-big"><span style="color:${deltaColor(3, 1)}">${risingPct.toFixed(0)}%</span></div>
+    <div class="stat-label">${formatNumber(risingJobs)} workers in ${rising.length} occupations</div>`;
+
+  // Biggest upward movers (by delta, weighted by jobs for tiebreak)
+  const topUp = [...rising].sort((a, b) => (b.exposure_delta * (b.jobs || 1)) - (a.exposure_delta * (a.jobs || 1))).slice(0, 5);
+  document.getElementById("block3").innerHTML = `<h3>Biggest increases</h3>
+    <div style="display:flex;flex-direction:column;gap:2px;font-size:12px;">${topUp.map(d =>
+      `<div style="display:flex;gap:6px;"><span style="color:${deltaColor(d.exposure_delta, 1)};width:28px;text-align:right;flex-shrink:0;">+${d.exposure_delta}</span><span style="color:var(--fg2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(d.title)}</span></div>`
+    ).join("") || '<span style="color:var(--fg2)">None</span>'}</div>`;
+
+  // Biggest downward movers
+  const topDown = [...falling].sort((a, b) => (a.exposure_delta * (a.jobs || 1)) - (b.exposure_delta * (b.jobs || 1))).slice(0, 5);
+  document.getElementById("block4").innerHTML = `<h3>Biggest decreases</h3>
+    <div style="display:flex;flex-direction:column;gap:2px;font-size:12px;">${topDown.map(d =>
+      `<div style="display:flex;gap:6px;"><span style="color:${deltaColor(d.exposure_delta, 1)};width:28px;text-align:right;flex-shrink:0;">${d.exposure_delta}</span><span style="color:var(--fg2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(d.title)}</span></div>`
+    ).join("") || '<span style="color:var(--fg2)">None</span>'}</div>`;
+
+  // Delta distribution
+  const deltaBuckets = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
+  const bucketJobs = deltaBuckets.map(d => {
+    let jobs = 0;
+    for (const o of withDelta) { if (o.exposure_delta === d) jobs += (o.jobs || 0); }
+    return jobs;
+  });
+  const maxH = Math.max(...bucketJobs, 1);
+  document.getElementById("block5").innerHTML = `<h3>Delta distribution</h3>
+    <div class="histogram">${bucketJobs.map((c, i) => `<div class="bar" style="height:${Math.max(2, c / maxH * 100)}%;background:${deltaColor(deltaBuckets[i], 0.7)}"></div>`).join("")}</div>
+    <div class="hist-labels"><span>-5</span><span>0</span><span>+5</span></div>`;
+
+  // Falling exposure workforce
+  const fallingPct = totalJobs > 0 ? (fallingJobs / totalJobs * 100) : 0;
+  document.getElementById("block6").innerHTML = `<h3>Falling exposure</h3>
+    <div class="stat-big"><span style="color:${deltaColor(-3, 1)}">${fallingPct.toFixed(0)}%</span></div>
+    <div class="stat-label">${formatNumber(fallingJobs)} workers in ${falling.length} occupations</div>`;
+
+  // Unchanged
+  const unchangedJobs = unchanged.reduce((s, d) => s + (d.jobs || 0), 0);
+  document.getElementById("block7").innerHTML = `<h3>Unchanged</h3>
+    <div class="stat-big">${unchanged.length}</div>
+    <div class="stat-label">${formatNumber(unchangedJobs)} workers, score unchanged</div>`;
+
+  // Comparison info
+  const prevDate = dataMeta.previous_run_date || "unknown";
+  const compCount = dataMeta.comparison_count || withDelta.length;
+  document.getElementById("block8").innerHTML = `<h3>Comparison</h3>
+    <div class="stat-label">vs. ${prevDate} run</div>
+    <div class="stat-label">${compCount} occupations compared</div>
+    ${!dataMeta.comparison_safe && dataMeta.comparison_note ?
+      `<div class="stat-label" style="color:#e8a838;margin-top:4px;">\u26a0 ${escapeHTML(dataMeta.comparison_note)}</div>` : ""}`;
+}
+
 // ── Events ─────────────────────────────────────────────────────────────
 
 canvas.addEventListener("mousemove", (e) => {
@@ -900,32 +1068,58 @@ const LEGEND_CONFIG = {
   shortage:  { low: "Surplus", high: "Shortage" },
   pay:       { low: "A$30K", high: "A$200K" },
   education: { low: "Bachelor's+", high: "Secondary" },
+  delta:     { low: "Falling", high: "Rising" },
 };
 
 function drawGradientLegend() {
   const c = document.getElementById("gradientLegend");
   const gctx = c.getContext("2d");
+  const isDelta = colorMode === "exposure" && compareMode === "delta";
   for (let x = 0; x < 80; x++) {
     const t = x / 79;
-    if (colorMode === "exposure") {
+    if (isDelta) {
+      // Falling (amber) on left, rising (blue) on right
+      const delta = (t - 0.5) * 10; // -5 to +5
+      gctx.fillStyle = deltaColor(delta, 1);
+    } else if (colorMode === "exposure") {
       gctx.fillStyle = greenRedCSS(t, 1);
     } else if (colorMode === "shortage") {
-      // left = green (shortage), right = red (surplus)
       gctx.fillStyle = greenRedCSS(t, 1);
     } else if (colorMode === "education") {
-      // left = green (high skill), right = red (low skill)
       gctx.fillStyle = greenRedCSS(t, 1);
     } else {
       gctx.fillStyle = greenRedCSS(1 - t, 1);
     }
     gctx.fillRect(x, 0, 1, 8);
   }
-  const cfg = LEGEND_CONFIG[colorMode];
+  const cfg = isDelta ? LEGEND_CONFIG.delta : LEGEND_CONFIG[colorMode];
   document.getElementById("legendLow").textContent = cfg.low;
   document.getElementById("legendHigh").textContent = cfg.high;
 }
 
 // ── Layer toggle ─────────────────────────────────────────────────────
+
+function updateCompareToggleVisibility() {
+  const ct = document.getElementById("compareToggle");
+  const cw = document.getElementById("compareWarning");
+  if (colorMode === "exposure" && dataMeta.comparison_available) {
+    ct.classList.add("visible");
+    if (!dataMeta.comparison_safe && dataMeta.comparison_note && compareMode === "delta") {
+      cw.textContent = "\u26a0 " + dataMeta.comparison_note;
+      cw.classList.add("visible");
+    } else {
+      cw.classList.remove("visible");
+    }
+  } else {
+    ct.classList.remove("visible");
+    cw.classList.remove("visible");
+    if (compareMode === "delta") {
+      compareMode = "current";
+      document.querySelectorAll("#compareToggle button").forEach(b => b.classList.remove("active"));
+      document.querySelector('#compareToggle button[data-compare="current"]').classList.add("active");
+    }
+  }
+}
 
 document.getElementById("colorToggle").addEventListener("click", (e) => {
   const btn = e.target.closest("button");
@@ -933,6 +1127,19 @@ document.getElementById("colorToggle").addEventListener("click", (e) => {
   colorMode = btn.dataset.mode;
   document.querySelectorAll("#colorToggle button").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
+  updateCompareToggleVisibility();
+  updateStats();
+  drawGradientLegend();
+  resize();
+});
+
+document.getElementById("compareToggle").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn || !btn.dataset.compare) return;
+  compareMode = btn.dataset.compare;
+  document.querySelectorAll("#compareToggle button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  updateCompareToggleVisibility();
   updateStats();
   drawGradientLegend();
   resize();
@@ -946,12 +1153,20 @@ fetch("data.json")
     return r.json();
   })
   .then(d => {
-    data = d;
-    if (!Array.isArray(data) || data.length === 0) throw new Error("No occupation data found");
+    // Support both old format (plain array) and new format ({ meta, occupations })
+    if (Array.isArray(d)) {
+      data = d;
+      dataMeta = {};
+    } else {
+      data = d.occupations || [];
+      dataMeta = d.meta || {};
+    }
+    if (data.length === 0) throw new Error("No occupation data found");
     const totalJobs = data.reduce((s, o) => s + (o.jobs || 0), 0);
     const jobsM = (totalJobs / 1e6).toFixed(1);
     document.getElementById("introText").innerHTML =
       `Visualizing <b>${data.length} occupations</b> from <a href="https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles" target="_blank" rel="noopener">Jobs and Skills Australia</a> (ANZSCO), covering <b>${jobsM}M workers</b> across the Australian economy. Each rectangle's <b>area</b> is proportional to total employment. <b>Color</b> shows the selected metric &mdash; toggle between shortage status, median pay, skill level, and AI exposure. Click any tile to view its JSA occupation profile.`;
+    updateCompareToggleVisibility();
     updateStats();
     drawGradientLegend();
     resize();

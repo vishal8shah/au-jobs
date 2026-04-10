@@ -9,6 +9,7 @@ pages/
 scores.json
 occupations.csv
 occupations.json
+runs/
 # NOTE: docs/data.json is intentionally committed so GitHub Pages works out of the box
 
 # Python
