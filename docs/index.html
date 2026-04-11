@@ -1531,6 +1531,12 @@ document.getElementById("colorToggle").addEventListener("click", (e) => {
   colorMode = btn.dataset.mode;
   document.querySelectorAll("#colorToggle button").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
+  // Scatter view only makes sense with the exposure layer — reset to treemap otherwise
+  if (colorMode !== "exposure" && viewMode === "scatter") {
+    viewMode = "treemap";
+    document.querySelectorAll("#viewToggle button").forEach(b => b.classList.remove("active"));
+    document.querySelector('#viewToggle button[data-view="treemap"]').classList.add("active");
+  }
   updateCompareToggleVisibility();
   updateStats();
   drawGradientLegend();
