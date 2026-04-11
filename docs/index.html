@@ -251,6 +251,102 @@ canvas#canvas {
 }
 .footer a { color: var(--fg2); }
 .footer a:hover { color: var(--fg); }
+
+/* ── Search bar ───────────────────────────────────────────── */
+#searchBar { position: relative; margin-bottom: 12px; }
+#jobSearch {
+  width: 100%; padding: 8px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px; color: var(--fg); font-size: 13px;
+  outline: none; transition: border-color 0.15s;
+}
+#jobSearch::placeholder { color: var(--fg2); }
+#jobSearch:focus { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); }
+#searchResults {
+  display: none; position: absolute; top: 100%; left: 0; right: 0;
+  background: #1a1a24; border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px; margin-top: 4px; z-index: 30;
+  overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+#searchResults.visible { display: block; }
+.sr-row {
+  padding: 9px 14px; cursor: pointer; display: flex;
+  align-items: center; gap: 10px; font-size: 13px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sr-row:last-child { border-bottom: none; }
+.sr-row:hover { background: rgba(255,255,255,0.06); }
+.sr-title { flex: 1; }
+.sr-badge {
+  font-size: 11px; padding: 2px 7px; border-radius: 3px;
+  font-weight: 600; flex-shrink: 0;
+}
+
+/* ── View toggle ──────────────────────────────────────────── */
+.view-toggle { display: flex; gap: 4px; }
+.view-toggle button {
+  padding: 6px 12px; font-size: 12px; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+  background: transparent; color: var(--fg2); cursor: pointer; transition: all 0.15s;
+}
+.view-toggle button.active { background: rgba(255,255,255,0.08); color: var(--fg); border-color: rgba(255,255,255,0.2); }
+.view-toggle button:hover:not(.active) { background: rgba(255,255,255,0.04); }
+
+/* ── Scorecard panel ──────────────────────────────────────── */
+#scorecardOverlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55); z-index: 40;
+}
+#scorecardOverlay.visible { display: block; }
+#scorecard {
+  position: fixed; top: 0; right: 0;
+  width: 380px; max-width: 100vw; height: 100vh;
+  background: var(--bg2); border-left: 1px solid rgba(255,255,255,0.1);
+  overflow-y: auto; z-index: 50;
+  transform: translateX(100%); transition: transform 0.25s ease;
+  padding: 24px 20px;
+}
+#scorecard.open { transform: translateX(0); }
+.sc-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; color: var(--fg2);
+  font-size: 22px; cursor: pointer; line-height: 1; padding: 2px 6px;
+}
+.sc-close:hover { color: var(--fg); }
+.sc-category { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg2); margin-bottom: 6px; }
+.sc-title { font-size: 20px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
+.sc-anzsco { font-size: 12px; color: var(--fg2); margin-bottom: 16px; }
+.sc-exposure-badge {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  padding: 12px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;
+}
+.sc-exposure-num { font-size: 36px; font-weight: 700; line-height: 1; flex-shrink: 0; }
+.sc-exposure-label { font-size: 11px; color: var(--fg2); line-height: 1.4; }
+.sc-exposure-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+.sc-exposure-bar-fill { height: 100%; border-radius: 2px; }
+.sc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.sc-stat { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px 10px; }
+.sc-stat-label { font-size: 10px; color: var(--fg2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+.sc-stat-value { font-size: 14px; font-weight: 600; }
+.sc-rationale {
+  font-size: 13px; line-height: 1.6; color: var(--fg2); margin-bottom: 16px;
+  padding: 12px 14px; background: rgba(255,255,255,0.03); border-radius: 6px;
+  border-left: 2px solid rgba(255,255,255,0.1);
+}
+.sc-cat-risk { font-size: 12px; color: var(--fg2); margin-bottom: 16px; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 6px; }
+.sc-actions { display: flex; flex-direction: column; gap: 8px; }
+.sc-btn {
+  display: block; width: 100%; padding: 10px 16px; border-radius: 6px;
+  font-size: 13px; font-weight: 500; cursor: pointer; text-align: center;
+  text-decoration: none; border: none; box-sizing: border-box;
+}
+.sc-btn-linkedin { background: #0a66c2; color: #fff; }
+.sc-btn-linkedin:hover { background: #0959ab; }
+.sc-btn-copy { background: rgba(255,255,255,0.08); color: var(--fg); border: 1px solid rgba(255,255,255,0.12); }
+.sc-btn-copy:hover { background: rgba(255,255,255,0.12); }
+.sc-btn-jsa { background: transparent; color: var(--fg2); border: 1px solid rgba(255,255,255,0.08); font-size: 12px; }
+.sc-btn-jsa:hover { color: var(--fg); border-color: rgba(255,255,255,0.2); }
 </style>
 </head>
 <body>
@@ -304,6 +400,10 @@ Respond with ONLY a JSON object:
         <button data-mode="exposure" class="active">Digital AI Exposure</button>
       </div>
     </div>
+    <div class="view-toggle" id="viewToggle">
+      <button data-view="treemap" class="active">Treemap</button>
+      <button data-view="scatter">Exposure vs Growth</button>
+    </div>
     <div class="compare-toggle" id="compareToggle">
       <button data-compare="current" class="active">Current</button>
       <button data-compare="delta">vs. Last Refresh</button>
@@ -314,6 +414,11 @@ Respond with ONLY a JSON object:
       <canvas id="gradientLegend" width="80" height="8"></canvas>
       <span id="legendHigh">Shortage</span>
     </div>
+  </div>
+
+  <div id="searchBar">
+    <input type="search" id="jobSearch" placeholder="Search your occupation…" autocomplete="off" spellcheck="false">
+    <div id="searchResults"></div>
   </div>
 
   <div class="stats-row">
@@ -339,8 +444,12 @@ Respond with ONLY a JSON object:
   ANZSCO occupation classifications &middot;
   AI scoring via <a href="https://ai.google.dev/" target="_blank" rel="noopener">Google Gemini</a> &middot;
   Inspired by <a href="https://github.com/karpathy/jobs" target="_blank" rel="noopener">karpathy/jobs</a>
+  <span id="scoringMeta"></span>
 </div>
 </div>
+
+<div id="scorecardOverlay"></div>
+<div id="scorecard"></div>
 
 <div id="tooltip">
   <div class="tt-title"></div>
@@ -355,7 +464,9 @@ Respond with ONLY a JSON object:
 
 let colorMode = "exposure";
 let compareMode = "current"; // "current" or "delta"
+let viewMode = "treemap";    // "treemap" | "scatter"
 let dataMeta = {};
+let scatterPts = [];
 
 function boostContrast(t) {
   const c = (t - 0.5) * 2;
@@ -549,7 +660,90 @@ const ctx = canvas.getContext("2d");
 let dpr = window.devicePixelRatio || 1;
 const MARGIN = 12, GAP = 1.5;
 
+function layoutScatter() {
+  const wrapper = document.getElementById("wrapper");
+  const w = wrapper.clientWidth;
+  const h = Math.round(w * 0.55);
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + "px"; canvas.style.height = h + "px";
+  const PAD = { top: 30, right: 24, bottom: 48, left: 58 };
+  const plotW = w - PAD.left - PAD.right;
+  const plotH = h - PAD.top - PAD.bottom;
+  const GROWTH_MIN = -5, GROWTH_MAX = 15;
+  const pts = data.filter(d => d.exposure != null && d.growth != null);
+  const maxJobs = Math.max(...pts.map(d => d.jobs || 1), 1);
+  scatterPts = pts.map(d => {
+    const sx = PAD.left + (d.exposure / 10) * plotW;
+    const g = Math.max(GROWTH_MIN, Math.min(GROWTH_MAX, d.growth));
+    const sy = PAD.top + (1 - (g - GROWTH_MIN) / (GROWTH_MAX - GROWTH_MIN)) * plotH;
+    const sr = Math.max(3, Math.round(16 * Math.sqrt((d.jobs || 1) / maxJobs)));
+    return { ...d, sx, sy, sr };
+  });
+}
+
+function drawScatter() {
+  const W = canvas.width / dpr, H = canvas.height / dpr;
+  const PAD = { top: 30, right: 24, bottom: 48, left: 58 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+  const GROWTH_MIN = -5, GROWTH_MAX = 15;
+  const xS = v => PAD.left + (v / 10) * plotW;
+  const yS = g => PAD.top + (1 - (Math.max(GROWTH_MIN, Math.min(GROWTH_MAX, g)) - GROWTH_MIN) / (GROWTH_MAX - GROWTH_MIN)) * plotH;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = "#0a0a0f"; ctx.fillRect(0, 0, W, H);
+  // Subtle gridlines
+  ctx.strokeStyle = "rgba(255,255,255,0.05)"; ctx.lineWidth = 1;
+  for (let e = 0; e <= 10; e += 2) { ctx.beginPath(); ctx.moveTo(xS(e), PAD.top); ctx.lineTo(xS(e), PAD.top + plotH); ctx.stroke(); }
+  for (let g = GROWTH_MIN; g <= GROWTH_MAX; g += 5) { ctx.beginPath(); ctx.moveTo(PAD.left, yS(g)); ctx.lineTo(PAD.left + plotW, yS(g)); ctx.stroke(); }
+  // Quadrant dividers
+  const xDiv = xS(6), yDiv = yS(0);
+  ctx.save(); ctx.strokeStyle = "rgba(255,255,255,0.18)"; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(xDiv, PAD.top); ctx.lineTo(xDiv, PAD.top + plotH); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(PAD.left, yDiv); ctx.lineTo(PAD.left + plotW, yDiv); ctx.stroke();
+  ctx.setLineDash([]); ctx.restore();
+  // Quadrant labels
+  ctx.font = "600 11px -apple-system, system-ui, sans-serif"; ctx.textBaseline = "top";
+  ctx.textAlign = "right"; ctx.fillStyle = "rgba(80,160,255,0.35)"; ctx.fillText("TRANSFORMING ↗", PAD.left + plotW - 6, PAD.top + 6);
+  ctx.fillStyle = "rgba(240,80,60,0.35)"; ctx.textBaseline = "bottom"; ctx.fillText("AT RISK ↘", PAD.left + plotW - 6, PAD.top + plotH - 6);
+  ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillStyle = "rgba(60,200,80,0.35)"; ctx.fillText("↖ GROWING", PAD.left + 6, PAD.top + 6);
+  ctx.fillStyle = "rgba(128,128,128,0.3)"; ctx.textBaseline = "bottom"; ctx.fillText("↙ STABLE", PAD.left + 6, PAD.top + plotH - 6);
+  // Dots (small first so large ones render on top)
+  const sorted = [...scatterPts].sort((a, b) => a.sr - b.sr);
+  for (const p of sorted) {
+    const isHov = p === hovered;
+    ctx.beginPath(); ctx.arc(p.sx, p.sy, p.sr + (isHov ? 2 : 0), 0, Math.PI * 2);
+    ctx.fillStyle = exposureColor(p.exposure, isHov ? 0.9 : 0.6); ctx.fill();
+    if (isHov) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke(); }
+  }
+  // Labels for large occupations
+  ctx.font = "400 10px -apple-system, system-ui, sans-serif"; ctx.textBaseline = "middle"; ctx.textAlign = "left";
+  for (const p of scatterPts) {
+    if ((p.jobs || 0) < 250000) continue;
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.fillText(p.title.split(/[\s(]/)[0], p.sx + p.sr + 3, p.sy);
+  }
+  // Axes
+  ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top); ctx.lineTo(PAD.left, PAD.top + plotH); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top + plotH); ctx.lineTo(PAD.left + plotW, PAD.top + plotH); ctx.stroke();
+  // X labels
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "400 10px -apple-system, system-ui, sans-serif";
+  ctx.textBaseline = "top"; ctx.textAlign = "center";
+  for (let e = 0; e <= 10; e += 2) ctx.fillText(e, xS(e), PAD.top + plotH + 5);
+  ctx.fillStyle = "rgba(255,255,255,0.25)";
+  ctx.fillText("← Low Exposure", xS(1.5), PAD.top + plotH + 18);
+  ctx.fillText("High Exposure →", xS(8.5), PAD.top + plotH + 18);
+  ctx.fillText("AI Exposure (0–10)", xS(5), PAD.top + plotH + 32);
+  // Y labels
+  ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  for (let g = GROWTH_MIN; g <= GROWTH_MAX; g += 5) { ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.fillText((g > 0 ? "+" : "") + g + "%", PAD.left - 6, yS(g)); }
+  ctx.save(); ctx.translate(14, PAD.top + plotH / 2); ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillStyle = "rgba(255,255,255,0.25)";
+  ctx.font = "400 10px -apple-system, system-ui, sans-serif"; ctx.fillText("Job Growth % / yr", 0, 0); ctx.restore();
+}
+
 function layout() {
+  if (viewMode === "scatter") { layoutScatter(); return; }
   const wrapper = document.getElementById("wrapper");
   const w = wrapper.clientWidth;
   const h = Math.round(w * 3 / 4);
@@ -572,6 +766,7 @@ function layout() {
 }
 
 function draw() {
+  if (viewMode === "scatter") { drawScatter(); return; }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.fillStyle = "#0a0a0f";
   ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
@@ -602,6 +797,14 @@ function draw() {
 function hitTest(mx, my) {
   const rect = canvas.getBoundingClientRect();
   const cx = mx - rect.left, cy = my - rect.top;
+  if (viewMode === "scatter") {
+    let best = null, bestDist = Infinity;
+    for (const p of scatterPts) {
+      const dist = Math.sqrt((cx - p.sx) ** 2 + (cy - p.sy) ** 2);
+      if (dist <= p.sr + 6 && dist < bestDist) { bestDist = dist; best = p; }
+    }
+    return best;
+  }
   for (let i = rects.length - 1; i >= 0; i--) {
     const r = rects[i];
     if (cx >= r.rx && cx < r.rx + r.rw && cy >= r.ry && cy < r.ry + r.rh) return r;
@@ -759,6 +962,7 @@ function updateStats() {
   document.getElementById("statTotalJobs").textContent = (totalJobs / 1e6).toFixed(1) + "M";
   document.getElementById("statTotalLabel").textContent = data.length + " occupations";
 
+  if (viewMode === "scatter") { updateScatterStats(totalJobs); return; }
   if (colorMode === "shortage") updateShortageStats(totalJobs);
   else if (colorMode === "pay") updatePayStats(totalJobs);
   else if (colorMode === "education") updateEducationStats(totalJobs);
@@ -1033,6 +1237,189 @@ function updateCompareStats(totalJobs) {
       `<div class="stat-label" style="color:#e8a838;margin-top:4px;">\u26a0 ${escapeHTML(dataMeta.comparison_note)}</div>` : ""}`;
 }
 
+function updateScatterStats(totalJobs) {
+  const pts = data.filter(d => d.exposure != null && d.growth != null && d.jobs);
+  const transforming = pts.filter(d => d.exposure >= 6 && d.growth > 0);
+  const atRisk       = pts.filter(d => d.exposure >= 6 && d.growth <= 0);
+  const growing      = pts.filter(d => d.exposure < 6  && d.growth > 0);
+  const stable       = pts.filter(d => d.exposure < 6  && d.growth <= 0);
+  const tJobs = transforming.reduce((s,d)=>s+d.jobs,0);
+  const rJobs = atRisk.reduce((s,d)=>s+d.jobs,0);
+  const gJobs = growing.reduce((s,d)=>s+d.jobs,0);
+  const sJobs = stable.reduce((s,d)=>s+d.jobs,0);
+
+  document.getElementById("block2").innerHTML = `<h3>Transforming</h3>
+    <div class="stat-big" style="color:rgba(80,160,255,1)">${transforming.length}</div>
+    <div class="stat-label">${formatNumber(tJobs)} workers &mdash; high AI, growing</div>`;
+
+  const topT = [...transforming].sort((a,b)=>b.jobs-a.jobs).slice(0,5);
+  document.getElementById("block3").innerHTML = `<h3>Biggest transforming roles</h3>
+    <div style="display:flex;flex-direction:column;gap:3px;font-size:12px;">${topT.map(d=>
+      `<div style="display:flex;gap:6px;align-items:center;">
+        <span style="color:${exposureColor(d.exposure,1)};width:22px;text-align:right;flex-shrink:0;font-size:11px;">${d.exposure}/10</span>
+        <span style="color:var(--fg2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(d.title)}</span>
+      </div>`).join("")}</div>`;
+
+  document.getElementById("block4").innerHTML = `<h3>At risk</h3>
+    <div class="stat-big" style="color:${exposureColor(8,1)}">${atRisk.length}</div>
+    <div class="stat-label">${formatNumber(rJobs)} workers &mdash; high AI, declining</div>`;
+
+  const topR = [...atRisk].sort((a,b)=>b.jobs-a.jobs).slice(0,5);
+  document.getElementById("block5").innerHTML = `<h3>Biggest at-risk roles</h3>
+    <div style="display:flex;flex-direction:column;gap:3px;font-size:12px;">${topR.map(d=>
+      `<div style="display:flex;gap:6px;align-items:center;">
+        <span style="color:${exposureColor(d.exposure,1)};width:22px;text-align:right;flex-shrink:0;font-size:11px;">${d.exposure}/10</span>
+        <span style="color:var(--fg2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(d.title)}</span>
+      </div>`).join("")}</div>`;
+
+  document.getElementById("block6").innerHTML = `<h3>Growing</h3>
+    <div class="stat-big" style="color:rgba(60,200,80,1)">${growing.length}</div>
+    <div class="stat-label">${formatNumber(gJobs)} workers &mdash; low AI, growing</div>`;
+
+  document.getElementById("block7").innerHTML = `<h3>Stable</h3>
+    <div class="stat-big" style="color:rgba(160,160,160,1)">${stable.length}</div>
+    <div class="stat-label">${formatNumber(sJobs)} workers &mdash; low AI, stable/declining</div>`;
+
+  document.getElementById("block8").innerHTML = `<h3>High-exposure total</h3>
+    <div class="stat-big" style="color:${exposureColor(8,1)}">${formatNumber(tJobs+rJobs)}</div>
+    <div class="stat-label">workers in roles scoring 6+</div>`;
+}
+
+// ── Scorecard ───────────────────────────────────────────────────────────
+
+function buildCategoryRiskStat(category) {
+  let total = 0, high = 0;
+  for (const d of data) {
+    if (d.category === category && d.jobs && d.exposure != null) {
+      total += d.jobs;
+      if (d.exposure >= 7) high += d.jobs;
+    }
+  }
+  if (!total) return "";
+  return `${Math.round(high/total*100)}% of ${category} workers are in high-AI-exposure roles (7+/10)`;
+}
+
+function buildShareText(d) {
+  const score = d.exposure != null ? d.exposure : "?";
+  const growthStr = d.growth != null ? (d.growth > 0 ? "+" : "") + d.growth + "%" : null;
+  let growthMsg = "";
+  if (d.growth != null && d.exposure != null) {
+    if (d.exposure >= 6 && d.growth > 0) growthMsg = " This role is transforming, not disappearing.";
+    else if (d.exposure >= 6 && d.growth <= 0) growthMsg = " High AI exposure and declining demand — worth watching.";
+    else if (d.exposure < 6 && d.growth > 0) growthMsg = " Growing and relatively AI-resilient.";
+  }
+  const catRisk = buildCategoryRiskStat(d.category);
+  const siteUrl = window.location.href.split("?")[0].replace(/\/+$/, "") + "/";
+  let text = `🤖 AI Exposure Score: ${score}/10 — ${d.title}\n\n`;
+  if (d.exposure_rationale) {
+    const rat = d.exposure_rationale.length > 260 ? d.exposure_rationale.slice(0, 257) + "..." : d.exposure_rationale;
+    text += rat + "\n\n";
+  }
+  if (growthStr) text += `📈 Job growth: ${growthStr}/yr.${growthMsg}\n`;
+  if (d.pay) text += `💰 Median pay: A$${Math.round(d.pay/1000)}K\n`;
+  if (d.jobs) text += `👥 ${formatNumber(d.jobs)} Australians in this role\n`;
+  if (catRisk) text += `\n📊 ${catRisk}\n`;
+  text += `\nExplore all 358 Australian occupations:\n${siteUrl}\n`;
+  text += `\n#AustralianJobs #AIExposure #FutureOfWork #Australia`;
+  return text;
+}
+
+function openScorecard(d) {
+  const score = d.exposure != null ? d.exposure : null;
+  const color = score != null ? exposureColor(score, 1) : "rgba(128,128,128,1)";
+  const tierLabel = score == null ? "" :
+    score <= 1 ? "Minimal" : score <= 3 ? "Low" : score <= 5 ? "Moderate" :
+    score <= 7 ? "High" : score <= 9 ? "Very High" : "Maximum";
+  const growthStr = d.growth != null ? (d.growth > 0 ? "+" : "") + d.growth + "%" : "—";
+  const catRisk = buildCategoryRiskStat(d.category);
+  const shareText = buildShareText(d);
+  const siteUrl = window.location.href.split("?")[0].replace(/\/+$/, "") + "/";
+  const linkedInUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(siteUrl);
+
+  document.getElementById("scorecard").innerHTML = `
+    <button class="sc-close" onclick="closeScorecard()" aria-label="Close">&times;</button>
+    <div class="sc-category">${escapeHTML(d.category)}</div>
+    <div class="sc-title">${escapeHTML(d.title)}</div>
+    <div class="sc-anzsco">ANZSCO ${escapeHTML(d.anzsco_code || "")}</div>
+    <div class="sc-exposure-badge">
+      <div class="sc-exposure-num" style="color:${color}">${score != null ? score : "—"}<span style="font-size:18px;color:var(--fg2)">/10</span></div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:${color}">${tierLabel} AI Exposure</div>
+        <div class="sc-exposure-label">Digital AI Exposure score</div>
+        <div class="sc-exposure-bar"><div class="sc-exposure-bar-fill" style="width:${(score||0)*10}%;background:${color}"></div></div>
+      </div>
+    </div>
+    <div class="sc-stats">
+      <div class="sc-stat"><div class="sc-stat-label">Median Pay</div><div class="sc-stat-value">${formatPay(d.pay)}</div></div>
+      <div class="sc-stat"><div class="sc-stat-label">Employment</div><div class="sc-stat-value">${formatNumber(d.jobs)}</div></div>
+      <div class="sc-stat"><div class="sc-stat-label">Job Growth</div><div class="sc-stat-value">${growthStr}</div></div>
+      <div class="sc-stat"><div class="sc-stat-label">Shortage</div><div class="sc-stat-value" style="font-size:12px">${escapeHTML(d.shortage_status||"—")}</div></div>
+    </div>
+    ${d.exposure_rationale ? `<div class="sc-rationale">${escapeHTML(d.exposure_rationale)}</div>` : ""}
+    ${catRisk ? `<div class="sc-cat-risk">📊 ${escapeHTML(catRisk)}</div>` : ""}
+    <div class="sc-actions">
+      <a href="${linkedInUrl}" target="_blank" rel="noopener" class="sc-btn sc-btn-linkedin">Share on LinkedIn</a>
+      <button class="sc-btn sc-btn-copy" onclick="copyShareText()">Copy post text</button>
+      ${d.url ? `<a href="${escapeHTML(d.url)}" target="_blank" rel="noopener" class="sc-btn sc-btn-jsa">View JSA Profile →</a>` : ""}
+    </div>`;
+
+  window._scShareText = shareText;
+  document.getElementById("scorecardOverlay").classList.add("visible");
+  document.getElementById("scorecard").classList.add("open");
+}
+
+function closeScorecard() {
+  document.getElementById("scorecard").classList.remove("open");
+  document.getElementById("scorecardOverlay").classList.remove("visible");
+}
+
+function copyShareText() {
+  if (!window._scShareText) return;
+  const btn = document.querySelector(".sc-btn-copy");
+  const done = () => { if (btn) { btn.textContent = "Copied! ✓"; setTimeout(() => { btn.textContent = "Copy post text"; }, 2000); } };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(window._scShareText).then(done).catch(() => {
+      const ta = document.createElement("textarea");
+      ta.value = window._scShareText; ta.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); done();
+    });
+  }
+}
+
+// ── Search ──────────────────────────────────────────────────────────────
+
+function initSearch() {
+  const input = document.getElementById("jobSearch");
+  const results = document.getElementById("searchResults");
+  if (!input || !results) return;
+  let matches = [];
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) { results.classList.remove("visible"); return; }
+    matches = data.filter(d =>
+      d.title.toLowerCase().includes(q) || (d.anzsco_code && d.anzsco_code.startsWith(q))
+    ).slice(0, 8);
+    if (!matches.length) { results.classList.remove("visible"); return; }
+    results.innerHTML = matches.map((d, i) => {
+      const score = d.exposure != null ? d.exposure : null;
+      const color = score != null ? exposureColor(score, 1) : "rgba(128,128,128,1)";
+      return `<div class="sr-row" data-idx="${i}">
+        <span class="sr-title">${escapeHTML(d.title)}</span>
+        ${score != null ? `<span class="sr-badge" style="background:${exposureColor(score,0.15)};color:${color};border:1px solid ${exposureColor(score,0.35)}">${score}/10</span>` : ""}
+      </div>`;
+    }).join("");
+    results.classList.add("visible");
+    results.querySelectorAll(".sr-row").forEach(row => {
+      row.addEventListener("click", () => {
+        openScorecard(matches[+row.dataset.idx]);
+        input.value = ""; results.classList.remove("visible");
+      });
+    });
+  });
+  input.addEventListener("keydown", e => { if (e.key === "Escape") { input.value = ""; results.classList.remove("visible"); } });
+  document.addEventListener("click", e => { if (!document.getElementById("searchBar").contains(e.target)) results.classList.remove("visible"); });
+}
+
 // ── Events ─────────────────────────────────────────────────────────────
 
 canvas.addEventListener("mousemove", (e) => {
@@ -1041,7 +1428,7 @@ canvas.addEventListener("mousemove", (e) => {
   if (hovered) { showTooltip(hovered, e.clientX, e.clientY); canvas.style.cursor = "pointer"; }
   else { hideTooltip(); canvas.style.cursor = "default"; }
 });
-canvas.addEventListener("click", (e) => { const hit = hitTest(e.clientX, e.clientY); if (hit && hit.url) window.open(hit.url, "_blank", "noopener"); });
+canvas.addEventListener("click", (e) => { const hit = hitTest(e.clientX, e.clientY); if (hit) openScorecard(hit); });
 canvas.addEventListener("mouseleave", () => { hovered = null; hideTooltip(); draw(); });
 canvas.addEventListener("touchstart", (e) => {
   const touch = e.touches[0];
@@ -1051,12 +1438,11 @@ canvas.addEventListener("touchstart", (e) => {
   else { hideTooltip(); }
 }, { passive: false });
 canvas.addEventListener("touchend", (e) => {
-  if (hovered && hovered.url) {
-    // Second tap on same tile opens the link
-    const touch = e.changedTouches[0];
-    const hit = hitTest(touch.clientX, touch.clientY);
-    if (hit === hovered && hovered._tapped) { window.open(hovered.url, "_blank", "noopener"); }
-    else if (hit === hovered) { hovered._tapped = true; }
+  const touch = e.changedTouches[0];
+  const hit = hitTest(touch.clientX, touch.clientY);
+  if (hit === hovered) {
+    if (hovered._tapped) { openScorecard(hovered); hovered._tapped = false; }
+    else { hovered._tapped = true; }
   }
 });
 function resize() { dpr = window.devicePixelRatio || 1; layout(); draw(); }
@@ -1102,6 +1488,11 @@ function drawGradientLegend() {
 function updateCompareToggleVisibility() {
   const ct = document.getElementById("compareToggle");
   const cw = document.getElementById("compareWarning");
+  if (viewMode === "scatter") {
+    ct.classList.remove("visible");
+    cw.classList.remove("visible");
+    return;
+  }
   if (colorMode === "exposure" && dataMeta.comparison_available) {
     ct.classList.add("visible");
     if (!dataMeta.comparison_safe && dataMeta.comparison_note && compareMode === "delta") {
@@ -1120,6 +1511,19 @@ function updateCompareToggleVisibility() {
     }
   }
 }
+
+document.getElementById("scorecardOverlay").addEventListener("click", closeScorecard);
+
+document.getElementById("viewToggle").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn || !btn.dataset.view) return;
+  viewMode = btn.dataset.view;
+  document.querySelectorAll("#viewToggle button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  updateCompareToggleVisibility();
+  updateStats();
+  resize();
+});
 
 document.getElementById("colorToggle").addEventListener("click", (e) => {
   const btn = e.target.closest("button");
@@ -1165,10 +1569,17 @@ fetch("data.json")
     const totalJobs = data.reduce((s, o) => s + (o.jobs || 0), 0);
     const jobsM = (totalJobs / 1e6).toFixed(1);
     document.getElementById("introText").innerHTML =
-      `Visualizing <b>${data.length} occupations</b> from <a href="https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles" target="_blank" rel="noopener">Jobs and Skills Australia</a> (ANZSCO), covering <b>${jobsM}M workers</b> across the Australian economy. Each rectangle's <b>area</b> is proportional to total employment. <b>Color</b> shows the selected metric &mdash; toggle between shortage status, median pay, skill level, and AI exposure. Click any tile to view its JSA occupation profile.`;
+      `Visualizing <b>${data.length} occupations</b> from <a href="https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles" target="_blank" rel="noopener">Jobs and Skills Australia</a> (ANZSCO), covering <b>${jobsM}M workers</b> across the Australian economy. Each rectangle's <b>area</b> is proportional to total employment. <b>Color</b> shows the selected metric. <b>Click any tile</b> to see its AI exposure scorecard and share to LinkedIn. Try the <b>Exposure vs Growth</b> view to see which roles are transforming vs. at risk.`;
+    if (dataMeta.run_date || dataMeta.model) {
+      const parts = [];
+      if (dataMeta.run_date) parts.push(`scored ${dataMeta.run_date}`);
+      if (dataMeta.model) parts.push(`model: ${dataMeta.model}`);
+      document.getElementById("scoringMeta").textContent = ` · ${parts.join(' · ')}`;
+    }
     updateCompareToggleVisibility();
     updateStats();
     drawGradientLegend();
+    initSearch();
     resize();
   })
   .catch(err => {

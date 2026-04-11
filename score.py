@@ -144,7 +144,7 @@ def archive_previous_scores(scores_path: Path):
 
 def main():
     parser = argparse.ArgumentParser(description="Score occupations for AI exposure using Gemini")
-    parser.add_argument("--model", default="gemini-2.5-flash", help="Gemini model name")
+    parser.add_argument("--model", default="gemini-3.1-pro-preview", help="Gemini model name")
     parser.add_argument("--start", type=int, default=0, help="Start index for batch processing")
     parser.add_argument("--end", type=int, default=None, help="End index for batch processing")
     parser.add_argument("--force", action="store_true", help="Re-score already cached occupations")
@@ -201,7 +201,13 @@ def main():
         print("Get a key from: https://aistudio.google.com/apikey")
         sys.exit(1)
 
-    client = genai.Client(api_key=api_key)
+    api_key_2 = os.environ.get("GEMINI_API_KEY_2")
+    clients = [genai.Client(api_key=api_key)]
+    if api_key_2:
+        clients.append(genai.Client(api_key=api_key_2))
+        print(f"Loaded {len(clients)} API keys (will rotate on quota exhaustion)")
+    client = clients[0]
+    client_index = 0
 
     scores_path = Path("scores.json")
 
@@ -246,36 +252,58 @@ def main():
 
         content = page_path.read_text(encoding="utf-8")
 
-        try:
-            response = call_with_retry(client, args.model, content, config)
+        last_error = None
+        for parse_attempt in range(3):
+            try:
+                response = call_with_retry(client, args.model, content, config)
 
-            # Track token usage
-            if response.usage_metadata:
-                total_input_tokens += response.usage_metadata.prompt_token_count or 0
-                total_output_tokens += response.usage_metadata.candidates_token_count or 0
-                total_thinking_tokens += response.usage_metadata.thoughts_token_count or 0
+                # Track token usage
+                if response.usage_metadata:
+                    total_input_tokens += response.usage_metadata.prompt_token_count or 0
+                    total_output_tokens += response.usage_metadata.candidates_token_count or 0
+                    total_thinking_tokens += response.usage_metadata.thoughts_token_count or 0
 
-            result = extract_json(response.text)
+                result = extract_json(response.text)
 
-            exposure = result.get("exposure")
-            rationale = result.get("rationale", "")
+                exposure = result.get("exposure")
+                rationale = result.get("rationale", "")
 
-            if exposure is not None:
-                exposure = max(0, min(10, int(round(float(exposure)))))
+                if exposure is not None:
+                    exposure = max(0, min(10, int(round(float(exposure)))))
 
-            scores[slug] = {
-                "exposure": exposure,
-                "rationale": rationale,
-            }
+                scores[slug] = {
+                    "exposure": exposure,
+                    "rationale": rationale,
+                }
 
-            # Save incrementally
-            save_scores(scores, scores_path)
-            scored += 1
+                # Save incrementally
+                save_scores(scores, scores_path)
+                scored += 1
 
-            print(f"  [{args.start + i}] {slug}: {exposure}/10 - {rationale[:80]}...")
+                print(f"  [{args.start + i}] {slug}: {exposure}/10 - {rationale[:80]}...")
+                last_error = None
+                break
 
-        except Exception as e:
-            print(f"  [{args.start + i}] ERROR {slug}: {e}")
+            except json.JSONDecodeError as e:
+                last_error = e
+                wait = 2 ** (parse_attempt + 1)
+                print(f"    Parse retry {parse_attempt + 1}/3 after {wait}s: {e}")
+                time.sleep(wait)
+
+            except Exception as e:
+                # On quota exhaustion, rotate to next API key
+                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                    next_index = (client_index + 1) % len(clients)
+                    if next_index != client_index:
+                        client_index = next_index
+                        client = clients[client_index]
+                        print(f"    Rotated to API key {client_index + 1}, retrying...")
+                        continue
+                last_error = e
+                break
+
+        if last_error is not None:
+            print(f"  [{args.start + i}] ERROR {slug}: {last_error}")
             errors += 1
 
         # Rate limiting

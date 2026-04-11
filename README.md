@@ -2,12 +2,12 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Data: Jobs & Skills Australia](https://img.shields.io/badge/Data-Jobs_%26_Skills_AU-green)](https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles)
-[![AI: Gemini 2.5 Flash](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-purple)](https://ai.google.dev)
+[![AI: Gemini 3.1 Pro](https://img.shields.io/badge/AI-Gemini%203.1%20Pro-purple)](https://ai.google.dev)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://python.org)
 
 An interactive **treemap of 358 Australian occupations and 14.4M workers**, inspired by [karpathy/jobs](https://karpathy.ai/jobs). Built to answer: **which jobs does AI disrupt first?**
 
-Explore four data layers: **shortage status**, **median pay**, **skill level**, and **Digital AI Exposure** (scored by Google Gemini).
+Explore four data layers: **shortage status**, **median pay**, **skill level**, and **Digital AI Exposure** (scored by Google Gemini). Features a **scorecard panel** with LinkedIn sharing, **occupation search**, and an **Exposure vs Growth scatter plot** showing which roles are transforming vs. at risk.
 
 ---
 
@@ -15,7 +15,7 @@ Explore four data layers: **shortage status**, **median pay**, **skill level**, 
 
 - **[Jobs and Skills Australia](https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles)** — occupation profiles, employment, earnings, and education data (ANZSCO 4-digit level)
 - **[Occupation Shortage Data (OSD)](https://www.jobsandskills.gov.au/work/skills-shortages)** — labour shortage assessments
-- **[Google Gemini](https://ai.google.dev/)** — AI exposure scoring via `gemini-2.5-flash`
+- **[Google Gemini](https://ai.google.dev/)** — AI exposure scoring via `gemini-3.1-pro-preview`
 - **[karpathy/jobs](https://github.com/karpathy/jobs)** — original inspiration and treemap algorithm
 
 ## Setup
@@ -64,7 +64,7 @@ uv run python score.py
 Scores each occupation's Digital AI Exposure (0-10) using Google Gemini with extended thinking for higher-quality reasoning. Results are saved incrementally to `scores.json` with run metadata. Previous scores are archived to `runs/` when re-scoring with `--force`.
 
 Options:
-- `--model MODEL` — Gemini model (default: `gemini-2.5-flash`)
+- `--model MODEL` — Gemini model (default: `gemini-3.1-pro-preview`)
 - `--thinking-budget N` — thinking token budget for reasoning (default: 2048, 0 to disable)
 - `--start N --end M` — score a batch range
 - `--force` — re-score already cached occupations (archives previous run first)
