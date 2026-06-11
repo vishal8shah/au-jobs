@@ -23,6 +23,18 @@ def load_json(path: Path) -> dict:
     return {}
 
 
+def archive_sort_key(path: Path) -> str:
+    """Sort key for archive filenames, normalizing legacy date-only names.
+
+    Archives are named either "2026-04-11_scores.json" (legacy, date only)
+    or "2026-04-11T080617_scores.json" (timestamped). A plain string sort
+    would rank "_" after "T", putting a legacy same-day archive above a
+    timestamped one — so treat date-only names as midnight.
+    """
+    stem = path.name.removesuffix("_scores.json")
+    return stem if "T" in stem else f"{stem}T000000"
+
+
 def find_previous_scores(runs_dir: Path) -> tuple[dict, dict | None]:
     """Find the most recent archived scores in runs/.
 
@@ -30,7 +42,7 @@ def find_previous_scores(runs_dir: Path) -> tuple[dict, dict | None]:
     """
     if not runs_dir.exists():
         return {}, None
-    archives = sorted(runs_dir.glob("*_scores.json"), reverse=True)
+    archives = sorted(runs_dir.glob("*_scores.json"), key=archive_sort_key, reverse=True)
     if not archives:
         return {}, None
     prev = load_json(archives[0])

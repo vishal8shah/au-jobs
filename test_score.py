@@ -15,8 +15,10 @@ import pytest
 
 from score import (
     extract_json, load_scores, save_scores,
-    prompt_version, archive_previous_scores, SYSTEM_PROMPT,
+    prompt_version, archive_previous_scores, archive_name,
+    normalize_model_name, SYSTEM_PROMPT,
 )
+from build_site_data import archive_sort_key
 
 
 # ── extract_json ───────────────────────────────────────────────────────
@@ -218,3 +220,74 @@ class TestArchive:
         loaded = load_scores(scores_path)
         assert "_meta" in loaded
         assert loaded["nurse"]["exposure"] == 4
+
+
+# ── archive naming (same-day collision regression) ────────────────────
+
+
+class TestArchiveNaming:
+    def test_archive_name_uses_run_id_timestamp(self):
+        meta = {"run_id": "2026-04-11T08:06:17+00:00", "run_date": "2026-04-11"}
+        assert archive_name(meta) == "2026-04-11T080617_scores.json"
+
+    def test_archive_name_falls_back_to_run_date(self):
+        assert archive_name({"run_date": "2026-04-11"}) == "2026-04-11_scores.json"
+
+    def test_same_day_runs_get_distinct_archives(self, tmp_path):
+        """Two runs on the same date must both be archived (collision regression)."""
+        scores_path = tmp_path / "scores.json"
+        run1 = {
+            "_meta": {"run_id": "2026-04-11T05:38:15+00:00", "run_date": "2026-04-11"},
+            "nurse": {"exposure": 4, "rationale": "First run"},
+        }
+        save_scores(run1, scores_path)
+        archive_previous_scores(scores_path)
+
+        run2 = {
+            "_meta": {"run_id": "2026-04-11T08:06:17+00:00", "run_date": "2026-04-11"},
+            "nurse": {"exposure": 6, "rationale": "Second run"},
+        }
+        save_scores(run2, scores_path)
+        archive_previous_scores(scores_path)
+
+        archives = sorted((tmp_path / "runs").glob("*_scores.json"))
+        assert len(archives) == 2
+        latest = json.loads(archives[-1].read_text())
+        assert latest["nurse"]["exposure"] == 6
+
+    def test_existing_archive_not_overwritten(self, tmp_path):
+        scores_path = tmp_path / "scores.json"
+        scores = {
+            "_meta": {"run_id": "2026-04-11T05:38:15+00:00", "run_date": "2026-04-11"},
+            "nurse": {"exposure": 4, "rationale": "Original"},
+        }
+        save_scores(scores, scores_path)
+        archive_previous_scores(scores_path)
+        archive = tmp_path / "runs" / "2026-04-11T053815_scores.json"
+        original = archive.read_text()
+
+        # Same run_id again with mutated scores: archive must keep original content
+        scores["nurse"]["exposure"] = 9
+        save_scores(scores, scores_path)
+        archive_previous_scores(scores_path)
+        assert archive.read_text() == original
+
+
+class TestNormalizeModelName:
+    def test_strips_provider_prefix(self):
+        assert normalize_model_name("google/gemini-3.1-pro-preview") == "gemini-3.1-pro-preview"
+
+    def test_bare_name_unchanged(self):
+        assert normalize_model_name("gemini-3.1-pro-preview") == "gemini-3.1-pro-preview"
+
+
+class TestArchiveSortKey:
+    def test_legacy_date_only_treated_as_midnight(self, tmp_path):
+        legacy = tmp_path / "2026-04-11_scores.json"
+        stamped = tmp_path / "2026-04-11T080617_scores.json"
+        assert archive_sort_key(legacy) < archive_sort_key(stamped)
+
+    def test_later_date_sorts_last(self, tmp_path):
+        older = tmp_path / "2026-04-11T080617_scores.json"
+        newer = tmp_path / "2026-06-12_scores.json"
+        assert archive_sort_key(older) < archive_sort_key(newer)

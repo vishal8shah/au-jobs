@@ -1,12 +1,16 @@
 """
-Score each occupation's Digital AI Exposure using the Google Gemini API.
+Score each occupation's Digital AI Exposure using Gemini.
 
-Uses the new google-genai SDK with structured JSON output.
-Reads occupation markdown from pages/{slug}.md, scores via Gemini,
+Supports two providers for the same model:
+  - gemini:     Google AI Studio via the google-genai SDK (default)
+  - openrouter: OpenRouter's OpenAI-compatible API (OPENROUTER_API_KEY)
+
+Reads occupation markdown from pages/{slug}.md, scores via the model,
 and saves results incrementally to scores.json.
 
 Usage:
     uv run python score.py                    # Score all occupations
+    uv run python score.py --provider openrouter  # Route via OpenRouter
     uv run python score.py --dry-run          # Print prompt for first occupation
     uv run python score.py --start 0 --end 50 # Score a batch
     uv run python score.py --force            # Re-score cached occupations
@@ -23,6 +27,13 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+import truststore
+
+# Use the OS certificate store so TLS works behind HTTPS-inspecting
+# proxies/antivirus (the bundled certifi roots reject their certificates)
+truststore.inject_into_ssl()
+
+import httpx
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -123,6 +134,66 @@ def call_with_retry(client, model, content, config, max_retries=3):
                 raise
 
 
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+
+
+def normalize_model_name(model: str) -> str:
+    """Strip a provider prefix ("google/gemini-3.1-pro" -> "gemini-3.1-pro").
+
+    Run metadata records the bare model name so the comparison safety
+    check matches across providers serving the same model.
+    """
+    return model.split("/")[-1]
+
+
+def call_openrouter(api_key: str, model: str, content: str, thinking_budget: int, max_retries=3):
+    """Call OpenRouter's chat completions API. Returns (text, usage_dict)."""
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": content},
+        ],
+        "temperature": 0.2,
+        "max_tokens": 1024 + max(0, thinking_budget),
+        "response_format": {"type": "json_object"},
+    }
+    if thinking_budget > 0:
+        payload["reasoning"] = {"max_tokens": thinking_budget}
+    headers = {"Authorization": f"Bearer {api_key}"}
+    for attempt in range(max_retries):
+        try:
+            r = httpx.post(OPENROUTER_URL, json=payload, headers=headers, timeout=120)
+            r.raise_for_status()
+            body = r.json()
+            if "error" in body:
+                raise RuntimeError(str(body["error"]))
+            text = body["choices"][0]["message"]["content"]
+            return text, body.get("usage") or {}
+        except Exception as e:
+            if attempt < max_retries - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"    Retry {attempt + 1}/{max_retries - 1} after {wait}s: {e}")
+                time.sleep(wait)
+            else:
+                raise
+
+
+def archive_name(meta: dict) -> str:
+    """Build a filesystem-safe archive filename from run metadata.
+
+    Uses the full run_id timestamp so multiple runs on the same day get
+    distinct archives (date-only names caused same-day runs to be lost).
+    """
+    run_id = meta.get("run_id")
+    if run_id:
+        # "2026-04-11T08:06:17+00:00" -> "2026-04-11T080617"
+        stamp = run_id.split("+")[0].replace(":", "")
+    else:
+        stamp = meta.get("run_date", "unknown")
+    return f"{stamp}_scores.json"
+
+
 def archive_previous_scores(scores_path: Path):
     """Archive existing scores.json to runs/ before a new scoring run."""
     if not scores_path.exists():
@@ -133,8 +204,7 @@ def archive_previous_scores(scores_path: Path):
         return
     runs_dir = scores_path.parent / "runs"
     runs_dir.mkdir(exist_ok=True)
-    run_date = meta.get("run_date", "unknown")
-    archive_path = runs_dir / f"{run_date}_scores.json"
+    archive_path = runs_dir / archive_name(meta)
     # Don't overwrite existing archives
     if archive_path.exists():
         return
@@ -144,7 +214,9 @@ def archive_previous_scores(scores_path: Path):
 
 def main():
     parser = argparse.ArgumentParser(description="Score occupations for AI exposure using Gemini")
-    parser.add_argument("--model", default="gemini-3.1-pro-preview", help="Gemini model name")
+    parser.add_argument("--model", default="gemini-3.1-pro-preview", help="Model name")
+    parser.add_argument("--provider", choices=["gemini", "openrouter"], default="gemini",
+                        help="API provider: Google AI Studio (gemini) or OpenRouter")
     parser.add_argument("--start", type=int, default=0, help="Start index for batch processing")
     parser.add_argument("--end", type=int, default=None, help="End index for batch processing")
     parser.add_argument("--force", action="store_true", help="Re-score already cached occupations")
@@ -194,20 +266,37 @@ def main():
             print(f"Page not found: {page_path}")
         return
 
-    # Configure Gemini (new google-genai SDK)
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key or api_key == "your_google_ai_studio_key_here":
-        print("ERROR: Set GEMINI_API_KEY in .env file.")
-        print("Get a key from: https://aistudio.google.com/apikey")
-        sys.exit(1)
-
-    api_key_2 = os.environ.get("GEMINI_API_KEY_2")
-    clients = [genai.Client(api_key=api_key)]
-    if api_key_2:
-        clients.append(genai.Client(api_key=api_key_2))
-        print(f"Loaded {len(clients)} API keys (will rotate on quota exhaustion)")
-    client = clients[0]
+    # Configure the provider
+    openrouter_key = None
+    clients = []
+    client = None
     client_index = 0
+    api_model = args.model
+
+    if args.provider == "openrouter":
+        openrouter_key = os.environ.get("OPENROUTER_API_KEY")
+        if not openrouter_key:
+            print("ERROR: Set OPENROUTER_API_KEY in .env file.")
+            print("Get a key from: https://openrouter.ai/settings/keys")
+            sys.exit(1)
+        # OpenRouter model ids are provider-prefixed (e.g. google/gemini-3.1-pro-preview)
+        if "/" not in api_model:
+            api_model = f"google/{api_model}"
+        print(f"Using OpenRouter: {api_model}")
+    else:
+        # Google AI Studio (new google-genai SDK)
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key or api_key == "your_google_ai_studio_key_here":
+            print("ERROR: Set GEMINI_API_KEY in .env file.")
+            print("Get a key from: https://aistudio.google.com/apikey")
+            sys.exit(1)
+
+        api_key_2 = os.environ.get("GEMINI_API_KEY_2")
+        clients = [genai.Client(api_key=api_key)]
+        if api_key_2:
+            clients.append(genai.Client(api_key=api_key_2))
+            print(f"Loaded {len(clients)} API keys (will rotate on quota exhaustion)")
+        client = clients[0]
 
     scores_path = Path("scores.json")
 
@@ -255,15 +344,23 @@ def main():
         last_error = None
         for parse_attempt in range(3):
             try:
-                response = call_with_retry(client, args.model, content, config)
+                if args.provider == "openrouter":
+                    text, usage = call_openrouter(openrouter_key, api_model, content, args.thinking_budget)
+                    total_input_tokens += usage.get("prompt_tokens") or 0
+                    total_output_tokens += usage.get("completion_tokens") or 0
+                    details = usage.get("completion_tokens_details") or {}
+                    total_thinking_tokens += details.get("reasoning_tokens") or 0
+                else:
+                    response = call_with_retry(client, args.model, content, config)
 
-                # Track token usage
-                if response.usage_metadata:
-                    total_input_tokens += response.usage_metadata.prompt_token_count or 0
-                    total_output_tokens += response.usage_metadata.candidates_token_count or 0
-                    total_thinking_tokens += response.usage_metadata.thoughts_token_count or 0
+                    # Track token usage
+                    if response.usage_metadata:
+                        total_input_tokens += response.usage_metadata.prompt_token_count or 0
+                        total_output_tokens += response.usage_metadata.candidates_token_count or 0
+                        total_thinking_tokens += response.usage_metadata.thoughts_token_count or 0
+                    text = response.text
 
-                result = extract_json(response.text)
+                result = extract_json(text)
 
                 exposure = result.get("exposure")
                 rationale = result.get("rationale", "")
@@ -291,8 +388,8 @@ def main():
                 time.sleep(wait)
 
             except Exception as e:
-                # On quota exhaustion, rotate to next API key
-                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                # On quota exhaustion, rotate to next Gemini API key
+                if clients and ("429" in str(e) or "RESOURCE_EXHAUSTED" in str(e)):
                     next_index = (client_index + 1) % len(clients)
                     if next_index != client_index:
                         client_index = next_index
@@ -315,7 +412,8 @@ def main():
     scores["_meta"] = {
         "run_id": now.isoformat(timespec="seconds"),
         "run_date": now.strftime("%Y-%m-%d"),
-        "model": args.model,
+        "model": normalize_model_name(api_model),
+        "provider": args.provider,
         "prompt_version": prompt_version(),
         "methodology_version": METHODOLOGY_VERSION,
         "thinking_budget": args.thinking_budget,

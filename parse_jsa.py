@@ -2,9 +2,9 @@
 Parse Jobs and Skills Australia (JSA) occupation data Excel file.
 
 Auto-downloads the latest JSA occupation profiles Excel file and the
-Occupation Shortage Data file if not cached. Extracts ANZSCO 4-digit
-occupation data from multiple sheets and outputs occupations.csv and
-occupations.json.
+2025 Unit Group Shortage List (4-digit ANZSCO) if not cached. Extracts
+ANZSCO 4-digit occupation data from multiple sheets and outputs
+occupations.csv and occupations.json.
 
 Usage:
     uv run python parse_jsa.py
@@ -17,14 +17,19 @@ from pathlib import Path
 
 import httpx
 import pandas as pd
+import truststore
+
+# Use the OS certificate store so TLS works behind HTTPS-inspecting
+# proxies/antivirus (the bundled certifi roots reject their certificates)
+truststore.inject_into_ssl()
 
 # ── Auto-download JSA data ──────────────────────────────────────────────
 
-JSA_URL = "https://www.jobsandskills.gov.au/sites/default/files/2026-01/occupation_profiles_data_-_november_2025.xlsx"
-LOCAL_PATH = Path("data/occupation_profiles_nov2025.xlsx")
+JSA_URL = "https://www.jobsandskills.gov.au/sites/default/files/2026-04/Occupation%20profiles%20data%20-%20February%202026.xlsx"
+LOCAL_PATH = Path("data/occupation_profiles_feb2026.xlsx")
 
-OSD_URL = "https://www.jobsandskills.gov.au/sites/default/files/2025-10/2025%20OSD%20downloadable%20Tables%20and%20Figures.xlsx"
-OSD_PATH = Path("data/osd_2025.xlsx")
+UNIT_SHORTAGE_URL = "https://www.jobsandskills.gov.au/sites/default/files/2025-10/2025%20Unit%20Group%20Shortage%20List%20-%204%20digit%20ANZSCO.xlsx"
+UNIT_SHORTAGE_PATH = Path("data/unit_group_shortage_2025.xlsx")
 
 
 def download_file(url: str, path: Path):
@@ -60,6 +65,14 @@ SKILL_LEVEL_DESC = {
     3: "Certificate III/IV",
     4: "Certificate I/II or secondary",
     5: "Secondary education",
+}
+
+# 2025 Unit Group Shortage List national rating codes
+SHORTAGE_RATINGS = {
+    "S": "Shortage",
+    "M": "Metro Shortage",
+    "R": "Regional Shortage",
+    "NS": "No Shortage",
 }
 
 
@@ -135,7 +148,7 @@ def infer_skill_level(edu_row: dict) -> int | None:
 def main():
     # Download data files
     download_file(JSA_URL, LOCAL_PATH)
-    download_file(OSD_URL, OSD_PATH)
+    download_file(UNIT_SHORTAGE_URL, UNIT_SHORTAGE_PATH)
 
     print(f"\nReading: {LOCAL_PATH.name}")
 
@@ -172,37 +185,27 @@ def main():
         }
     print(f"Loaded {len(edu_map)} education profiles from Table_8")
 
-    # ── OSD: Shortage data from Figure C1 (name-based matching) ─────────
-    shortage_name_map = {}  # title (lowered) → shortage driver
+    # ── Unit Group Shortage List: exact ANZSCO 4-digit code join ────────
+    # Sheet layout (verified): headers on Excel row 8 → pandas header=7.
+    # Columns by position: 0=Unit group Code, 1=title, 2=2025 National Rating
+    # (NS/S/R/M), 3-10=state ratings, 11=Skill Level, 12=Major Occupation Group.
+    shortage_map = {}      # code → shortage status string
+    official_skill_map = {}  # code → ANZSCO skill level int
     try:
-        osd_c1 = pd.read_excel(OSD_PATH, sheet_name="Figure C1", header=6)
-        for _, row in osd_c1.iterrows():
-            ug = row.get("Unit group")
-            sd = row.get("Shortage Driver")
-            if pd.notna(ug) and pd.notna(sd):
-                shortage_name_map[str(ug).strip().lower()] = str(sd).strip()
-        print(f"Loaded {len(shortage_name_map)} shortage entries from OSD Figure C1")
+        ug = pd.read_excel(UNIT_SHORTAGE_PATH, sheet_name="2025 Unit group Shortage List", header=7)
+        for _, row in ug.iterrows():
+            code = normalize_code(row.iloc[0])
+            if not code:
+                continue
+            rating = str(row.iloc[2]).strip().upper() if pd.notna(row.iloc[2]) else ""
+            if rating in SHORTAGE_RATINGS:
+                shortage_map[code] = SHORTAGE_RATINGS[rating]
+            skill = parse_numeric(row.iloc[11]) if len(row) > 11 else None
+            if skill is not None and 1 <= int(skill) <= 5:
+                official_skill_map[code] = int(skill)
+        print(f"Loaded {len(shortage_map)} shortage ratings and {len(official_skill_map)} skill levels from Unit Group Shortage List")
     except Exception as e:
-        print(f"WARNING: Could not parse OSD Figure C1: {e}")
-
-    # Build a lookup: normalize Table_1 titles for fuzzy matching to OSD names
-    # OSD uses unit group names which may differ slightly from Table_1
-    def match_shortage(title: str) -> str:
-        """Match an occupation title to OSD shortage status."""
-        t = title.strip().lower()
-        # Exact match
-        if t in shortage_name_map:
-            return "Shortage"
-        # Check if OSD name is contained in or contains the title
-        for osd_name in shortage_name_map:
-            if osd_name in t or t in osd_name:
-                return "Shortage"
-            # Match on key words (at least 2 significant words overlap)
-            osd_words = set(osd_name.split()) - {"and", "the", "of", "or", "in", "for", "a"}
-            title_words = set(t.split()) - {"and", "the", "of", "or", "in", "for", "a"}
-            if len(osd_words & title_words) >= 2 and len(osd_words & title_words) / max(len(osd_words), 1) >= 0.5:
-                return "Shortage"
-        return "Not assessed"
+        print(f"WARNING: Could not parse Unit Group Shortage List: {e}")
 
     # ── Build occupation records from Table_1 ───────────────────────────
     occupations = []
@@ -244,16 +247,17 @@ def main():
         # Description from Table_2
         description = desc_map.get(code)
 
-        # Skill level from Table_8 education data
-        edu = edu_map.get(code)
-        skill_level = None
-        skill_desc = None
-        if edu:
-            skill_level = infer_skill_level(edu)
-            skill_desc = SKILL_LEVEL_DESC.get(skill_level)
+        # Skill level: official ANZSCO level from the Unit Group Shortage
+        # List where available, else inferred from Table_8 education data
+        skill_level = official_skill_map.get(code)
+        if skill_level is None:
+            edu = edu_map.get(code)
+            if edu:
+                skill_level = infer_skill_level(edu)
+        skill_desc = SKILL_LEVEL_DESC.get(skill_level)
 
-        # Shortage status from OSD (name-based matching)
-        shortage_status = match_shortage(title)
+        # Shortage status: exact ANZSCO code join on the shortage list
+        shortage_status = shortage_map.get(code, "Not assessed")
 
         slug = make_slug(title)
         url = f"https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations/{code}-{slug}"
@@ -291,6 +295,17 @@ def main():
     print(f"  Skill:     {has_skill}/{len(occupations)}")
     print(f"  Shortage:  {has_shortage}/{len(occupations)}")
     print(f"  Desc:      {has_desc}/{len(occupations)}")
+
+    # Shortage join audit: status distribution + codes without a rating
+    status_counts = {}
+    for o in occupations:
+        status_counts[o["shortage_status"]] = status_counts.get(o["shortage_status"], 0) + 1
+    print("\nShortage status distribution:")
+    for status, count in sorted(status_counts.items(), key=lambda kv: -kv[1]):
+        print(f"  {status}: {count}")
+    unmatched = [o["anzsco_code"] for o in occupations if o["shortage_status"] == "Not assessed"]
+    if unmatched:
+        print(f"  Codes without shortage rating ({len(unmatched)}): {', '.join(unmatched[:20])}{'...' if len(unmatched) > 20 else ''}")
 
     # Sample
     print("\nSample entries:")

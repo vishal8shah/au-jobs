@@ -13,8 +13,8 @@ Explore four data layers: **shortage status**, **median pay**, **skill level**, 
 
 ## Data Sources & Credits
 
-- **[Jobs and Skills Australia](https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles)** — occupation profiles, employment, earnings, and education data (ANZSCO 4-digit level)
-- **[Occupation Shortage Data (OSD)](https://www.jobsandskills.gov.au/work/skills-shortages)** — labour shortage assessments
+- **[Jobs and Skills Australia](https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles)** — occupation profiles, employment, earnings, and education data (ANZSCO 4-digit level, February 2026 release)
+- **[2025 Unit Group Shortage List](https://www.jobsandskills.gov.au/data/occupation-shortage)** — labour shortage ratings at 4-digit ANZSCO level (Shortage / Metro Shortage / Regional Shortage / No Shortage) plus official skill levels
 - **[Google Gemini](https://ai.google.dev/)** — AI exposure scoring via `gemini-3.1-pro-preview`
 - **[karpathy/jobs](https://github.com/karpathy/jobs)** — original inspiration and treemap algorithm
 
@@ -41,7 +41,7 @@ Run each step in order:
 uv run python parse_jsa.py
 ```
 
-Auto-downloads the JSA occupation profiles Excel file and OSD shortage data (cached in `data/`), extracts ANZSCO 4-digit occupation data from multiple sheets, and outputs `occupations.csv` and `occupations.json`.
+Auto-downloads the JSA occupation profiles Excel file (February 2026) and the 2025 Unit Group Shortage List (cached in `data/`), extracts ANZSCO 4-digit occupation data from multiple sheets, joins shortage ratings by exact ANZSCO code, and outputs `occupations.csv` and `occupations.json`.
 
 ### 2. Generate occupation markdown pages
 
@@ -64,7 +64,8 @@ uv run python score.py
 Scores each occupation's Digital AI Exposure (0-10) using Google Gemini with extended thinking for higher-quality reasoning. Results are saved incrementally to `scores.json` with run metadata. Previous scores are archived to `runs/` when re-scoring with `--force`.
 
 Options:
-- `--model MODEL` — Gemini model (default: `gemini-3.1-pro-preview`)
+- `--model MODEL` — model name (default: `gemini-3.1-pro-preview`)
+- `--provider {gemini,openrouter}` — API provider (default: `gemini`). OpenRouter needs `OPENROUTER_API_KEY` in `.env` and serves the same model as `google/gemini-3.1-pro-preview`
 - `--thinking-budget N` — thinking token budget for reasoning (default: 2048, 0 to disable)
 - `--start N --end M` — score a batch range
 - `--force` — re-score already cached occupations (archives previous run first)
@@ -107,7 +108,7 @@ When you re-score occupations (using `--force`), the previous `scores.json` is a
 
 ## Cost Estimate
 
-Scoring all ~358 occupations with Gemini 2.5 Flash costs roughly A$0.50-2.00. With extended thinking enabled (default), costs may be slightly higher due to thinking tokens.
+Scoring all ~358 occupations with Gemini 3.1 Pro (the default model) costs roughly A$2-5 with extended thinking enabled (default); thinking tokens are the main cost driver.
 
 ## Caveats
 

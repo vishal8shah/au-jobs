@@ -410,9 +410,9 @@ Respond with ONLY a JSON object:
     </div>
     <div class="compare-warning" id="compareWarning"></div>
     <div class="gradient-legend">
-      <span id="legendLow">Surplus</span>
+      <span id="legendLow">Shortage</span>
       <canvas id="gradientLegend" width="80" height="8"></canvas>
-      <span id="legendHigh">Shortage</span>
+      <span id="legendHigh">No shortage</span>
     </div>
   </div>
 
@@ -500,8 +500,11 @@ const SKILL_LEVELS = [
   "Secondary education",
 ];
 
-// Shortage status values
-const SHORTAGE_MAP = { "Shortage": 0, "Balanced": 0.5, "Surplus": 1, "Not assessed": 0.5 };
+// Shortage status values (2025 Unit Group Shortage List: S / M / R / NS)
+const SHORTAGE_MAP = { "Shortage": 0, "Metro Shortage": 0.2, "Regional Shortage": 0.35, "No Shortage": 1, "Not assessed": 0.5 };
+const SHORTAGE_STATUSES = ["Shortage", "Metro Shortage", "Regional Shortage"];
+
+function isShortage(status) { return SHORTAGE_STATUSES.includes(status); }
 
 function shortageColor(status, a) {
   if (!status || status === "Not assessed") return `rgba(128,128,128,${a})`;
@@ -924,6 +927,9 @@ const SKILL_GROUPS = [
 
 const SHORTAGE_TIERS = [
   { label: "Shortage", status: "Shortage" },
+  { label: "Metro Shortage", status: "Metro Shortage" },
+  { label: "Regional Shortage", status: "Regional Shortage" },
+  { label: "No Shortage", status: "No Shortage" },
   { label: "Not assessed", status: "Not assessed" },
 ];
 
@@ -971,9 +977,9 @@ function updateStats() {
 }
 
 function updateShortageStats(totalJobs) {
-  // Headline: % in shortage
+  // Headline: % in any shortage (national, metro, or regional)
   let shortageJobs = 0;
-  for (const d of data) { if (d.shortage_status === "Shortage" && d.jobs) shortageJobs += d.jobs; }
+  for (const d of data) { if (isShortage(d.shortage_status) && d.jobs) shortageJobs += d.jobs; }
   const shortPct = totalJobs > 0 ? (shortageJobs / totalJobs * 100) : 0;
   document.getElementById("block2").innerHTML = `<h3>In shortage</h3>
     <div class="stat-big"><span style="color:${shortageColor("Shortage", 1)}">${shortPct.toFixed(0)}%</span></div>
@@ -983,7 +989,7 @@ function updateShortageStats(totalJobs) {
   const cats = [...new Set(data.map(d => d.category))].sort();
   const catShortage = cats.map(cat => {
     let sJobs = 0, tJobs = 0;
-    for (const d of data) { if (d.category === cat && d.jobs) { tJobs += d.jobs; if (d.shortage_status === "Shortage") sJobs += d.jobs; } }
+    for (const d of data) { if (d.category === cat && d.jobs) { tJobs += d.jobs; if (isShortage(d.shortage_status)) sJobs += d.jobs; } }
     return { cat, pct: tJobs > 0 ? sJobs / tJobs : 0, jobs: tJobs };
   });
   const maxH = Math.max(...catShortage.map(c => c.pct), 0.01);
@@ -1002,7 +1008,7 @@ function updateShortageStats(totalJobs) {
   // Cross: shortage by skill level
   const bySkill = SKILL_GROUPS.map(g => {
     let sJobs = 0, tJobs = 0;
-    for (const d of data) { if (g.match.includes(d.skill_level) && d.jobs) { tJobs += d.jobs; if (d.shortage_status === "Shortage") sJobs += d.jobs; } }
+    for (const d of data) { if (g.match.includes(d.skill_level) && d.jobs) { tJobs += d.jobs; if (isShortage(d.shortage_status)) sJobs += d.jobs; } }
     return { label: g.label, pct: tJobs > 0 ? sJobs / tJobs * 100 : 0, val: (tJobs > 0 ? (sJobs / tJobs * 100).toFixed(0) : "0") + "%", color: shortageColor("Shortage", 0.8) };
   });
   document.getElementById("block5").innerHTML = `<h3>Shortage by skill level</h3><div class="hbar-chart">${renderHbars(bySkill)}</div>`;
@@ -1010,7 +1016,7 @@ function updateShortageStats(totalJobs) {
   // Cross: shortage by pay band
   const byPay = PAY_BANDS.map(g => {
     let sJobs = 0, tJobs = 0;
-    for (const d of data) { if (d.pay != null && d.pay >= g.min && d.pay < g.max && d.jobs) { tJobs += d.jobs; if (d.shortage_status === "Shortage") sJobs += d.jobs; } }
+    for (const d of data) { if (d.pay != null && d.pay >= g.min && d.pay < g.max && d.jobs) { tJobs += d.jobs; if (isShortage(d.shortage_status)) sJobs += d.jobs; } }
     return { label: g.label, pct: tJobs > 0 ? sJobs / tJobs * 100 : 0, val: (tJobs > 0 ? (sJobs / tJobs * 100).toFixed(0) : "0") + "%", color: shortageColor("Shortage", 0.8) };
   });
   document.getElementById("block6").innerHTML = `<h3>Shortage by pay</h3><div class="hbar-chart">${renderHbars(byPay)}</div>`;
@@ -1020,11 +1026,11 @@ function updateShortageStats(totalJobs) {
     <div class="stat-big" style="color:${shortageColor("Shortage", 1)}">${formatNumber(shortageJobs)}</div>
     <div class="stat-label">in shortage occupations</div>`;
 
-  let surplusJobs = 0;
-  for (const d of data) { if (d.shortage_status === "Surplus" && d.jobs) surplusJobs += d.jobs; }
-  document.getElementById("block8").innerHTML = `<h3>Surplus workers</h3>
-    <div class="stat-big" style="color:${shortageColor("Surplus", 1)}">${formatNumber(surplusJobs)}</div>
-    <div class="stat-label">in surplus occupations</div>`;
+  let noShortageJobs = 0;
+  for (const d of data) { if (d.shortage_status === "No Shortage" && d.jobs) noShortageJobs += d.jobs; }
+  document.getElementById("block8").innerHTML = `<h3>No-shortage workers</h3>
+    <div class="stat-big" style="color:${shortageColor("No Shortage", 1)}">${formatNumber(noShortageJobs)}</div>
+    <div class="stat-label">in occupations with no shortage</div>`;
 }
 
 function updatePayStats(totalJobs) {
@@ -1451,7 +1457,7 @@ function resize() { dpr = window.devicePixelRatio || 1; layout(); draw(); }
 
 const LEGEND_CONFIG = {
   exposure:  { low: "Low", high: "High" },
-  shortage:  { low: "Surplus", high: "Shortage" },
+  shortage:  { low: "Shortage", high: "No shortage" },
   pay:       { low: "A$30K", high: "A$200K" },
   education: { low: "Bachelor's+", high: "Secondary" },
   delta:     { low: "Falling", high: "Rising" },
