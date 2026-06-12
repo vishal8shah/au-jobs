@@ -331,6 +331,7 @@ canvas#canvas {
 .sc-stat-value { font-size: 14px; font-weight: 600; }
 .sc-trend { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px 10px; margin-bottom: 16px; }
 .sc-trend-dates { display: flex; justify-content: space-between; font-size: 10px; color: var(--fg2); margin-top: 2px; }
+.sc-trend-note { font-size: 10px; color: var(--fg2); margin-top: 4px; }
 .sc-rationale {
   font-size: 13px; line-height: 1.6; color: var(--fg2); margin-bottom: 16px;
   padding: 12px 14px; background: rgba(255,255,255,0.03); border-radius: 6px;
@@ -1314,7 +1315,20 @@ function formatRunDate(iso) {
 }
 
 function trendPoints(d) {
-  return (d.exposure_history || []).filter(h => h.exposure != null);
+  // Annotate each scored point with methodology comparability vs the
+  // current run (same model family + same prompt). Earlier runs that used
+  // a different model/prompt still plot, but as hollow dots, and they are
+  // excluded from the headline delta.
+  const hist = dataMeta.run_history || [];
+  const cur = hist[hist.length - 1] || {};
+  const fam = m => (m || "").split("-").slice(0, 2).join("-");
+  const safeByDate = {};
+  for (const h of hist) {
+    safeByDate[h.date] = fam(h.model) === fam(cur.model) && h.prompt_version === cur.prompt_version;
+  }
+  return (d.exposure_history || [])
+    .filter(h => h.exposure != null)
+    .map(h => ({ ...h, safe: safeByDate[h.date] !== false }));
 }
 
 function buildTrendBlock(d) {
@@ -1324,20 +1338,28 @@ function buildTrendBlock(d) {
   const xs = i => padX + i * (w - 2 * padX) / (pts.length - 1);
   const ys = v => h - padY - (v / 10) * (h - 2 * padY);
   const path = pts.map((p, i) => `${i ? "L" : "M"}${xs(i).toFixed(1)} ${ys(p.exposure).toFixed(1)}`).join(" ");
-  const dots = pts.map((p, i) =>
-    `<circle cx="${xs(i).toFixed(1)}" cy="${ys(p.exposure).toFixed(1)}" r="3.5" fill="${exposureColor(p.exposure, 1)}"/>` +
-    `<text x="${xs(i).toFixed(1)}" y="${(ys(p.exposure) - 7).toFixed(1)}" text-anchor="middle" font-size="10" fill="var(--fg2)">${p.exposure}</text>`
-  ).join("");
-  const first = pts[0], last = pts[pts.length - 1];
-  const delta = last.exposure - first.exposure;
+  const dots = pts.map((p, i) => {
+    const c = exposureColor(p.exposure, 1);
+    const circle = p.safe
+      ? `<circle cx="${xs(i).toFixed(1)}" cy="${ys(p.exposure).toFixed(1)}" r="3.5" fill="${c}"/>`
+      : `<circle cx="${xs(i).toFixed(1)}" cy="${ys(p.exposure).toFixed(1)}" r="3.5" fill="none" stroke="${c}" stroke-width="1.5"/>`;
+    return circle +
+      `<text x="${xs(i).toFixed(1)}" y="${(ys(p.exposure) - 7).toFixed(1)}" text-anchor="middle" font-size="10" fill="var(--fg2)">${p.exposure}</text>`;
+  }).join("");
+  const safePts = pts.filter(p => p.safe);
+  const baseline = safePts.length >= 2 ? safePts[0] : pts[0];
+  const last = pts[pts.length - 1];
+  const delta = last.exposure - baseline.exposure;
   const dColor = delta === 0 ? "var(--fg2)" : deltaColor(delta, 1);
   const dText = delta > 0 ? `▲ +${delta}` : delta < 0 ? `▼ ${delta}` : "↔ steady";
+  const hasUnsafe = pts.some(p => !p.safe);
   return `<div class="sc-trend">
-    <div class="sc-stat-label">Exposure Trend <span style="float:right;color:${dColor};text-transform:none">${dText} since ${formatRunDate(first.date)}</span></div>
+    <div class="sc-stat-label">Exposure Trend <span style="float:right;color:${dColor};text-transform:none">${dText} since ${formatRunDate(baseline.date)}</span></div>
     <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="display:block">
       <path d="${path}" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>${dots}
     </svg>
-    <div class="sc-trend-dates"><span>${formatRunDate(first.date)}</span><span>${formatRunDate(last.date)}</span></div>
+    <div class="sc-trend-dates"><span>${formatRunDate(pts[0].date)}</span><span>${formatRunDate(last.date)}</span></div>
+    ${hasUnsafe ? `<div class="sc-trend-note">○ earlier run used a different model/prompt — not directly comparable</div>` : ""}
   </div>`;
 }
 
@@ -1357,7 +1379,7 @@ function buildShareText(d) {
     const rat = d.exposure_rationale.length > 260 ? d.exposure_rationale.slice(0, 257) + "..." : d.exposure_rationale;
     text += rat + "\n\n";
   }
-  const tPts = trendPoints(d);
+  const tPts = trendPoints(d).filter(p => p.safe);
   if (tPts.length >= 2) {
     const tFirst = tPts[0], tLast = tPts[tPts.length - 1];
     const tDelta = tLast.exposure - tFirst.exposure;

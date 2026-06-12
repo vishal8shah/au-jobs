@@ -1,0 +1,1443 @@
+{
+  "chief-executives-and-managing-directors": {
+    "exposure": 6,
+    "rationale": "Chief Executives and Managing Directors involve significant strategic thinking, interpersonal communication, and decision-making in unpredictable environments. While AI can assist with data analysis, market research, and report generation, the core functions of leadership, vision setting, and complex human interaction remain largely resistant to full automation in the Australian context."
+  },
+  "general-managers": {
+    "exposure": 6,
+    "rationale": "General Managers involve significant strategic planning, decision-making, and human interaction, which are complex for AI to fully automate. However, AI can increasingly support their roles through advanced data analysis, report generation, and automating routine administrative tasks, making them more productive and potentially reducing the need for some managerial layers in the Australian context."
+  },
+  "legislators": {
+    "exposure": 4,
+    "rationale": "Legislators primarily engage in highly interpersonal, strategic, and unpredictable work involving negotiation, public speaking, and community engagement. While AI could assist with policy research or speech drafting, the core functions of representation and political decision-making require human judgment and presence, making direct automation unlikely in the Australian context."
+  },
+  "aquaculture-farmers": {
+    "exposure": 4,
+    "rationale": "Aquaculture farming involves substantial physical work managing aquatic stock and environments. While AI can aid in data analysis for planning, monitoring water quality, and predicting disease, the hands-on operational aspects and real-world unpredictability limit high direct AI automation in Australia."
+  },
+  "crop-farmers": {
+    "exposure": 3,
+    "rationale": "Crop Farmers primarily engage in physical farming operations and decision-making in unpredictable real-world environments. While AI can assist with data analysis for crop management and yield prediction, the core tasks of planning, organising, and performing farming operations remain largely physical and require on-site presence, limiting direct AI automation in the Australian context."
+  },
+  "livestock-farmers": {
+    "exposure": 2,
+    "rationale": "Livestock farming is predominantly physical, involving direct interaction with animals and managing land in unpredictable environments. While AI can assist with data analysis, monitoring, and optimising farm management, it cannot automate the core manual tasks or replace the need for human presence and practical skills. The work is far from being computer-based."
+  },
+  "mixed-crop-and-livestock-farmers": {
+    "exposure": 5,
+    "rationale": "Mixed Crop and Livestock Farmers combine substantial physical work with complex planning and management. AI can assist with data analysis for crop optimisation, livestock health monitoring, and market forecasting, but the core tasks of performing farming operations and dealing with unpredictable environmental factors require significant physical presence and manual skill."
+  },
+  "advertising-public-relations-and-sales-manager": {
+    "exposure": 7,
+    "rationale": "This role involves significant strategic planning, communication, and analysis, which are increasingly augmented by AI tools for market research, content generation, and campaign optimisation. While client interaction remains crucial, the digital aspects of advertising, PR, and sales are highly susceptible to AI-driven efficiencies in the Australian context."
+  },
+  "corporate-services-managers": {
+    "exposure": 8,
+    "rationale": "Corporate Services Managers primarily engage in high-level planning, organisation, and coordination, which are heavily reliant on data analysis, strategic communication, and administrative oversight. AI can significantly automate reporting, streamline workflows, and enhance decision-making by processing vast amounts of information, making this role highly susceptible to AI reshaping."
+  },
+  "finance-managers": {
+    "exposure": 8,
+    "rationale": "Finance Managers perform highly computer-based tasks involving extensive data analysis, forecasting, and strategic financial planning. AI can significantly automate analytical processes, enhance predictive modeling, and improve reporting, making the role much more productive. This will profoundly reshape how financial activities are coordinated and controlled within Australian organisations."
+  },
+  "human-resource-managers": {
+    "exposure": 7,
+    "rationale": "Human Resource Managers perform predominantly knowledge-based tasks such as policy development, talent management, and data analysis, which are highly susceptible to AI augmentation. AI can automate recruitment screening, HR analytics, policy drafting, and employee query handling, making a significant portion of the role computer-based. While interpersonal skills remain vital, the digital component is substantial, aligning with high exposure for knowledge work in Australia."
+  },
+  "policy-and-planning-managers": {
+    "exposure": 8,
+    "rationale": "This role is predominantly computer-based, involving extensive research, data analysis, document drafting, and strategic communication. AI can significantly automate information synthesis, policy drafting, and scenario planning, making the core tasks highly susceptible to AI augmentation and efficiency gains in the Australian context."
+  },
+  "research-and-development-managers": {
+    "exposure": 7,
+    "rationale": "Research and Development Managers primarily engage in knowledge work, planning, organising, and coordinating research activities, which are highly amenable to AI assistance in data analysis, report generation, and strategic planning. While requiring human oversight and decision-making, many underlying tasks involve information processing and synthesis, making exposure high, especially in the Australian context of increasing digital transformation in R&D sectors."
+  },
+  "construction-managers": {
+    "exposure": 6,
+    "rationale": "Construction Managers engage in significant knowledge work like planning, scheduling, and resource allocation, which AI can heavily augment and optimize. However, the role also demands substantial on-site presence, direct human supervision, and real-world problem-solving in unpredictable physical environments, limiting full AI exposure."
+  },
+  "engineering-managers": {
+    "exposure": 7,
+    "rationale": "Engineering Managers heavily rely on data analysis, project planning, and coordination, all of which AI can significantly augment or automate. AI can optimize schedules, manage resources, and provide data-driven insights for strategic decision-making, increasing productivity and reshaping the role's analytical components. While human leadership remains crucial, the digital nature of many core tasks leads to high exposure."
+  },
+  "importers-exporters-and-wholesalers": {
+    "exposure": 7,
+    "rationale": "This role involves extensive digital tasks such as supply chain management, logistics planning, market analysis, compliance, and communication with international partners. AI can significantly automate and optimise these core functions, from document processing and customs declarations to demand forecasting and inventory management, making it highly exposed."
+  },
+  "manufacturers": {
+    "exposure": 6,
+    "rationale": "Manufacturers' roles involve significant planning, organisation, and control, which are highly amenable to AI for data analysis, process optimisation, and supply chain management. While direct oversight of physical operations provides some barrier, AI can significantly enhance efficiency in administrative and strategic aspects of managing a small manufacturing establishment."
+  },
+  "production-managers": {
+    "exposure": 5,
+    "rationale": "Production Managers involve a mix of strategic planning and coordination (knowledge work) and on-the-ground oversight of physical and human resources in manufacturing and mining. While AI can assist with data analysis, scheduling, and predictive maintenance, the need for physical presence, human leadership, and real-world problem-solving in often unpredictable industrial environments limits direct AI automation in the Australian context, particularly in sectors like mining."
+  },
+  "supply-distribution-and-procurement-managers": {
+    "exposure": 7,
+    "rationale": "This role involves significant planning, organisation, and coordination, which are increasingly supported and optimised by AI-driven analytics and supply chain management software. While there's a real-world component, much of the strategic and administrative work can be enhanced or partially automated by AI, placing it in the high exposure category for knowledge work in Australia."
+  },
+  "child-care-centre-managers": {
+    "exposure": 5,
+    "rationale": "AI can assist Child Care Centre Managers with administrative tasks such as scheduling, record-keeping, and compliance reporting. However, the core of the role requires significant physical presence, direct staff supervision, parent communication, and managing the unpredictable environment of a childcare centre. These human-centric and on-site responsibilities limit the overall AI exposure to a moderate level."
+  },
+  "health-and-welfare-services-managers": {
+    "exposure": 7,
+    "rationale": "Health and Welfare Services Managers engage in extensive planning, administration, and coordination, which are highly susceptible to AI augmentation for data analysis, resource optimization, and report generation. While leadership and human-centric decision-making remain crucial, AI can significantly streamline many core management and administrative tasks in the Australian health and welfare sector."
+  },
+  "school-principals": {
+    "exposure": 5,
+    "rationale": "While AI can assist School Principals with administrative tasks like scheduling, budgeting, and data analysis, the core of their role involves complex human leadership, interpersonal communication, conflict resolution, and on-site management of a dynamic school environment. These aspects require significant physical presence, emotional intelligence, and real-world judgment, limiting direct AI automation."
+  },
+  "other-education-managers": {
+    "exposure": 7,
+    "rationale": "This role involves extensive knowledge work, policy development, and administrative support, which are highly amenable to AI assistance in data analysis, report generation, and communication. While leadership and direct interpersonal advice require human judgment, many core tasks can be significantly reshaped by AI, making it a high exposure occupation."
+  },
+  "ict-managers": {
+    "exposure": 7,
+    "rationale": "ICT Managers operate predominantly in a knowledge work environment, planning and coordinating digital systems. While their role involves strategic oversight and human interaction, AI can significantly assist with data analysis, system optimisation, and even automate aspects of project management and resource allocation, making their digital exposure high in the Australian context."
+  },
+  "commissioned-officers-management": {
+    "exposure": 5,
+    "rationale": "This role blends strategic planning and administrative tasks with critical human leadership and decision-making in unpredictable operational environments like defence, fire, and police services. While AI can enhance data analysis and logistics, the need for physical presence and human judgment in high-stakes situations limits its overall exposure."
+  },
+  "senior-non-commissioned-defence-force-officers": {
+    "exposure": 4,
+    "rationale": "Senior NCOs combine leadership, enforcement, and physical presence in diverse operational settings. While AI can assist with administrative tasks, logistics, and data analysis for planning, the core human elements of command, discipline, and interpersonal management in unpredictable environments limit high exposure."
+  },
+  "other-specialist-managers": {
+    "exposure": 6,
+    "rationale": "This broad category includes managers in diverse specialist fields. While some roles like Laboratory Managers might have lower digital exposure due to physical oversight, many others such as Arts Administrators, Environmental Managers, and Quality Assurance Managers involve significant computer-based planning, analysis, reporting, and communication, making them moderately to highly susceptible to AI augmentation in Australia."
+  },
+  "cafe-and-restaurant-managers": {
+    "exposure": 3,
+    "rationale": "While AI can assist with administrative tasks like scheduling, inventory, and sales analysis, the core role of a Cafe and Restaurant Manager requires significant physical presence, direct staff supervision, customer interaction, and real-time problem-solving in an unpredictable environment, limiting direct AI automation."
+  },
+  "caravan-park-and-camping-ground-managers": {
+    "exposure": 3,
+    "rationale": "This role requires significant on-site physical presence and direct interpersonal interaction with guests and staff in a hospitality setting. While AI can automate booking systems and administrative tasks, the core management of a physical site and unpredictable customer service remains human-centric, limiting overall exposure."
+  },
+  "hotel-and-motel-managers": {
+    "exposure": 5,
+    "rationale": "Hotel and Motel Managers require significant on-site presence, interpersonal skills for staff and guest management, and handling unpredictable operational issues. While AI can assist with administrative tasks like booking, revenue management, and marketing, the core of the role remains human-centric and physical, placing it in the moderate exposure category."
+  },
+  "licensed-club-managers": {
+    "exposure": 4,
+    "rationale": "Licensed Club Managers involve significant in-person operational oversight, staff management, and direct member interaction within a physical club environment. While AI could assist with administrative tasks, inventory, or marketing, the core responsibilities of managing diverse club amenities and member experiences require a strong physical presence and interpersonal skills, limiting direct AI automation in the Australian context."
+  },
+  "other-accommodation-and-hospitality-managers": {
+    "exposure": 3,
+    "rationale": "These roles involve significant physical presence, direct interpersonal interaction with guests/residents, and management of physical facilities. While AI can assist with administrative tasks like bookings, marketing, and basic data analysis, the core functions of hospitality and community management require human judgment and presence, limiting direct AI automation."
+  },
+  "retail-managers": {
+    "exposure": 5,
+    "rationale": "Retail managers combine administrative tasks like inventory, rostering, and sales analysis (which AI can assist with) with significant physical presence, direct staff supervision, and customer interaction in a dynamic retail environment. While AI can enhance efficiency, the core need for human oversight and interpersonal skills in a physical store limits full automation."
+  },
+  "amusement-fitness-and-sports-centre-managers": {
+    "exposure": 4,
+    "rationale": "This role involves significant on-site management, coordination of physical activities, and direct interpersonal interaction with staff and clients in amusement, fitness, and sports centres. While some administrative tasks could be aided by AI, the core functions of facility oversight, staff management, and promoting physical activities require a human presence and adaptability that AI currently lacks, placing it in the moderate exposure category."
+  },
+  "call-contact-centre-and-customer-service-managers": {
+    "exposure": 8,
+    "rationale": "This role involves significant oversight of digital communication channels and customer service processes, which are highly amenable to AI-driven analytics, automation, and virtual assistants. While management aspects require human judgment, many underlying tasks and performance metrics can be heavily influenced or even managed by AI, leading to very high exposure in the Australian context."
+  },
+  "conference-and-event-organisers": {
+    "exposure": 6,
+    "rationale": "Conference and Event Organisers involve significant coordination, planning, and communication tasks, much of which can be supported or streamlined by AI for scheduling, logistics, marketing content, and data analysis. While there's an interpersonal and on-site element, the core planning and administrative functions are highly digital, placing it in the high exposure category for knowledge work in Australia."
+  },
+  "transport-services-managers": {
+    "exposure": 6,
+    "rationale": "Transport Services Managers involve significant coordination, logistics, and operational oversight, much of which can be supported or streamlined by AI-driven analytics, route optimisation, and predictive maintenance systems. While there's a physical component to the services managed, the core managerial tasks are knowledge-based and involve data analysis and decision-making, making them susceptible to AI augmentation in the Australian context."
+  },
+  "other-hospitality-retail-and-service-managers": {
+    "exposure": 5,
+    "rationale": "This occupation group covers a broad range of management roles, many of which involve significant physical presence, direct customer interaction, and on-site operational oversight (e.g., cinema, boarding kennel, equipment hire). While some administrative tasks could be streamlined by AI, the core responsibilities often require human judgment in unpredictable real-world environments, limiting direct AI automation in the Australian context."
+  },
+  "actors-dancers-and-other-entertainers": {
+    "exposure": 2,
+    "rationale": "The core tasks of acting, dancing, and live entertainment fundamentally require physical presence, human emotion, and real-time interaction with audiences. While AI can assist with script analysis, choreography ideas, or digital effects in production, it cannot replace the embodied, live performance itself, making direct automation very low."
+  },
+  "music-professionals": {
+    "exposure": 6,
+    "rationale": "Music Professionals involve a mix of creative and performance tasks. While AI can assist with composition, arrangement, and even generate music, the live performance, unique artistic interpretation, and interpersonal collaboration aspects provide some barrier to full automation in the Australian context. However, the digital nature of much music creation and production means significant exposure to AI tools for efficiency and new creative avenues."
+  },
+  "photographers": {
+    "exposure": 7,
+    "rationale": "While photography involves physical presence and artistic skill, many aspects of a photographer's work, such as image editing, post-production, client communication, and marketing, are highly digital and computer-based. AI tools are rapidly advancing in image manipulation, generative AI for backgrounds or elements, and automating routine editing tasks, significantly impacting the efficiency and potentially the demand for certain types of photographic work in Australia."
+  },
+  "visual-arts-and-crafts-professionals": {
+    "exposure": 6,
+    "rationale": "While the core creative act of Visual Arts and Crafts Professionals involves unique human expression, many aspects of their work, such as digital art creation, multimedia production, and even conceptual development, can be significantly augmented or influenced by AI tools. AI can assist with generating ideas, creating preliminary designs, editing digital media, and even automating some aspects of production, leading to a high exposure for those working in digital mediums."
+  },
+  "artistic-directors-media-producers-and-presenters": {
+    "exposure": 7,
+    "rationale": "This occupation involves significant knowledge work in planning, administration, content creation, and communication, much of which can be augmented or partially automated by AI. While creativity and interpersonal skills remain crucial, AI can assist with scriptwriting, content generation, scheduling, and data analysis for audience engagement, leading to high exposure in the Australian media landscape."
+  },
+  "authors-and-book-and-script-editors": {
+    "exposure": 9,
+    "rationale": "The core tasks of writing, editing, and evaluating literary works and scripts are highly digital and text-based. AI can significantly automate content generation, provide advanced editing and proofreading, and assist with structural and stylistic evaluation, making this occupation very susceptible to AI's current capabilities."
+  },
+  "film-television-radio-and-stage-directors": {
+    "exposure": 6,
+    "rationale": "While the core creative vision remains human, AI can significantly assist Film, Television, Radio and Stage Directors with script analysis, pre-visualisation, scheduling, budget optimisation, and even generating initial drafts of scenes or dialogue. The role involves a substantial amount of planning and administrative work that is computer-based, increasing its digital AI exposure, though the on-set direction and interpersonal aspects provide some buffer."
+  },
+  "journalists-and-other-writers": {
+    "exposure": 9,
+    "rationale": "This occupation is highly exposed as its core tasks of researching, writing, and editing news stories and advertising copy are directly amenable to AI automation and augmentation. AI can generate drafts, summarize information, and tailor content, making the role predominantly computer-based and significantly increasing productivity or reducing demand for human input."
+  },
+  "accountants": {
+    "exposure": 7,
+    "rationale": "Accountants perform predominantly computer-based knowledge work, including financial reporting, taxation, and auditing. AI can significantly automate data processing, reconciliation, report generation, and compliance checks, making the role more efficient and potentially reducing the need for manual tasks in the Australian context."
+  },
+  "auditors-company-secretaries-and-corporate-treasurers": {
+    "exposure": 8,
+    "rationale": "These roles are highly analytical and data-intensive, involving extensive review of financial systems, compliance, and risk management. AI can significantly automate data analysis, anomaly detection, report generation, and legal research, making these predominantly computer-based knowledge roles highly susceptible to AI-driven changes."
+  },
+  "financial-brokers": {
+    "exposure": 7,
+    "rationale": "Financial Brokers engage in significant knowledge work, including analysis, communication, and document preparation, which are highly susceptible to AI automation and enhancement. While client relationships require human interaction, AI can streamline research, compliance, and administrative tasks, increasing productivity and potentially reducing the need for as many brokers in Australia."
+  },
+  "financial-dealers": {
+    "exposure": 9,
+    "rationale": "This role is highly computer-based, relying heavily on data analysis, market prediction, and transaction execution. AI can automate significant aspects of market analysis, algorithmic trading, and even client communication, making it very susceptible to AI-driven changes in Australia's financial sector."
+  },
+  "financial-investment-advisers-and-managers": {
+    "exposure": 8,
+    "rationale": "This occupation is highly computer-based, involving extensive data analysis, financial modeling, and strategic planning for investments. AI can significantly automate market research, portfolio optimization, risk assessment, and even generate personalized financial plans, making the analytical and management aspects very susceptible to AI augmentation and displacement."
+  },
+  "human-resource-professionals": {
+    "exposure": 7,
+    "rationale": "Human Resource Professionals engage in extensive knowledge work, including recruitment, policy development, and data analysis, which are highly amenable to AI automation and augmentation. While interpersonal skills are crucial for dispute resolution and negotiation, AI can significantly streamline administrative tasks, candidate screening, and provide data-driven insights for strategic HR functions in Australia."
+  },
+  "ict-trainers": {
+    "exposure": 8,
+    "rationale": "ICT Trainers primarily engage in knowledge work such as analyzing training needs, developing curriculum, and creating digital content. AI can significantly automate content generation, personalize learning paths, and assist with performance analysis, making the core tasks highly exposed. While delivery involves human interaction, much preparation and even aspects of instruction can be AI-augmented."
+  },
+  "training-and-development-professionals": {
+    "exposure": 7,
+    "rationale": "This role involves extensive digital content creation, curriculum design, and data analysis for program evaluation, making it highly susceptible to AI automation and augmentation. While human interaction is crucial for training delivery, AI can significantly streamline planning, development, and assessment tasks, increasing productivity and potentially reducing demand for certain aspects of the role."
+  },
+  "actuaries-mathematicians-and-statisticians": {
+    "exposure": 8,
+    "rationale": "This occupation is almost entirely computer-based, involving complex data analysis, modelling, and statistical computation. AI excels at these core tasks, significantly augmenting or automating data processing, model building, and report generation, making it highly susceptible to AI reshaping in Australia."
+  },
+  "archivists-curators-and-records-managers": {
+    "exposure": 7,
+    "rationale": "This occupation involves significant knowledge work, including cataloguing, information management, and digital preservation, which are highly susceptible to AI automation and enhancement. While some aspects may involve physical handling of artefacts, the core tasks of developing and maintaining systems for records and information are largely computer-based and can be significantly reshaped by AI in the Australian context."
+  },
+  "economists": {
+    "exposure": 8,
+    "rationale": "Economists primarily engage in computer-based research, data analysis, model development, and report writing, which are highly susceptible to AI automation and augmentation. AI can significantly enhance data processing, forecasting, and the drafting of economic policy advice, making this a very high exposure occupation."
+  },
+  "intelligence-and-policy-analysts": {
+    "exposure": 8,
+    "rationale": "This occupation is heavily reliant on collecting, analysing, and synthesising information and data, which are core strengths of current AI capabilities. AI can significantly automate research, data processing, intelligence generation, and the drafting of policy documents, making it a predominantly computer-based knowledge role with very high digital exposure."
+  },
+  "land-economists-and-valuers": {
+    "exposure": 7,
+    "rationale": "Land Economists and Valuers perform significant knowledge work involving data analysis, report writing, and market research, which are highly susceptible to AI automation and enhancement. While some on-site inspection is required, the core analytical and advisory tasks can be significantly augmented or streamlined by AI, leading to high exposure in the Australian context."
+  },
+  "librarians": {
+    "exposure": 7,
+    "rationale": "Librarians primarily engage in knowledge work, including organising information, managing digital resources, and providing research assistance, much of which can be augmented or automated by AI. While there's an interpersonal aspect, the core tasks are computer-based, making it highly susceptible to AI's current capabilities in information processing and retrieval."
+  },
+  "management-and-organisation-analysts": {
+    "exposure": 8,
+    "rationale": "Management and Organisation Analysts primarily engage in knowledge work, involving extensive data analysis, process mapping, and strategic recommendation development, which are highly amenable to AI. AI can significantly automate data collection, identify inefficiencies, and generate reports, making this a very high exposure role in the Australian knowledge economy."
+  },
+  "other-information-and-organisation-professionals": {
+    "exposure": 7,
+    "rationale": "This category includes roles like Electorate Officers, Liaison Officers, Migration Agents, and Patents Examiners, which are predominantly knowledge-based and involve significant information processing, communication, and analysis. While some roles may have interpersonal aspects, a substantial portion of their work can be augmented or streamlined by AI, particularly in research, document preparation, and case management, making them highly susceptible to AI's impact in the Australian context."
+  },
+  "advertising-and-marketing-professionals": {
+    "exposure": 8,
+    "rationale": "This occupation is highly exposed as it involves extensive computer-based knowledge work in content creation, market analysis, and campaign strategy. AI can significantly automate tasks like ad copy generation, audience segmentation, and performance optimization, making workers more productive or reducing the need for some roles in the Australian market."
+  },
+  "ict-sales-professionals": {
+    "exposure": 7,
+    "rationale": "ICT Sales Professionals primarily engage in knowledge work involving communication, analysis of client needs, and presentation of complex technical solutions, all of which can be significantly augmented by AI. While client interaction remains crucial, AI can automate lead generation, personalise sales content, analyse market trends, and even draft proposals, making the role highly susceptible to AI-driven productivity enhancements and shifts in required skills within the Australian context."
+  },
+  "public-relations-professionals": {
+    "exposure": 8,
+    "rationale": "Public Relations Professionals heavily rely on digital communication, content creation, and strategic planning, all areas where AI excels. AI can automate drafting press releases, social media content, media monitoring, sentiment analysis, and campaign performance analytics. While human judgment and relationship building remain crucial, a significant portion of the work is computer-based and highly susceptible to AI augmentation and automation."
+  },
+  "technical-sales-representatives": {
+    "exposure": 7,
+    "rationale": "Technical Sales Representatives rely heavily on knowledge work, including product research, client analysis, proposal generation, and communication, all of which AI can significantly automate or augment. While AI will enhance efficiency in lead generation and information management, the core human elements of relationship building, complex negotiation, and adapting to nuanced client needs for high-value technical products still provide a barrier to full automation."
+  },
+  "air-transport-professionals": {
+    "exposure": 4,
+    "rationale": "This occupation involves critical real-world physical presence and highly unpredictable environments, which are significant barriers to AI automation. While AI can assist with flight planning and air traffic management, the core tasks of piloting and direct air traffic control require human judgment, physical skill, and real-time decision-making in complex, safety-critical situations, limiting direct AI exposure in the Australian context."
+  },
+  "marine-transport-professionals": {
+    "exposure": 3,
+    "rationale": "Marine Transport Professionals primarily involve physical presence and control of vessels in unpredictable marine environments. While AI can assist with navigation, weather forecasting, and logistics, the core tasks of operational management and decision-making in complex, real-world scenarios are not easily automated by current digital AI capabilities."
+  },
+  "architects-and-landscape-architects": {
+    "exposure": 7,
+    "rationale": "Architects and Landscape Architects extensively use digital tools for design, drafting, and analysis, making many core tasks susceptible to AI augmentation. AI can assist with generative design, optimization, rendering, and documentation, significantly reshaping workflows in this knowledge-intensive profession."
+  },
+  "surveyors-and-spatial-scientists": {
+    "exposure": 6,
+    "rationale": "Surveyors and Spatial Scientists combine significant fieldwork with extensive computer-based analysis and mapping. While the physical surveying aspect provides some barrier, the core tasks of data processing, map creation, and spatial analysis are highly amenable to AI-driven automation and enhancement, particularly in the Australian context of large-scale infrastructure and resource projects."
+  },
+  "fashion-industrial-and-jewellery-designers": {
+    "exposure": 7,
+    "rationale": "This occupation involves significant computer-based design, planning, and documentation tasks, which are highly susceptible to AI tools for concept generation, rendering, and specification writing. While creativity and understanding market trends remain human-centric, AI can significantly enhance productivity and automate routine design elements, particularly in industrial and jewellery design where technical specifications are critical."
+  },
+  "graphic-and-web-designers-and-illustrators": {
+    "exposure": 9,
+    "rationale": "This occupation is almost entirely computer-based, involving visual and web content creation. AI tools are rapidly advancing in generating images, layouts, code, and illustrations, directly impacting the core tasks of graphic designers, web designers, and illustrators, leading to very high exposure."
+  },
+  "interior-designers": {
+    "exposure": 7,
+    "rationale": "Interior Designers engage in significant computer-based design, planning, and communication tasks, which are highly susceptible to AI tools for generating layouts, material selections, and visualisations. While client interaction and site visits provide some physical presence, the core design process is increasingly digital, leading to high AI exposure in the Australian context."
+  },
+  "urban-and-regional-planners": {
+    "exposure": 7,
+    "rationale": "Urban and Regional Planners engage in significant knowledge work, including data analysis, policy development, report writing, and spatial planning, much of which can be enhanced or automated by AI. While some aspects involve stakeholder engagement and site visits, the core analytical and planning tasks are highly susceptible to AI's current capabilities in data processing and generative text/design, placing it in the high exposure category for Australia."
+  },
+  "chemical-and-materials-engineers": {
+    "exposure": 7,
+    "rationale": "Chemical and Materials Engineers perform extensive design, simulation, data analysis, and materials research, which are highly susceptible to AI automation and augmentation. AI can optimize chemical processes, accelerate materials discovery, and automate routine design tasks. While physical presence is required for plant supervision and some materials testing, the core knowledge work components are significantly exposed to current digital AI capabilities."
+  },
+  "civil-engineering-professionals": {
+    "exposure": 6,
+    "rationale": "Civil Engineering Professionals engage in extensive computer-based design, planning, analysis, and cost estimation, which are highly susceptible to AI augmentation and automation. AI can optimize designs, simulate performance, and enhance project management. However, the role also requires significant physical presence for overseeing construction and site inspections, introducing real-world unpredictability that limits full AI automation."
+  },
+  "electrical-engineers": {
+    "exposure": 6,
+    "rationale": "Electrical Engineers perform significant design and analysis work, which is computer-based and can be augmented by AI for tasks like circuit design, simulation, and optimisation. However, their role also involves supervising manufacturing, installation, and maintenance in physical environments, which provides a natural barrier to full AI automation in the Australian context."
+  },
+  "electronics-engineers": {
+    "exposure": 7,
+    "rationale": "Electronics Engineers primarily engage in design, development, and testing, which are knowledge-intensive tasks that can be significantly augmented or partially automated by AI tools for simulation, circuit design, and system optimization. While there's a physical component to installation and maintenance, the core intellectual work is computer-based, leading to high AI exposure in the Australian context."
+  },
+  "industrial-mechanical-and-production-engineers": {
+    "exposure": 6,
+    "rationale": "While aspects of design and analysis are computer-based and highly exposed to AI, a significant portion of this role involves overseeing physical construction, operation, and maintenance of plant and installations. The need for on-site presence and real-world problem-solving in Australian industrial settings (e.g., mining, manufacturing) limits the overall AI exposure compared to purely digital roles."
+  },
+  "mining-engineers": {
+    "exposure": 5,
+    "rationale": "Mining Engineers combine significant on-site physical presence and unpredictable real-world problem-solving with complex analytical and planning tasks. While AI can assist with data analysis, geological modelling, and optimisation, the core role involves managing physical operations and human teams in often remote Australian mining environments, limiting direct automation."
+  },
+  "other-engineering-professionals": {
+    "exposure": 7,
+    "rationale": "This category encompasses various engineering specialisations, many of which involve significant computer-based design, analysis, simulation, and report writing. While some roles may have physical components, the core intellectual work is highly susceptible to AI augmentation and automation, placing it in the high exposure category for knowledge work."
+  },
+  "agricultural-and-forestry-scientists": {
+    "exposure": 7,
+    "rationale": "This role involves extensive data analysis, research, report writing, and policy development related to agriculture and forestry. AI can significantly automate data synthesis, predictive modeling for productivity, and drafting of advice and plans, making a large portion of the work highly exposed despite some potential fieldwork."
+  },
+  "chemists-and-food-and-wine-scientists": {
+    "exposure": 6,
+    "rationale": "Chemists and Food and Wine Scientists engage in significant analytical and research tasks, which are highly amenable to AI assistance in data analysis, experimental design, and literature review. While some work involves lab-based physical processes, the core intellectual tasks are digital, placing them in the high exposure category for knowledge work."
+  },
+  "environmental-scientists": {
+    "exposure": 7,
+    "rationale": "Environmental Scientists engage heavily in data analysis, research, report writing, and policy development, all of which are highly amenable to AI tools for efficiency and insight generation. While fieldwork and direct stakeholder engagement provide some human-centric barriers, AI can significantly augment their core knowledge-based tasks in environmental modeling and impact assessment."
+  },
+  "geologists-geophysicists-and-hydrogeologists": {
+    "exposure": 5,
+    "rationale": "Geologists and Geophysicists combine extensive fieldwork and physical presence in often remote or unpredictable environments with complex data analysis. While AI can significantly enhance data interpretation, modeling, and resource prediction, the necessity for on-site data collection and physical assessment limits full automation."
+  },
+  "life-scientists": {
+    "exposure": 6,
+    "rationale": "Life Scientists engage in extensive data analysis, literature review, and computational modeling, which are highly susceptible to AI augmentation for efficiency and discovery. While some physical lab work and field collection are involved, the core intellectual tasks of examining and understanding biological systems are predominantly knowledge-based and can be significantly reshaped by AI over the next five years."
+  },
+  "medical-laboratory-scientists": {
+    "exposure": 8,
+    "rationale": "Medical Laboratory Scientists perform highly analytical tasks involving data interpretation, image analysis, and pattern recognition from medical samples. AI can significantly automate and enhance these core intellectual tasks, improving diagnostic accuracy and streamlining reporting, even though some physical sample handling is required."
+  },
+  "veterinarians": {
+    "exposure": 5,
+    "rationale": "Veterinarians require significant physical presence and manual skills for examining and treating animals, which limits direct AI automation. While AI can assist with diagnostics and information retrieval, the core hands-on care and unpredictable real-world interactions with animals and owners remain human-centric."
+  },
+  "other-natural-and-physical-science-professionals": {
+    "exposure": 6,
+    "rationale": "This category includes diverse roles like Meteorologists and Physicists, which involve significant data analysis, modelling, and report writing—tasks highly amenable to AI. While some roles may have field components, the core analytical and research aspects are predominantly computer-based, leading to high AI exposure in the Australian context."
+  },
+  "early-childhood-pre-primary-school-teachers": {
+    "exposure": 3,
+    "rationale": "This role is highly dependent on physical presence, direct interpersonal interaction, and emotional intelligence to foster children's development in an unpredictable environment. While AI might assist with administrative tasks or lesson planning, the core teaching and care functions are resistant to automation, aligning with other childcare roles in Australia."
+  },
+  "primary-school-teachers": {
+    "exposure": 4,
+    "rationale": "Primary school teaching requires extensive in-person interaction, classroom management, and fostering social-emotional development, which are significant barriers to AI automation. While AI can assist with lesson planning and administrative tasks, the core human connection and unpredictable nature of working with young children limit direct AI exposure."
+  },
+  "middle-school-teachers": {
+    "exposure": 5,
+    "rationale": "Middle School Teachers involve a significant mix of knowledge work, such as lesson planning, resource creation, and assessment, which AI can assist with. However, the core functions of direct teaching, classroom management, and fostering students' social and emotional development are highly interpersonal and require physical presence, limiting direct AI automation in the Australian context."
+  },
+  "secondary-school-teachers": {
+    "exposure": 5,
+    "rationale": "Secondary School Teachers involve a significant mix of knowledge work, such as lesson planning and assessment design, where AI can offer support. However, the core functions of classroom management, direct student interaction, and fostering social-emotional development require a strong human presence and interpersonal skills, limiting AI's direct automation impact in the Australian context."
+  },
+  "special-education-teachers": {
+    "exposure": 5,
+    "rationale": "Special Education Teachers involve significant in-person interaction, empathy, and adaptation to individual student needs, which are difficult for AI to replicate. While AI might assist with administrative tasks, lesson planning, or providing tailored learning resources, the core teaching and developmental support remain highly human-centric and require physical presence in an unpredictable classroom environment."
+  },
+  "university-lecturers-and-tutors": {
+    "exposure": 7,
+    "rationale": "University Lecturers and Tutors engage heavily in knowledge work, including research, content creation for lectures, and assessment, all of which are highly amenable to AI augmentation. While direct student interaction provides some buffer, AI can significantly enhance productivity in research and preparation, potentially reshaping the role and increasing efficiency in Australian universities."
+  },
+  "vocational-education-teachers": {
+    "exposure": 6,
+    "rationale": "Vocational Education Teachers engage in significant knowledge work for curriculum development, assessment design, and theoretical instruction, which AI can augment. However, the practical demonstration of vocational skills, direct student interaction, and supervision in hands-on settings limit full automation."
+  },
+  "education-advisers-and-reviewers": {
+    "exposure": 8,
+    "rationale": "This occupation is highly exposed to AI as its core tasks involve extensive educational research, curriculum development, and material creation, which are predominantly computer-based. AI can significantly assist with content generation, data analysis for reviews, and structuring educational programs, making the role highly amenable to automation and augmentation."
+  },
+  "private-tutors-and-teachers": {
+    "exposure": 5,
+    "rationale": "While some aspects of teaching, like curriculum development and resource creation, can be augmented by AI, the core of private tutoring involves direct, personalised human interaction and adaptation to individual student needs. The Australian context values this bespoke, interpersonal teaching style, making full automation unlikely, though AI tools could assist with administrative tasks and content generation."
+  },
+  "teachers-of-english-to-speakers-of-other-languages": {
+    "exposure": 6,
+    "rationale": "While teaching involves significant interpersonal interaction, much of the preparation, curriculum development, assessment, and resource creation for ESL teachers can be significantly augmented by AI. AI can assist with generating lesson plans, creating tailored exercises, providing instant feedback on written work, and even simulating conversational practice, increasing productivity and potentially reducing the need for as many human hours in certain aspects of the role."
+  },
+  "nutrition-professionals": {
+    "exposure": 6,
+    "rationale": "Nutrition Professionals rely heavily on scientific research, data analysis of dietary intake, and the creation of personalized meal plans and educational content. AI can significantly automate and enhance these analytical and content generation tasks, increasing productivity and potentially reshaping how advice is formulated. However, direct client interaction, empathy, and complex judgment in individual cases will remain human-centric."
+  },
+  "medical-imaging-professionals": {
+    "exposure": 4,
+    "rationale": "Medical Imaging Professionals operate specialised physical equipment and require direct patient interaction, which limits direct AI automation. While AI can assist with image analysis and diagnostics, the core tasks involve physical presence and skilled operation in a clinical setting, making it a moderate exposure role in the Australian context."
+  },
+  "occupational-and-environmental-health-professionals": {
+    "exposure": 6,
+    "rationale": "Occupational and Environmental Health Professionals involve significant knowledge work, including policy development, program evaluation, and legislative interpretation, which are highly susceptible to AI assistance in research and drafting. While there's an element of on-site assessment, a substantial portion of their role is computer-based analysis and reporting, placing them in the higher end of moderate AI exposure. AI can streamline compliance checks and data analysis for health and safety trends."
+  },
+  "optometrists-and-orthoptists": {
+    "exposure": 5,
+    "rationale": "Optometrists and Orthoptists involve a significant component of in-person patient interaction, physical examination, and diagnostic interpretation that requires clinical judgment. While AI could assist with image analysis and administrative tasks, the core diagnostic and prescriptive work, especially the nuanced patient communication and physical procedures, keeps the exposure at a moderate level in the Australian context."
+  },
+  "pharmacists": {
+    "exposure": 5,
+    "rationale": "Pharmacists have a mix of knowledge work (medicine selection, therapy monitoring) and direct patient interaction, which limits AI's direct impact. While AI can assist with drug information and some administrative tasks, the core role involves professional judgment, communication, and physical dispensing in a regulated environment, making it moderately exposed in the Australian context."
+  },
+  "other-health-diagnostic-and-promotion-professionals": {
+    "exposure": 5,
+    "rationale": "This occupation involves a mix of direct patient interaction (Orthotists/Prosthetists) and community-based health promotion, which requires significant interpersonal skills and real-world engagement. While AI could assist with data analysis for health promotion strategies or design for prosthetics, the core work remains hands-on and human-centric, limiting direct AI automation in the Australian context."
+  },
+  "chiropractors-and-osteopaths": {
+    "exposure": 4,
+    "rationale": "Chiropractors and Osteopaths primarily involve physical diagnosis and hands-on treatment, requiring direct patient interaction and manual skills. While AI could assist with administrative tasks, scheduling, or even some diagnostic analysis, the core of the role remains physical and interpersonal, limiting direct AI automation in the Australian context."
+  },
+  "complementary-health-therapists": {
+    "exposure": 3,
+    "rationale": "Complementary Health Therapists rely heavily on direct patient interaction, empathy, and a holistic understanding of individual needs, which are difficult for current AI to replicate. While AI could assist with administrative tasks or information retrieval, the core therapeutic delivery and interpersonal connection necessitate human presence and nuanced judgment in the Australian context."
+  },
+  "dental-practitioners": {
+    "exposure": 4,
+    "rationale": "Dental Practitioners require significant physical presence, manual dexterity, and direct patient interaction for diagnosis and treatment. While AI might assist with diagnostics or administrative tasks, the core surgical and restorative work is highly physical and unpredictable, limiting direct AI automation in the Australian context."
+  },
+  "occupational-therapists": {
+    "exposure": 4,
+    "rationale": "Occupational Therapists require significant direct patient interaction, physical presence for assessments and therapy delivery, and a high degree of empathy and adaptability. While AI can assist with administrative tasks and data analysis, the core therapeutic relationship and hands-on guidance are strong barriers to high AI exposure in the Australian context."
+  },
+  "physiotherapists": {
+    "exposure": 3,
+    "rationale": "Physiotherapy is a hands-on profession requiring direct physical interaction, assessment, and treatment of patients. While AI can assist with administrative tasks and data analysis, it cannot replicate the essential physical presence, manual skills, and empathetic interpersonal communication crucial for effective therapy in the Australian healthcare context."
+  },
+  "podiatrists": {
+    "exposure": 3,
+    "rationale": "Podiatry primarily involves direct physical examination, diagnosis, and hands-on treatment of feet, requiring significant physical presence and manual skills. While AI could assist with administrative tasks or potentially some diagnostic data analysis, the core functions are resistant to automation by current digital AI capabilities."
+  },
+  "audiologists-and-speech-pathologists-therapists": {
+    "exposure": 5,
+    "rationale": "Audiologists and Speech Pathologists combine knowledge-intensive diagnostics and treatment planning with significant direct patient interaction and hands-on therapy. While AI can assist with data analysis, diagnostics, and administrative tasks, the core therapeutic relationship, nuanced assessment, and physical presence required for many interventions limit its overall exposure."
+  },
+  "general-practitioners-and-resident-medical-officers": {
+    "exposure": 5,
+    "rationale": "While AI can significantly assist with diagnostics, administrative tasks, and information retrieval for General Practitioners, the core of the role involves direct patient interaction, physical examination, and complex human judgment. The need for empathy and real-world presence acts as a significant barrier to high AI exposure in the Australian healthcare context."
+  },
+  "anaesthetists": {
+    "exposure": 4,
+    "rationale": "Anaesthetists perform highly skilled medical procedures requiring direct patient interaction, real-time decision-making, and physical presence in a clinical setting. While AI might assist with diagnostics or monitoring, the core tasks of administering anaesthesia and managing patient physiology are complex, unpredictable, and demand human judgment and physical intervention, limiting direct AI automation in the Australian context."
+  },
+  "specialist-physicians": {
+    "exposure": 4,
+    "rationale": "Specialist Physicians primarily involve direct patient interaction, complex diagnostic reasoning, and physical examination, which are difficult for AI to fully automate. While AI can assist with diagnostics and research, the core of their work requires human judgment, empathy, and real-world interaction, limiting direct AI exposure in the Australian context."
+  },
+  "psychiatrists": {
+    "exposure": 5,
+    "rationale": "Psychiatrists engage in complex diagnostic and treatment processes that involve significant interpersonal interaction, empathy, and nuanced clinical judgment, which are difficult for current AI to replicate. While AI might assist with administrative tasks, data analysis, or even preliminary diagnostic support, the core therapeutic relationship and unpredictable nature of human mental health conditions limit direct AI automation in the Australian context."
+  },
+  "surgeons": {
+    "exposure": 2,
+    "rationale": "The core tasks of a surgeon involve extremely high manual dexterity, physical presence, and real-time judgment in unpredictable operating environments. While AI can assist with diagnostics, planning, and robotic tools, it is highly unlikely to automate the direct surgical intervention itself within the next five years. The job cannot be performed remotely or entirely by computer."
+  },
+  "other-medical-practitioners": {
+    "exposure": 4,
+    "rationale": "While these roles involve significant knowledge work and analysis, the core of their practice requires direct patient interaction, physical examination, and complex decision-making in often unpredictable clinical environments. AI may assist with diagnostics or administrative tasks, but the high-stakes nature and need for human judgment and empathy in specialties like emergency medicine or surgery limit direct AI automation in the Australian context."
+  },
+  "midwives": {
+    "exposure": 3,
+    "rationale": "Midwives provide direct, hands-on care during pregnancy and childbirth, requiring significant physical presence, empathy, and real-time judgment in unpredictable situations. While AI may assist with administrative tasks or data analysis, the core functions are highly resistant to automation."
+  },
+  "nurse-educators-and-researchers": {
+    "exposure": 7,
+    "rationale": "This role involves significant knowledge work in curriculum development, theoretical instruction, and research, all of which benefit from AI for content generation, data analysis, and administrative support. While clinical education requires direct human interaction, the substantial computer-based tasks elevate its overall exposure."
+  },
+  "nurse-managers": {
+    "exposure": 5,
+    "rationale": "Nurse Managers have a mix of knowledge work (financial management, quality monitoring, staff development) and significant interpersonal/physical presence requirements in managing health service units. While AI could assist with administrative tasks and data analysis, the core functions of supervising staff, ensuring patient safety, and navigating complex human interactions in healthcare settings limit direct AI automation in the Australian context."
+  },
+  "registered-nurses": {
+    "exposure": 4,
+    "rationale": "Registered Nurses require significant physical presence and interpersonal skills for direct patient care in unpredictable environments. While AI can assist with administrative tasks or data analysis, the core hands-on and empathetic aspects of nursing are not easily automated, aligning with a moderate exposure level."
+  },
+  "ict-business-and-systems-analysts": {
+    "exposure": 8,
+    "rationale": "This role is predominantly computer-based, involving extensive analysis, documentation, and system design. AI can significantly automate tasks like requirements gathering, documentation generation, system evaluation, and design suggestions, making the occupation highly susceptible to AI-driven productivity gains and task automation in the Australian tech sector."
+  },
+  "multimedia-specialists-and-web-developers": {
+    "exposure": 9,
+    "rationale": "This occupation is almost entirely computer-based, involving coding, digital design, and content creation, which are core strengths of current AI capabilities. AI can automate significant portions of code generation, digital asset creation, and design tasks, leading to very high exposure. This will profoundly reshape how websites and multimedia content are produced in Australia."
+  },
+  "software-and-applications-programmers": {
+    "exposure": 9,
+    "rationale": "This occupation is almost entirely computer-based, with core tasks like coding, testing, and documentation being highly amenable to AI automation and augmentation. AI tools can significantly increase programmer productivity by generating code, identifying bugs, and assisting with design, leading to very high exposure in the Australian context."
+  },
+  "database-and-systems-administrators-and-ict-security-specialists": {
+    "exposure": 8,
+    "rationale": "This occupation is almost entirely computer-based, involving planning, development, maintenance, and administration of digital systems. AI can significantly automate tasks related to system monitoring, security analysis, database optimisation, and even some aspects of system configuration and troubleshooting, leading to very high exposure in the Australian context."
+  },
+  "computer-network-professionals": {
+    "exposure": 8,
+    "rationale": "Computer Network Professionals perform highly digital tasks such as network architecture design, configuration, monitoring, and performance optimisation. AI can significantly automate these functions, from generating network designs to predictive maintenance and advanced troubleshooting. The role is predominantly computer-based, making it highly susceptible to AI-driven efficiency gains and task automation."
+  },
+  "ict-support-and-test-engineers": {
+    "exposure": 8,
+    "rationale": "This occupation is almost entirely computer-based, involving extensive analysis, problem-solving, and testing of digital systems. AI can significantly automate test case generation, performance analysis, and initial problem diagnosis, making workers highly productive or reducing the need for manual effort in Australia's tech sector."
+  },
+  "telecommunications-engineering-professionals": {
+    "exposure": 8,
+    "rationale": "The design, optimisation, and complex troubleshooting of telecommunications systems are highly digital and analytical tasks, making them very susceptible to AI automation and enhancement. While physical installation and maintenance provide some barrier, the core engineering work is largely computer-based."
+  },
+  "barristers": {
+    "exposure": 7,
+    "rationale": "Barristers engage in significant knowledge work, including legal research, drafting arguments, and case analysis, which are highly susceptible to AI augmentation. While court appearances require human presence, the preparatory work can be substantially impacted by AI tools for legal document review and argument generation, leading to high exposure in the Australian legal context."
+  },
+  "judicial-and-other-legal-professionals": {
+    "exposure": 8,
+    "rationale": "This occupation involves extensive knowledge work such as legal analysis, interpretation, and drafting legislation, which are highly amenable to AI augmentation. AI can significantly enhance legal research, document review, and the generation of legal texts, making many core tasks more efficient. While human judgment remains crucial, the digital nature of much legal work in Australia positions it for very high AI exposure."
+  },
+  "solicitors": {
+    "exposure": 7,
+    "rationale": "Solicitors primarily engage in knowledge work, including legal research, document drafting, and client communication, which are highly amenable to AI assistance. While client interaction and strategic advice require human judgment, AI can significantly automate and enhance many core tasks, leading to high exposure in the Australian context."
+  },
+  "counsellors": {
+    "exposure": 3,
+    "rationale": "Counselling is fundamentally an interpersonal profession requiring empathy, nuanced communication, and the ability to build rapport, which are difficult for current AI to replicate. While AI can assist with administrative tasks or provide supplementary resources, the core therapeutic relationship and ethical judgment necessitate human presence."
+  },
+  "ministers-of-religion": {
+    "exposure": 4,
+    "rationale": "While some administrative and communication tasks could be aided by AI, the core functions of Ministers of Religion involve highly personal, empathetic, and unpredictable human interaction, spiritual guidance, and community leadership. These aspects are difficult for current AI to replicate, especially within the Australian cultural context where personal connection is highly valued in such roles."
+  },
+  "psychologists-and-psychotherapists": {
+    "exposure": 6,
+    "rationale": "Psychologists and Psychotherapists engage in significant knowledge work, including assessment, diagnosis, and treatment planning, which can be augmented by AI for data analysis, research, and administrative tasks. However, the core of their role involves complex human interaction, empathy, and nuanced communication, which are difficult for current AI to replicate, especially in the Australian context where face-to-face and culturally sensitive care is paramount."
+  },
+  "social-professionals": {
+    "exposure": 6,
+    "rationale": "Social Professionals involve significant research, analysis, and communication, which are tasks increasingly augmented by AI. While interpersonal skills and nuanced understanding of human behaviour remain crucial, AI can assist with data synthesis, report generation, and translation, making it a high exposure occupation in the Australian knowledge work context."
+  },
+  "social-workers": {
+    "exposure": 5,
+    "rationale": "Social Workers involve significant interpersonal interaction, empathy, and navigating complex, unpredictable human situations, which are difficult for AI to replicate. While AI might assist with administrative tasks or information gathering, the core of the role requires in-person presence and nuanced human judgment in the Australian context, particularly in diverse community settings."
+  },
+  "welfare-recreation-and-community-arts-workers": {
+    "exposure": 3,
+    "rationale": "This occupation is heavily reliant on direct interpersonal interaction, empathy, and navigating complex, unpredictable human and community situations. While AI may assist with administrative tasks or data analysis for program design, the core functions of providing direct support and fostering social change require a human presence and nuanced understanding that AI cannot replicate."
+  },
+  "agricultural-technicians": {
+    "exposure": 5,
+    "rationale": "Agricultural Technicians perform tests and experiments and provide technical support, which involves a mix of hands-on field/lab work and data analysis. While AI can significantly assist with data processing, predictive modeling for crops, and report generation, the physical presence required for experiments and field support acts as a natural barrier to full automation."
+  },
+  "medical-technicians": {
+    "exposure": 4,
+    "rationale": "Medical Technicians operate specialised equipment and perform laboratory tests, which involves a significant physical and hands-on component. While some data analysis or administrative tasks could be augmented by AI, the core functions require direct interaction with medical devices and samples, limiting high exposure in the Australian context."
+  },
+  "primary-products-inspectors": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves physical inspection of animals, plants, and facilities in varied real-world environments, requiring sensory input and on-site judgment. While AI could assist with administrative tasks or data analysis, the core inspection function necessitates human presence, making direct automation challenging in the Australian context."
+  },
+  "science-technicians": {
+    "exposure": 5,
+    "rationale": "Science Technicians perform hands-on experiments and tests, which limits direct AI automation of physical tasks. However, AI can significantly assist with data analysis, experimental design, and technical support functions, making the knowledge-based aspects of the role more efficient."
+  },
+  "architectural-building-and-surveying-technicians": {
+    "exposure": 5,
+    "rationale": "This occupation involves a moderate mix of physical on-site work, such as supervising construction and inspecting plumbing, and computer-based knowledge work. While AI can significantly assist with tasks like estimating costs, evaluating survey data, and preparing plans, the essential need for physical presence and real-world inspection limits its overall exposure in the Australian context."
+  },
+  "civil-engineering-draftspersons-and-technicians": {
+    "exposure": 7,
+    "rationale": "Civil Engineering Draftspersons and Technicians heavily rely on digital tools like CAD software for design, drafting, and analysis. AI can significantly automate repetitive drafting tasks, assist with design optimization, and perform complex calculations, making this a predominantly computer-based knowledge role. This aligns with the high exposure seen in similar design-focused occupations like architects."
+  },
+  "electrical-engineering-draftspersons-technicians": {
+    "exposure": 6,
+    "rationale": "This occupation involves significant computer-aided design (CAD) and technical documentation, which are highly susceptible to AI automation and enhancement. While some aspects may involve on-site work, the core drafting and technical analysis tasks are digital and knowledge-based, placing it in the higher range of AI exposure for technicians in Australia."
+  },
+  "electronic-engineering-draftspersons-technicians": {
+    "exposure": 6,
+    "rationale": "This role involves assisting in design, manufacture, and maintenance of electronic systems, which includes significant computer-aided design (CAD) and analysis tasks. While there's a physical component in maintenance and assembly, the drafting and design assistance aspects are highly susceptible to AI automation and enhancement, placing it in the higher range for knowledge work."
+  },
+  "mechanical-engineering-draftspersons-technicians": {
+    "exposure": 8,
+    "rationale": "This occupation heavily relies on digital tools for drafting, design, and analysis, making it highly susceptible to AI. AI can automate routine drawing, generate design variations, and assist with complex engineering calculations and diagnostics, significantly reshaping the role over the next five years."
+  },
+  "safety-inspectors": {
+    "exposure": 5,
+    "rationale": "Safety Inspectors involve a significant amount of on-site physical inspection and direct interaction, which limits direct AI automation. While AI could assist with data analysis of safety records or regulatory compliance checks, the core task of physically assessing conditions and ensuring real-world adherence to standards remains a human-centric role in the Australian context."
+  },
+  "other-building-and-engineering-technicians": {
+    "exposure": 4,
+    "rationale": "This occupation involves a mix of technical knowledge and practical application, often requiring physical presence in industrial or mining environments. While AI could assist with planning and data analysis, the core tasks of maintenance planning, materials testing, and mine supervision involve real-world unpredictability and hands-on oversight, limiting direct AI automation in the Australian context, especially in sectors like mining."
+  },
+  "ict-support-technicians": {
+    "exposure": 8,
+    "rationale": "ICT Support Technicians primarily perform computer-based tasks involving diagnostics, troubleshooting, and system maintenance. AI can significantly automate these processes, from identifying issues to suggesting or even implementing solutions. This makes the role highly susceptible to AI-driven efficiency gains and task automation, aligning with other computer-based knowledge work."
+  },
+  "telecommunications-technical-specialists": {
+    "exposure": 5,
+    "rationale": "Telecommunications Technical Specialists involve a mix of hands-on installation and maintenance of physical network infrastructure, which limits direct AI automation. However, monitoring, technical support, and system development aspects increasingly leverage AI for diagnostics, optimisation, and predictive maintenance, placing it in the moderate exposure range."
+  },
+  "automotive-electricians": {
+    "exposure": 2,
+    "rationale": "This is a hands-on trade requiring physical presence and manual skills to install and repair vehicle electrical systems. While AI can assist with diagnostics, the core work remains physical, limiting direct automation in the Australian context."
+  },
+  "motor-mechanics": {
+    "exposure": 2,
+    "rationale": "Motor mechanics primarily perform hands-on physical repair and maintenance of vehicles, requiring significant manual skill and physical presence. While digital diagnostics are increasingly used, AI's role is largely assistive for information or advanced troubleshooting, not automating the core physical tasks. This makes the occupation's exposure to AI relatively low."
+  },
+  "metal-casting-forging-and-finishing-trades": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical and manual, involving hands-on fabrication, heating, hammering, and finishing of metal. Current digital AI capabilities have minimal direct application to these core tasks. While future robotics might impact some aspects, the job's essence remains highly physical and unpredictable for AI."
+  },
+  "sheetmetal-trades-workers": {
+    "exposure": 2,
+    "rationale": "Sheetmetal Trades Workers primarily perform physical, manual tasks involving shaping, forming, and joining materials in a workshop setting. While some design or cutting might involve digital tools, the core hands-on work requires physical presence and skilled manipulation, limiting direct AI automation. Current digital AI capabilities have minimal impact on these core physical tasks."
+  },
+  "structural-steel-and-welding-trades-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring manual skill in cutting, shaping, and welding metal components. While AI might assist with design or quality control, the core tasks demand physical presence and dexterity, making direct automation challenging. It aligns with other trades in Australia having low AI exposure."
+  },
+  "aircraft-maintenance-engineers": {
+    "exposure": 3,
+    "rationale": "This occupation is highly physical, requiring hands-on maintenance and repair of complex aircraft systems. While AI can assist with diagnostics, predictive maintenance, and accessing technical information, the core tasks demand physical presence, manual dexterity, and real-world problem-solving that AI cannot currently automate."
+  },
+  "metal-fitters-and-machinists": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, involving fitting, assembling, and operating machinery to shape metal. While AI might assist with minor administrative tasks or machine diagnostics, the core manual skills and physical presence required for fabrication and operation limit its direct exposure in the Australian context."
+  },
+  "precision-metal-trades-workers": {
+    "exposure": 2,
+    "rationale": "Precision Metal Trades Workers primarily engage in physical fabrication, assembly, and repair of metal instruments, requiring manual dexterity and physical presence. While AI might assist with design software or diagnostics, the core hands-on tasks are not easily automated by current digital AI capabilities. This places it in the lower exposure category typical for skilled trades in Australia."
+  },
+  "toolmakers-and-engineering-patternmakers": {
+    "exposure": 3,
+    "rationale": "This occupation is highly physical, requiring specialized manual skills and precision in making and repairing tools and patterns. While AI could assist with design optimization or predictive maintenance, the core hands-on fabrication and problem-solving in a workshop environment are not easily automated. Direct AI exposure remains low due to the need for physical presence and dexterity."
+  },
+  "panelbeaters": {
+    "exposure": 2,
+    "rationale": "Panelbeating is a highly physical trade requiring manual dexterity and problem-solving in unpredictable real-world scenarios. While AI might assist with minor administrative tasks or diagnostics, the core work of repairing and forming vehicle panels cannot be automated by current digital AI capabilities, keeping exposure low."
+  },
+  "vehicle-body-builders-and-trimmers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, involving hands-on manufacturing, repair, and installation of vehicle bodies and interior trim. The core tasks require significant manual skill and real-world problem-solving, which are not easily automated by current digital AI capabilities. AI's role would be minimal, perhaps limited to minor administrative support or diagnostics."
+  },
+  "vehicle-painters": {
+    "exposure": 2,
+    "rationale": "Vehicle painting is a highly physical trade requiring manual dexterity and presence in a workshop. While AI might assist with colour matching or inventory, the core tasks of surface preparation and paint application are not directly automatable by current digital AI capabilities in the Australian context over the next five years."
+  },
+  "bricklayers-and-stonemasons": {
+    "exposure": 1,
+    "rationale": "This occupation is highly physical, requiring manual skill and adaptation to unpredictable real-world construction environments. Current digital AI has minimal direct application to the core tasks of laying bricks or shaping stone, placing it in the lowest exposure category."
+  },
+  "carpenters-and-joiners": {
+    "exposure": 2,
+    "rationale": "Carpenters and Joiners perform highly physical, manual tasks involving the construction and fitting of timber structures in real-world, often unpredictable environments. While some administrative or design aspects might see minor AI assistance, the core work requires hands-on skill and physical presence, making it largely resistant to current AI automation capabilities."
+  },
+  "floor-finishers": {
+    "exposure": 2,
+    "rationale": "Floor finishing is a highly physical trade requiring manual dexterity and on-site presence to measure, cut, and install materials in varied environments. Current digital AI has minimal direct application to these core hands-on tasks, limiting overall exposure."
+  },
+  "painting-trades-workers": {
+    "exposure": 2,
+    "rationale": "Painting Trades Workers primarily perform physical, manual tasks on-site, requiring dexterity and adaptation to varied real-world environments. Current AI capabilities have minimal direct impact on the core tasks of applying paint or finishes, which are not computer-based. While AI might assist with minor administrative tasks like scheduling or quoting, the essential work remains highly physical and resistant to automation."
+  },
+  "glaziers": {
+    "exposure": 1,
+    "rationale": "Glaziers primarily perform physical tasks involving measuring, cutting, and installing glass in real-world, often unpredictable environments. The core work requires manual dexterity and on-site presence, making it highly resistant to automation by current digital AI capabilities."
+  },
+  "plasterers": {
+    "exposure": 2,
+    "rationale": "Plastering is a highly physical, manual trade requiring on-site presence and dexterity to apply materials to structures. Current AI capabilities have minimal direct impact on these core tasks, which involve real-world unpredictability. As a construction trade in Australia, its exposure is inherently low."
+  },
+  "roof-tilers": {
+    "exposure": 1,
+    "rationale": "Roof Tilers perform highly physical, manual tasks in unpredictable outdoor environments, which are significant barriers to current AI automation. The core work involves hands-on installation of materials on rooftops, with minimal digital or knowledge-based components. AI's current capabilities offer very little direct application to this trade in Australia."
+  },
+  "wall-and-floor-tilers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, requiring significant manual dexterity and on-site presence to lay tiles. Current digital AI capabilities have minimal impact on the core tasks, which involve real-world manipulation and adaptation to varied environments, placing it in the minimal exposure category."
+  },
+  "plumbers": {
+    "exposure": 2,
+    "rationale": "Plumbers perform highly physical, hands-on work installing and repairing systems in varied real-world environments. While AI might assist with minor administrative tasks or diagnostics, the core manual skills and on-site presence required provide significant barriers to automation or significant AI-driven productivity changes in Australia over the next five years."
+  },
+  "electricians": {
+    "exposure": 2,
+    "rationale": "Electricians primarily perform physical tasks involving the installation, maintenance, and repair of electrical systems on-site. While AI might assist with minor administrative tasks or advanced diagnostics, the core work requires manual skill and physical presence, making it largely resistant to automation by current digital AI capabilities."
+  },
+  "airconditioning-and-refrigeration-mechanics": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring on-site presence for assembling, installing, maintaining, and repairing equipment. While AI might assist with diagnostics or scheduling, the core tasks involve manual dexterity and problem-solving in unpredictable real-world environments, making direct automation challenging."
+  },
+  "electrical-distribution-trades-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring on-site presence, manual skills, and problem-solving in unpredictable outdoor environments to maintain critical infrastructure. While AI can assist with network analytics or predictive maintenance, the core installation and repair tasks remain human-centric and are not computer-based."
+  },
+  "electronics-trades-workers": {
+    "exposure": 3,
+    "rationale": "This role is primarily hands-on, involving the physical maintenance, adjustment, and repair of electronic equipment. While AI might assist with diagnostics or accessing technical information, the core tasks require physical presence, manual dexterity, and real-world problem-solving, making direct automation challenging."
+  },
+  "telecommunications-trades-workers": {
+    "exposure": 3,
+    "rationale": "This occupation is primarily physical, involving the installation, maintenance, and repair of telecommunications equipment and infrastructure. While AI might assist with diagnostics or predictive maintenance, the core hands-on work requires physical presence and manual skill, making direct automation challenging in the Australian context."
+  },
+  "bakers-and-pastrycooks": {
+    "exposure": 2,
+    "rationale": "The core tasks of bakers and pastrycooks are highly physical, requiring manual dexterity, sensory evaluation, and operation of specialized equipment in a real-world kitchen environment. While AI might assist with inventory or recipe optimization, it cannot automate the hands-on preparation, baking, and decorating processes, making direct AI exposure low."
+  },
+  "butchers-and-smallgoods-makers": {
+    "exposure": 2,
+    "rationale": "The core tasks of butchers and smallgoods makers involve highly physical, manual dexterity in selecting, cutting, and preparing meat. While some processing machines are operated, the work is predominantly hands-on in a physical environment. Current AI capabilities have minimal direct impact on these core manual skills, limiting overall exposure."
+  },
+  "chefs": {
+    "exposure": 2,
+    "rationale": "The core tasks of a Chef involve significant physical skill, sensory judgment in food preparation and cooking, and real-time management in a dynamic kitchen environment. While AI can assist with administrative tasks like inventory or menu planning, it cannot perform the essential hands-on work or sensory evaluation, placing it in the low exposure category for Australia's hospitality sector."
+  },
+  "cooks": {
+    "exposure": 2,
+    "rationale": "Cooking is a highly physical and sensory occupation requiring manual skill and real-world presence in a kitchen environment. While AI might assist with minor administrative tasks like inventory or menu planning, the core tasks of food preparation and cooking are not amenable to current digital AI capabilities. Hospitality is a sector with inherently lower AI exposure in Australia."
+  },
+  "animal-attendants-and-trainers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical and hands-on, involving direct interaction with animals for training, feeding, and grooming. The unpredictable nature of animals and the need for physical presence significantly limit AI's ability to automate core tasks. AI's role would primarily be confined to administrative support like scheduling or record-keeping."
+  },
+  "shearers": {
+    "exposure": 1,
+    "rationale": "Shearers perform a highly physical and manual task involving live animals in often unpredictable environments. This occupation requires significant physical presence and specialized manual skill, making it minimally exposed to current digital AI capabilities in the Australian context."
+  },
+  "veterinary-nurses": {
+    "exposure": 3,
+    "rationale": "Veterinary Nurses primarily engage in direct physical care of animals and assist veterinarians with procedures, requiring significant manual dexterity and on-site presence. While AI may assist with administrative tasks like scheduling or record-keeping, the core duties are largely resistant to automation by current digital AI capabilities in the Australian context."
+  },
+  "florists": {
+    "exposure": 2,
+    "rationale": "The core work of a florist is highly physical, requiring manual dexterity, artistic judgment, and direct interaction with customers and perishable goods. While AI might assist with minor administrative tasks like inventory or online orders, the hands-on creation and arrangement of flowers are not easily automated by current digital AI capabilities."
+  },
+  "gardeners": {
+    "exposure": 2,
+    "rationale": "Gardeners primarily perform physical tasks outdoors, involving manual skills and adapting to unpredictable natural environments. While AI might assist with minor planning or plant diagnosis, the core work of planting, cultivating, and constructing landscapes remains highly physical and resistant to current AI automation in the Australian context."
+  },
+  "greenkeepers": {
+    "exposure": 2,
+    "rationale": "Greenkeepers primarily perform physical, outdoor tasks involving the hands-on maintenance of turf and sporting surfaces. While some digital tools might assist with planning or monitoring, the core work requires physical presence, manual skill, and interaction with unpredictable environments, limiting direct AI automation."
+  },
+  "nurserypersons": {
+    "exposure": 2,
+    "rationale": "Nurserypersons primarily perform physical tasks such as propagating, cultivating, and caring for plants in a hands-on environment. While AI might assist with minor inventory management or environmental monitoring, the core work is highly physical and not computer-based, limiting direct AI automation."
+  },
+  "hairdressers": {
+    "exposure": 2,
+    "rationale": "Hairdressing is a highly physical and interpersonal occupation requiring manual dexterity, aesthetic judgment, and direct client interaction. While AI might assist with minor administrative tasks like booking, it cannot automate the core functions of cutting, styling, or colouring hair, making its direct impact minimal."
+  },
+  "print-finishers-and-screen-printers": {
+    "exposure": 3,
+    "rationale": "This occupation primarily involves physical tasks such as binding, finishing printed products by hand and machine, and operating screen print equipment. While AI might assist with minor design preparation or workflow optimization, the core work requires significant manual dexterity and physical presence. The hands-on nature of the job limits its direct exposure to current digital AI capabilities."
+  },
+  "graphic-pre-press-trades-workers": {
+    "exposure": 8,
+    "rationale": "This occupation involves manipulating and composing text and graphics digitally, making it almost entirely computer-based knowledge work. AI excels at tasks like layout generation, image optimization, and text formatting, directly impacting the core functions. The significant projected employment decline also indicates high susceptibility to automation and increased productivity from AI."
+  },
+  "printers": {
+    "exposure": 4,
+    "rationale": "Printers operate physical machinery, which limits direct AI automation of their core tasks. While digital printing involves computer control, the hands-on setup, maintenance, and material handling aspects provide a barrier to high AI exposure in the Australian context. AI might assist with workflow optimisation or predictive maintenance, but the physical presence remains crucial."
+  },
+  "canvas-and-leather-goods-makers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical and craft-based, requiring manual dexterity for making and repairing tangible goods like boots and canvas items. Current digital AI capabilities have minimal direct impact on the core tasks of cutting, stitching, and assembling physical materials, which necessitate hands-on presence."
+  },
+  "clothing-trades-workers": {
+    "exposure": 3,
+    "rationale": "The core tasks of making and repairing garments are highly manual and require physical dexterity, limiting direct AI automation. While AI could assist with pattern design or fabric cutting optimization, the hands-on nature of the work provides a significant barrier to high exposure in the Australian context."
+  },
+  "upholsterers": {
+    "exposure": 2,
+    "rationale": "Upholstery is a highly manual and skilled trade requiring physical dexterity and hands-on work with materials and tools. AI has minimal direct impact on the core tasks of making, rebuilding, or repairing upholstered articles, which are not computer-based."
+  },
+  "cabinetmakers": {
+    "exposure": 2,
+    "rationale": "Cabinetmaking is a highly physical trade requiring manual dexterity, spatial reasoning, and hands-on fabrication and assembly of wooden furniture. While AI might assist with design or CNC programming, the core work remains manual and requires physical presence, limiting its direct digital AI exposure in Australia."
+  },
+  "wood-machinists-and-other-wood-trades-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is predominantly physical, involving manual skill in operating woodworking machinery and shaping tangible materials. While some advanced machinery might incorporate digital controls, the core tasks require physical presence and dexterity, limiting direct automation by current AI capabilities."
+  },
+  "boat-builders-and-shipwrights": {
+    "exposure": 1,
+    "rationale": "This occupation is highly physical, requiring significant manual skill and presence for constructing, fitting out, and repairing boats and ships. Current digital AI capabilities have minimal direct impact on these core hands-on tasks, placing it in the lowest exposure category."
+  },
+  "chemical-gas-petroleum-and-power-plant-operators": {
+    "exposure": 4,
+    "rationale": "This occupation involves controlling complex physical plant operations, often in remote or industrial settings, which limits direct AI automation. While AI could assist with predictive maintenance or process optimisation, the core tasks require on-site physical presence and skilled manual intervention, common in Australian heavy industry and energy sectors."
+  },
+  "gallery-library-and-museum-technicians": {
+    "exposure": 5,
+    "rationale": "This occupation involves a mix of physical handling of artworks/specimens and digital cataloguing/organisation. While AI can assist with digital asset management and information retrieval, the hands-on preparation and physical arrangement of exhibits provide a natural barrier to higher exposure in the Australian context."
+  },
+  "jewellers": {
+    "exposure": 2,
+    "rationale": "Jewellers primarily engage in highly skilled manual craftsmanship, involving physical manipulation of precious metals and gemstones. The core tasks of making, repairing, and shaping jewellery require fine motor skills and tactile judgment, which are not directly impacted by current digital AI capabilities. AI's role would be minimal, limited to minor administrative or design support."
+  },
+  "performing-arts-technicians": {
+    "exposure": 4,
+    "rationale": "Performing Arts Technicians involve a significant amount of hands-on, physical work with equipment, staging, lighting, and sound in live, unpredictable environments. While some aspects like scheduling or digital audio/visual processing could see AI assistance, the core tasks require physical presence and real-time problem-solving, limiting direct AI automation in the Australian context."
+  },
+  "signwriters": {
+    "exposure": 5,
+    "rationale": "AI can significantly impact the design and conceptualisation phase of signwriting, generating layouts and graphics. However, the physical fabrication, painting, and installation of signs require manual skill and on-site presence, providing a substantial buffer against full automation."
+  },
+  "other-miscellaneous-technicians-and-trades-workers": {
+    "exposure": 4,
+    "rationale": "This broad category includes diverse roles, many of which involve significant physical presence, manual skills, and real-world interaction (e.g., Divers, Fire Protection Equipment Technicians). While some roles like Interior Decorators or Optical Dispensers might have digital components, the overall mix suggests a moderate AI exposure, as AI's impact on physical and unpredictable tasks remains limited in the Australian context."
+  },
+  "ambulance-officers-and-paramedics": {
+    "exposure": 2,
+    "rationale": "This occupation is heavily reliant on physical presence, direct patient interaction in unpredictable emergency environments, and manual skills. While AI might assist with minor administrative tasks or diagnostics, the core duties of emergency response and patient transport are highly resistant to automation by current digital AI capabilities."
+  },
+  "dental-hygienists-technicians-and-therapists": {
+    "exposure": 4,
+    "rationale": "This occupation involves a significant amount of hands-on, physical work directly with patients, which limits direct AI automation. While AI could assist with diagnostics or administrative tasks, the core functions of preventative and restorative procedures, and constructing/repairing appliances, require human dexterity and presence in a clinical setting."
+  },
+  "diversional-therapists": {
+    "exposure": 3,
+    "rationale": "The role of a Diversional Therapist is highly interpersonal, requiring direct client interaction, empathy, and adaptability to individual needs, often in physical settings like aged care or hospitals. While AI could assist with program planning or administrative tasks, it cannot replace the core therapeutic relationship or the nuanced facilitation of activities. The strong emphasis on direct human connection and real-world engagement limits AI's direct impact on core job functions."
+  },
+  "enrolled-and-mothercraft-nurses": {
+    "exposure": 3,
+    "rationale": "Enrolled and Mothercraft Nurses provide direct, hands-on patient care in physical settings like hospitals, aged care, and community environments. While AI may assist with administrative tasks or information retrieval, the core duties require significant physical presence and interpersonal interaction, aligning with lower AI exposure categories like aged care workers in the Australian context."
+  },
+  "indigenous-health-workers": {
+    "exposure": 3,
+    "rationale": "This role is heavily reliant on direct interpersonal interaction, cultural sensitivity, and physical presence within Indigenous communities for health care delivery. While AI could assist with minor administrative coordination, the core functions of empathy, community engagement, and navigating unpredictable real-world health scenarios are significant barriers to high AI exposure."
+  },
+  "massage-therapists": {
+    "exposure": 2,
+    "rationale": "Massage Therapists perform a highly physical and interpersonal role requiring direct human touch and nuanced physical manipulation. Current AI capabilities have minimal impact on the core therapeutic tasks, which cannot be done remotely. AI assistance would be limited to minor administrative tasks like scheduling or record-keeping, not the primary service delivery."
+  },
+  "welfare-support-workers": {
+    "exposure": 4,
+    "rationale": "While AI can assist Welfare Support Workers with information retrieval and administrative tasks, the core of the role involves complex interpersonal communication, empathy, and navigating nuanced human situations. Providing emotional support and coordinating services within complex social systems requires human judgment and rapport, limiting direct AI automation."
+  },
+  "child-carers": {
+    "exposure": 2,
+    "rationale": "This role is highly physical and interpersonal, requiring constant direct supervision and interaction with children in unpredictable environments. While AI might assist with minor administrative tasks, the core responsibilities of care, safety, and emotional support are not automatable, aligning with low exposure in the Australian childcare sector."
+  },
+  "education-aides": {
+    "exposure": 2,
+    "rationale": "Education Aides primarily perform physical and interpersonal duties, providing direct care and supervision to children and students in dynamic educational settings. While AI might assist with minor administrative tasks, the core functions of direct support, supervision, and managing unpredictable real-world interactions are not amenable to current AI capabilities."
+  },
+  "aged-and-disabled-carers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly reliant on physical presence, direct interpersonal interaction, and emotional support in unpredictable home environments. While AI might assist with minor administrative tasks, the core care and companionship aspects are resistant to automation, aligning with the low AI exposure for aged care in Australia."
+  },
+  "dental-assistants": {
+    "exposure": 3,
+    "rationale": "This occupation primarily involves direct patient interaction and physical assistance during dental procedures, requiring a strong physical presence and manual dexterity. While AI could assist with minor administrative tasks like scheduling or record management, the core assisting role is not significantly exposed to current digital AI capabilities."
+  },
+  "nursing-support-and-personal-care-workers": {
+    "exposure": 2,
+    "rationale": "This occupation involves direct physical assistance and interpersonal care, which are inherently difficult for current AI to automate. While AI might assist with minor administrative tasks like scheduling or record-keeping, the core duties require human presence and empathy, aligning with low exposure categories like aged care in Australia."
+  },
+  "special-care-workers": {
+    "exposure": 2,
+    "rationale": "Special Care Workers primarily provide direct physical care, supervision, and interpersonal support in residential facilities. This role requires significant human presence, empathy, and judgment in unpredictable real-world environments, making its core functions highly resistant to current AI automation capabilities."
+  },
+  "bar-attendants-and-baristas": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical and interpersonal, involving direct customer service, drink preparation, and manual operation of equipment. While AI might assist with minor administrative tasks like inventory, the core service delivery in hospitality requires human presence and dexterity, making its direct AI exposure low in the Australian context."
+  },
+  "cafe-workers": {
+    "exposure": 2,
+    "rationale": "Cafe work is primarily physical and interpersonal, involving direct customer service, food preparation, and serving on premises. While AI might assist with minor tasks like order processing or inventory, the core functions require human presence and manual skills, making it less susceptible to automation by current digital AI capabilities."
+  },
+  "gaming-workers": {
+    "exposure": 3,
+    "rationale": "Gaming Workers primarily engage in physical and interpersonal tasks within a casino environment, such as dealing cards and managing games. While AI might assist with background analytics or security, the core service delivery requires human presence and social interaction, making it resistant to direct AI automation."
+  },
+  "hotel-service-managers": {
+    "exposure": 3,
+    "rationale": "This role involves significant on-site supervision, direct interpersonal interaction with staff and guests, and managing unpredictable physical environments within a hotel. While AI can assist with administrative tasks like scheduling and inventory, it cannot replace the core human management and problem-solving aspects in this physical, service-oriented role."
+  },
+  "waiters": {
+    "exposure": 2,
+    "rationale": "Waiters primarily perform physical tasks and engage in direct interpersonal interaction within an unpredictable environment. While digital ordering and payment systems may assist, the core service delivery, requiring physical presence and social skills, is not easily automated by current AI capabilities. Hospitality is a sector with generally lower AI exposure in Australia."
+  },
+  "other-hospitality-workers": {
+    "exposure": 2,
+    "rationale": "These roles are highly physical and interpersonal, requiring direct presence in unpredictable hospitality environments. Core tasks like clearing tables, handling luggage, and greeting guests are not amenable to current digital AI automation, placing them in a category with generally low AI exposure in Australia."
+  },
+  "defence-force-members-other-ranks": {
+    "exposure": 3,
+    "rationale": "This occupation primarily involves physical presence and specialised operational duties in unpredictable real-world environments, which are significant barriers to AI automation. While AI may assist with logistics, intelligence, or training simulations, it is unlikely to directly automate the core military services performed by Other Ranks within the next five years."
+  },
+  "fire-and-emergency-workers": {
+    "exposure": 2,
+    "rationale": "Fire and Emergency Workers operate in highly physical, unpredictable, and often dangerous real-world environments. While AI might assist with logistics, predictive analytics for fire risk, or administrative tasks, the core functions of emergency response, physical intervention, and direct protection of life and property are not automatable by current AI capabilities. Human presence and judgment are critical."
+  },
+  "police": {
+    "exposure": 5,
+    "rationale": "Police work involves a critical mix of physical presence, real-world unpredictability, and complex interpersonal interactions, which are significant barriers to AI automation. While AI can assist with administrative tasks, data analysis, and evidence processing, the core duties of law enforcement require human judgment and physical intervention."
+  },
+  "prison-officers": {
+    "exposure": 2,
+    "rationale": "The role of a Prison Officer is highly physical, interpersonal, and involves managing unpredictable human behavior in a secure environment. While AI might assist with minor administrative tasks or data analysis, it cannot automate the core duties of direct supervision, conflict resolution, and maintaining order. Physical presence and real-world unpredictability are strong barriers to AI exposure."
+  },
+  "security-officers-and-guards": {
+    "exposure": 2,
+    "rationale": "This occupation is heavily reliant on physical presence, direct human interaction, and real-world judgment in often unpredictable environments. While AI can augment surveillance systems and assist with minor administrative tasks, it cannot replace the core functions of physical security, access control, and incident response in Australia."
+  },
+  "beauty-therapists": {
+    "exposure": 2,
+    "rationale": "Beauty Therapists primarily perform hands-on treatments and require direct physical interaction with clients, which is resistant to current AI automation. While AI might assist with administrative tasks or advanced skin diagnostics, the core service delivery remains highly physical and interpersonal."
+  },
+  "driving-instructors": {
+    "exposure": 2,
+    "rationale": "The core of a Driving Instructor's role involves physical presence in a vehicle, real-time observation, and direct interpersonal instruction in an unpredictable real-world environment. While AI could assist with theoretical learning or simulations, the practical, safety-critical in-car instruction remains highly resistant to automation within the next five years."
+  },
+  "funeral-workers": {
+    "exposure": 2,
+    "rationale": "Funeral Workers perform highly physical tasks like preparing bodies and require significant interpersonal skills and empathy to arrange and conduct ceremonies for grieving families. While minor administrative tasks might see some AI assistance, the core functions demand human presence, manual dexterity, and emotional intelligence, making direct AI automation very limited."
+  },
+  "gallery-museum-and-tour-guides": {
+    "exposure": 3,
+    "rationale": "This occupation is heavily reliant on physical presence, interpersonal communication, and real-time adaptation to visitor groups in unpredictable environments. While AI can assist with content research and script generation, it cannot replace the human element of guiding and managing tours. The core value lies in human interaction and responsiveness, limiting direct AI automation."
+  },
+  "personal-care-consultants": {
+    "exposure": 4,
+    "rationale": "Personal Care Consultants involve significant in-person interaction and hands-on application of treatments, which limits direct AI automation. While AI could assist with administrative tasks, scheduling, or providing generic health advice, the core service delivery requires physical presence and interpersonal skills, common in Australian community and personal service roles."
+  },
+  "tourism-and-travel-advisers": {
+    "exposure": 8,
+    "rationale": "The core tasks of a Tourism and Travel Adviser, such as researching destinations, comparing prices, booking accommodation, and generating itineraries, are highly digital and amenable to AI automation. AI can efficiently process information, personalise recommendations, and handle routine inquiries, significantly reshaping the role by increasing productivity and potentially reducing the need for human intervention in standard bookings."
+  },
+  "travel-attendants": {
+    "exposure": 2,
+    "rationale": "Travel Attendants require significant physical presence and direct interpersonal interaction to ensure passenger safety and comfort in dynamic, unpredictable environments. While AI might assist with minor administrative tasks or information delivery, it cannot automate the core human-centric service and emergency response functions."
+  },
+  "other-personal-service-workers": {
+    "exposure": 2,
+    "rationale": "These roles are highly dependent on physical presence, manual skills, and direct interpersonal interaction. While AI might assist with minor administrative tasks like scheduling, it cannot automate the core service delivery of body artistry, salon assistance, ceremonial duties, or practical training, which require human presence and empathy."
+  },
+  "fitness-instructors": {
+    "exposure": 3,
+    "rationale": "Fitness Instructors primarily engage in in-person physical instruction and guidance, requiring direct human interaction and presence. While AI could assist with program design or administrative tasks, the core function of motivating and supervising physical activity is resistant to automation, placing it in the low exposure category."
+  },
+  "outdoor-adventure-guides": {
+    "exposure": 1,
+    "rationale": "Outdoor Adventure Guides operate in highly physical, unpredictable outdoor environments, requiring constant real-time human judgment, physical presence, and direct interaction for safety and instruction. AI has minimal capacity to automate or enhance the core tasks of this occupation in Australia."
+  },
+  "sports-coaches-instructors-and-officials": {
+    "exposure": 3,
+    "rationale": "This occupation heavily relies on direct physical presence, interpersonal communication, and real-time decision-making in dynamic sporting environments. While AI can assist with performance analysis or administrative tasks, it cannot automate the core coaching, instructing, and officiating functions."
+  },
+  "sportspersons": {
+    "exposure": 1,
+    "rationale": "The core role of a sportsperson is physical performance and participation in unpredictable real-world events, which are significant barriers to AI automation. While AI can assist with performance analysis or training strategies, it cannot replace the physical presence and athletic skill required for the occupation itself."
+  },
+  "contract-program-and-project-administrators": {
+    "exposure": 7,
+    "rationale": "This occupation involves significant computer-based administrative tasks, planning, and coordination, which are highly susceptible to AI automation and enhancement. While some interpersonal skills are required, the core functions of managing contracts, programs, and projects can be significantly streamlined by AI tools for document generation, analysis, and scheduling, leading to high exposure in the Australian knowledge work context."
+  },
+  "office-managers": {
+    "exposure": 7,
+    "rationale": "Office Managers primarily deal with administrative systems, personnel coordination, and communication, which are largely computer-based tasks. AI can significantly automate scheduling, document management, email handling, and even some HR functions, making this role highly susceptible to AI-driven efficiency gains in the Australian context."
+  },
+  "practice-managers": {
+    "exposure": 7,
+    "rationale": "Practice Managers primarily deal with administrative systems, personnel management, and organisational functions, which are largely computer-based knowledge work. AI can significantly automate tasks related to scheduling, record-keeping, communication, and data analysis, making this occupation highly susceptible to AI-driven changes in the Australian context."
+  },
+  "personal-assistants": {
+    "exposure": 8,
+    "rationale": "Personal Assistants primarily perform digital tasks such as scheduling, communication management, document preparation, and information synthesis. These core functions are highly amenable to automation and augmentation by current AI capabilities. The role is predominantly computer-based, making it very susceptible to AI's impact on efficiency and productivity."
+  },
+  "secretaries": {
+    "exposure": 9,
+    "rationale": "Secretaries perform extensive computer-based administrative tasks such as drafting correspondence, managing schedules, and processing documents. These routine digital processes are highly susceptible to automation and significant augmentation by current AI capabilities, leading to very high exposure."
+  },
+  "general-clerks": {
+    "exposure": 10,
+    "rationale": "General Clerks primarily perform routine digital administrative and clerical tasks, such as data entry, document processing, and scheduling. These functions are highly susceptible to automation and significant efficiency gains through current AI capabilities, making it a maximum exposure role."
+  },
+  "keyboard-operators": {
+    "exposure": 10,
+    "rationale": "Keyboard Operators primarily perform routine digital processing of text and data, and document generation. These tasks are highly susceptible to automation and augmentation by current AI capabilities, making it an occupation with maximum exposure in the Australian context."
+  },
+  "call-or-contact-centre-workers": {
+    "exposure": 10,
+    "rationale": "Call or Contact Centre Workers primarily engage in routine digital communication and information processing via phone, internet, and email. This makes the occupation highly susceptible to automation and augmentation by current AI capabilities, directly aligning with the maximum exposure anchor of a 'call centre operator'."
+  },
+  "information-officers": {
+    "exposure": 9,
+    "rationale": "The core tasks of responding to inquiries and providing information are highly language-based and involve accessing structured data, making them very susceptible to AI automation and augmentation. AI can handle routine queries, draft responses, and provide real-time information, significantly reducing the need for human intervention. This role is highly comparable to call centre operations, which are extremely exposed to current AI capabilities."
+  },
+  "receptionists": {
+    "exposure": 7,
+    "rationale": "Receptionists primarily perform administrative and communication tasks, many of which can be augmented or automated by AI, such as managing inquiries, scheduling, and basic information provision. While some interpersonal interaction remains, the digital aspects of the role are significant and increasingly susceptible to AI integration in the Australian context."
+  },
+  "accounting-clerks": {
+    "exposure": 9,
+    "rationale": "This role is almost entirely computer-based, involving routine monitoring of accounts, documentation, and calculations of financial data. These tasks are highly susceptible to automation and enhancement by current digital AI capabilities, making it very high exposure in the Australian context."
+  },
+  "bookkeepers": {
+    "exposure": 9,
+    "rationale": "Bookkeepers primarily manage financial transactions using computerised systems, making their core tasks highly susceptible to AI automation. AI can efficiently handle data entry, reconciliation, and report generation, leading to significant productivity gains and potential reduction in demand. This is a predominantly computer-based role with high routine digital processing."
+  },
+  "payroll-clerks": {
+    "exposure": 10,
+    "rationale": "Payroll Clerks perform highly routine, rule-based digital processing tasks such as preparing payrolls and maintaining records. This work is almost entirely computer-based and involves predictable data handling, making it extremely susceptible to automation and efficiency gains by AI, leading to maximum exposure."
+  },
+  "bank-workers": {
+    "exposure": 9,
+    "rationale": "Bank Workers primarily perform routine transactional and record-keeping tasks that are highly digital and rules-based. AI and automation are already significantly impacting these roles in Australia, leading to projected employment decline as digital banking platforms and AI-driven processing reduce the need for human intervention in basic transactions and record keeping."
+  },
+  "credit-and-loans-officers": {
+    "exposure": 8,
+    "rationale": "This role is almost entirely computer-based, involving the analysis and processing of digital financial data and applications. AI can significantly automate credit scoring, risk assessment, and decision support, making the core tasks highly susceptible to AI-driven efficiency gains and potential automation. While some human judgment may remain for complex cases, the bulk of the work is ripe for AI transformation."
+  },
+  "insurance-money-market-and-statistical-clerks": {
+    "exposure": 9,
+    "rationale": "The core tasks of preparing documentation, maintaining records, compiling data, and undertaking statistical computations are highly amenable to AI automation and augmentation. This role is predominantly computer-based knowledge work, aligning with occupations experiencing very high AI exposure in Australia."
+  },
+  "betting-clerks": {
+    "exposure": 9,
+    "rationale": "Betting Clerks perform highly routine, transactional tasks involving data entry and customer service, often via digital channels or telephone. AI can automate bet taking, processing, and customer interactions through voice bots and online platforms, significantly reducing the need for human intervention as the Australian betting industry rapidly moves online."
+  },
+  "couriers-and-postal-deliverers": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical, involving driving and navigating unpredictable real-world environments to deliver items. While AI can assist with route optimization and digital tracking, the core task requires physical presence and manual handling. Current digital AI capabilities have minimal direct impact on the physical act of delivery."
+  },
+  "filing-and-registry-clerks": {
+    "exposure": 10,
+    "rationale": "This occupation involves highly routine digital processing of information and documents within database and record management systems. AI excels at automating data extraction, classification, organization, and maintenance of digital records, making this role extremely susceptible to automation."
+  },
+  "mail-sorters": {
+    "exposure": 7,
+    "rationale": "Mail Sorters primarily perform routine, repetitive tasks involving sorting and despatching mail. While there's a physical component, the core function of identifying, categorising, and routing items is highly susceptible to automation through AI-powered optical character recognition and robotic sorting systems, leading to significant direct task automation and potential for reduced human labour in Australia."
+  },
+  "survey-interviewers": {
+    "exposure": 10,
+    "rationale": "Survey Interviewers primarily involve routine data collection and transcription of responses, often conducted remotely or via digital tools. This role is highly susceptible to automation by AI-driven chatbots, voice AI, and automated survey platforms, leading to a projected significant decline in employment in Australia."
+  },
+  "switchboard-operators": {
+    "exposure": 10,
+    "rationale": "This occupation involves highly routine digital processing of calls and inquiries, which is directly amenable to automation by AI-powered voice assistants and advanced IVR systems. AI can efficiently handle call routing, basic inquiries, and even initial fault logging, making this role highly susceptible to significant AI reshaping."
+  },
+  "other-clerical-and-office-support-workers": {
+    "exposure": 7,
+    "rationale": "This occupation group includes roles like Classified Advertising Clerks and Meter Readers. While Meter Readers have a physical component, many 'other clerical and office support' tasks, especially those involving classified advertising, data processing, and administrative support, are highly susceptible to automation by current AI capabilities in Australia. The computer-based nature of many clerical tasks makes them vulnerable to AI streamlining and efficiency gains."
+  },
+  "purchasing-and-supply-logistics-clerks": {
+    "exposure": 8,
+    "rationale": "This role is heavily reliant on processing orders, monitoring stock, and coordinating logistics, all of which involve extensive data management and routine digital processing. AI can significantly automate and optimize these tasks, from predictive inventory management to automated scheduling and order fulfillment, making a large portion of the work computer-based."
+  },
+  "transport-and-despatch-clerks": {
+    "exposure": 7,
+    "rationale": "This role involves significant record-keeping, data verification, and coordination tasks that are highly amenable to automation and AI-driven optimisation. While there's a link to physical goods, the core functions are administrative and digital, making it susceptible to AI streamlining in logistics and supply chain management within Australia."
+  },
+  "conveyancers-and-legal-executives": {
+    "exposure": 8,
+    "rationale": "This occupation is predominantly computer-based knowledge work, involving extensive document review, drafting, and legal research in areas like property transfer and wills. AI can significantly automate tasks such as document analysis, contract drafting, and information extraction, making it highly susceptible to digital AI capabilities. This aligns with other legal support roles like paralegals, which have very high exposure."
+  },
+  "court-and-legal-clerks": {
+    "exposure": 9,
+    "rationale": "Court and Legal Clerks perform predominantly computer-based administrative and clerical tasks within legal practices and courts. AI can significantly automate document drafting, information retrieval, scheduling, and data processing, making a large portion of their work highly susceptible to AI integration and efficiency gains. This aligns with high exposure for knowledge work in the legal sector."
+  },
+  "debt-collectors": {
+    "exposure": 9,
+    "rationale": "Debt collection is highly computer-based, involving extensive digital communication, data management, and routine follow-ups. AI can automate initial contacts, personalize communication, analyze debtor profiles, and streamline payment arrangements, significantly reducing the need for human intervention in routine tasks. While complex negotiations may retain a human element, AI will heavily augment and automate much of the process."
+  },
+  "human-resource-clerks": {
+    "exposure": 9,
+    "rationale": "This occupation is almost entirely computer-based, focusing on maintaining and updating digital personnel records. AI can highly automate tasks like data entry, processing leave and payroll information, and ensuring compliance, significantly increasing efficiency and potentially reducing demand for human input."
+  },
+  "inspectors-and-regulatory-officers": {
+    "exposure": 6,
+    "rationale": "This occupation involves significant knowledge work related to interpreting and enforcing regulations, which can be supported or partially automated by AI in areas like document analysis, compliance checking, and report generation. While some roles may involve physical site visits, a substantial portion of the work is computer-based, making it susceptible to AI's capabilities in information processing and decision support."
+  },
+  "insurance-investigators-loss-adjusters-and-risk-surveyors": {
+    "exposure": 7,
+    "rationale": "This occupation involves significant analytical and investigative tasks, including report writing, data assessment, and communication, which are highly susceptible to AI augmentation. While some physical inspection is required, the core decision-making and documentation processes can be significantly streamlined by AI, placing it in the high exposure category for knowledge work in Australia."
+  },
+  "library-assistants": {
+    "exposure": 5,
+    "rationale": "This occupation involves a blend of physical tasks like shelving and digital record-keeping. While AI can automate issuing, receiving, and maintaining records, the need for physical presence to handle and shelve library items provides a significant barrier to higher exposure."
+  },
+  "other-miscellaneous-clerical-and-administrative-workers": {
+    "exposure": 8,
+    "rationale": "This occupation includes roles like Proof Readers and Clinical Coders, which are highly exposed to AI due to their reliance on text analysis, data interpretation, and routine digital processing. While some roles may involve mixed tasks, the core administrative functions across this category are significantly amenable to AI automation and augmentation in the Australian context."
+  },
+  "auctioneers-and-stock-and-station-agents": {
+    "exposure": 3,
+    "rationale": "This occupation heavily relies on in-person interaction, negotiation, and reading dynamic social cues at auctions and during farm visits. While AI can assist with market data analysis and administrative tasks, the core functions of persuasive selling and relationship building require significant human presence and judgment. The physical and unpredictable nature of the work limits direct AI automation."
+  },
+  "insurance-agents": {
+    "exposure": 7,
+    "rationale": "Insurance agents perform significant knowledge work involving policy research, client data analysis, and communication, which are highly susceptible to AI augmentation and automation. While direct client interaction remains important for complex sales and relationship building, AI can streamline quoting, administrative tasks, and personalize client recommendations, making the role more efficient or reducing the need for as many agents."
+  },
+  "sales-representatives": {
+    "exposure": 6,
+    "rationale": "Sales Representatives involve significant interpersonal interaction and negotiation, which provides some barrier to full AI automation. However, AI can highly augment tasks like lead generation, customer relationship management, personalized outreach, and sales analytics, making the role more efficient but potentially reducing the number of representatives needed for routine sales."
+  },
+  "real-estate-sales-agents": {
+    "exposure": 6,
+    "rationale": "Real Estate Sales Agents involve significant interpersonal interaction, negotiation, and on-site presence, which are less susceptible to AI. However, tasks like market analysis, property listing descriptions, lead generation, and administrative duties can be significantly augmented or partially automated by AI, placing it in the high exposure category for knowledge work aspects."
+  },
+  "sales-assistants-general": {
+    "exposure": 3,
+    "rationale": "Sales Assistants primarily engage in direct, in-person customer interaction and handle physical goods within retail environments. While AI can streamline inventory management or provide online recommendations, the core selling, interpersonal skills, and physical presence required in Australian retail stores offer a significant barrier to direct AI automation."
+  },
+  "ict-sales-assistants": {
+    "exposure": 6,
+    "rationale": "While involving direct customer interaction, a significant portion of an ICT Sales Assistant's role involves understanding and explaining product specifications, comparing features, and processing sales digitally. AI can assist with product knowledge retrieval, personalised recommendations, and automating sales administration, increasing productivity and potentially reducing the need for as many human assistants, especially in online retail contexts."
+  },
+  "motor-vehicle-and-vehicle-parts-salespersons": {
+    "exposure": 5,
+    "rationale": "While AI can significantly assist with lead generation, customer profiling, and providing detailed product information, the core of this role involves direct interpersonal negotiation, building rapport, and physical demonstration of vehicles. The blend of digital assistance and essential human interaction places its exposure in the moderate range, as AI will reshape some tasks but not fully automate the sales process."
+  },
+  "pharmacy-sales-assistants": {
+    "exposure": 3,
+    "rationale": "This role is heavily reliant on direct customer interaction and physical presence within a retail pharmacy setting. While AI might assist with inventory or basic product information, the core sales function and interpersonal engagement are difficult to automate, limiting direct AI exposure in Australia."
+  },
+  "retail-supervisors": {
+    "exposure": 4,
+    "rationale": "Retail Supervisors require significant physical presence and interpersonal skills to manage staff and customer interactions in a dynamic retail environment. While AI can assist with administrative tasks like scheduling and sales analysis, the core supervisory functions involving human judgment and real-world unpredictability are less susceptible to automation."
+  },
+  "service-station-attendants": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves physical presence, direct customer interaction, and manual tasks like selling fuel and performing minor vehicle maintenance. Current digital AI capabilities have limited direct impact on these core duties. While transactions are digital, the role is not computer-based knowledge work."
+  },
+  "street-vendors-and-related-salespersons": {
+    "exposure": 2,
+    "rationale": "This occupation is heavily reliant on direct physical interaction with customers in unpredictable real-world environments like streets and markets. While AI might assist with minor administrative tasks like inventory or payment processing, the core selling activity requires human presence and interpersonal skills. Therefore, direct AI automation or significant productivity enhancement is minimal."
+  },
+  "other-sales-assistants-and-salespersons": {
+    "exposure": 4,
+    "rationale": "This occupation involves a mix of direct customer interaction, physical handling of goods (e.g., materials recycling), and administrative tasks. While AI could assist with inventory management or basic customer inquiries, the core roles often require physical presence and interpersonal skills, limiting direct AI automation in the Australian context."
+  },
+  "checkout-operators-and-office-cashiers": {
+    "exposure": 9,
+    "rationale": "The core tasks of operating cash registers and processing payments are highly routine and transactional, making them prime for automation. Self-checkout systems are already widespread in Australia, directly automating these functions, and AI can further enhance their efficiency and capabilities. This leads to a significant reduction in the need for human operators, as reflected in the projected negative employment growth for this occupation."
+  },
+  "models-and-sales-demonstrators": {
+    "exposure": 3,
+    "rationale": "This occupation involves significant physical presence and direct interpersonal interaction for demonstrating goods or posing, which are difficult for current AI to replicate. While AI might assist with background research for demonstrations or digital modelling, the core tasks remain highly physical and human-centric in the Australian context."
+  },
+  "retail-and-wool-buyers": {
+    "exposure": 7,
+    "rationale": "Retail and Wool Buyers heavily rely on market analysis, trend forecasting, and supplier management, which are highly amenable to AI. AI can automate research, predict consumer demand, optimize inventory, and assist with negotiation strategies, making it a predominantly knowledge-based role with significant digital exposure in the Australian retail sector."
+  },
+  "telemarketers": {
+    "exposure": 10,
+    "rationale": "Telemarketing is almost entirely computer-based, involving routine digital communication and data processing. AI can automate outbound calls, use natural language processing for conversations, qualify leads, and even close simple sales, making it highly susceptible to automation and efficiency gains."
+  },
+  "ticket-salespersons": {
+    "exposure": 10,
+    "rationale": "The core tasks of selling tickets, making reservations, and collecting fares are highly routine and transactional, making them extremely susceptible to automation by AI-powered booking systems, chatbots, and self-service kiosks. The increasing shift to online sales and automated payment systems in Australia significantly reduces the need for human intervention, similar to call centre operators."
+  },
+  "visual-merchandisers": {
+    "exposure": 6,
+    "rationale": "While the physical installation of displays provides a barrier to full automation, the planning and design aspects of visual merchandising are highly exposed to AI. AI can assist with trend analysis, concept generation, virtual staging, and optimizing layouts based on customer data, significantly reshaping the creative and strategic components of the role."
+  },
+  "other-sales-support-workers": {
+    "exposure": 8,
+    "rationale": "Sales support roles are largely computer-based, involving tasks like CRM management, data entry, report generation, communication drafting, and scheduling. These functions are highly susceptible to AI automation and augmentation, making the occupation very exposed to digital AI capabilities in Australia."
+  },
+  "clay-concrete-glass-and-stone-processing-machine-operators": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves operating physical machinery for manufacturing clay, concrete, glass, and stone products. While AI could assist with process optimization or predictive maintenance, the core tasks of physical machine operation, material handling, and on-site oversight are not highly susceptible to automation by current digital AI capabilities in the Australian context."
+  },
+  "industrial-spraypainters": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring manual dexterity and operation of specialized equipment in an industrial setting. While AI might assist with minor process optimization or inventory management, the core task of applying coatings physically offers limited direct automation by current digital AI capabilities in the Australian context."
+  },
+  "paper-and-wood-processing-machine-operators": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical, involving the operation and monitoring of industrial machinery in a manufacturing setting. While AI might assist with minor administrative tasks or predictive maintenance, its current digital capabilities have limited direct impact on the core hands-on operation of paper and wood processing machines. Physical presence and manual intervention remain crucial."
+  },
+  "photographic-developers-and-printers": {
+    "exposure": 8,
+    "rationale": "This occupation is almost entirely computer-based, involving editing and adjusting digital images using software, which is highly susceptible to AI automation. While some physical printing may occur, the core value-add tasks are digital, placing it in a very high exposure category."
+  },
+  "plastics-and-rubber-production-machine-operators": {
+    "exposure": 3,
+    "rationale": "This occupation primarily involves operating physical machinery in a manufacturing setting, requiring physical presence and manual oversight. While AI could assist with machine optimization or predictive maintenance, the core tasks are not computer-based, limiting direct automation by current digital AI capabilities."
+  },
+  "sewing-machinists": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, requiring manual dexterity to operate industrial sewing machines and handle materials. Current digital AI capabilities have minimal direct impact on the core tasks of sewing and finishing garments, which are not computer-based. The work demands physical presence and hands-on skill, making it highly resistant to AI automation."
+  },
+  "textile-and-footwear-production-machine-operators": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves operating physical machinery and handling raw materials in a production environment. While AI might optimize some aspects of manufacturing processes, the core tasks require physical presence and manual dexterity, limiting direct automation by current digital AI capabilities."
+  },
+  "other-machine-operators": {
+    "exposure": 2,
+    "rationale": "This occupation involves operating diverse physical machinery in real-world environments, requiring direct physical presence and manual skills. While some machines may have digital interfaces, AI's impact on the core operational tasks is limited, primarily assisting with monitoring or minor administrative functions rather than full automation."
+  },
+  "crane-hoist-and-lift-operators": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring direct operation of heavy machinery in dynamic and often unpredictable real-world environments like construction sites and mines. While AI might assist with planning or safety monitoring, the core tasks demand human spatial reasoning, coordination, and real-time decision-making, making full automation unlikely in the next five years."
+  },
+  "drillers-miners-and-shot-firers": {
+    "exposure": 1,
+    "rationale": "This occupation is highly physical, involving the operation of heavy machinery and explosives in often unpredictable mining environments. Direct AI automation of core tasks is minimal, aligning with the low AI exposure typical for physical roles in Australian mining."
+  },
+  "engineering-production-workers": {
+    "exposure": 3,
+    "rationale": "This occupation is primarily physical, involving the operation of heavy plant and machinery for metal and ceramic production. While some digital controls exist, the core tasks require physical presence, manual skill, and real-world intervention, limiting direct AI automation in the Australian context."
+  },
+  "other-stationary-plant-operators": {
+    "exposure": 3,
+    "rationale": "This occupation involves operating various types of stationary plant machinery, which is primarily a physical task requiring on-site presence and manual control. While some administrative or monitoring tasks might be digitally assisted, the core function of operating complex physical plant in often unpredictable industrial environments limits direct AI automation in the Australian context."
+  },
+  "agricultural-forestry-and-horticultural-plant-operators": {
+    "exposure": 1,
+    "rationale": "This occupation is highly physical, involving the operation of heavy machinery in unpredictable outdoor environments like farms and forests. While some machinery may have AI-assisted features, the core tasks require significant manual skill, physical presence, and adaptability to real-world conditions, making direct AI automation minimal."
+  },
+  "earthmoving-plant-operators": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving the operation of heavy machinery in unpredictable outdoor environments like construction sites and mines. Current digital AI capabilities have minimal direct impact on the core tasks, which require significant manual skill and real-world adaptability, aligning with low-exposure Australian sectors."
+  },
+  "forklift-drivers": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical, involving the operation of heavy machinery in real-world environments like warehouses or industrial sites. Current digital AI capabilities have minimal direct impact on the core task of physically moving materials. While automation exists, the human driver's role is not significantly reshaped by AI in the next five years, as it requires physical presence and manual skill."
+  },
+  "other-mobile-plant-operators": {
+    "exposure": 2,
+    "rationale": "This occupation involves operating heavy machinery in physical, often outdoor, environments across Australia's infrastructure and logistics sectors. While AI might assist with minor administrative tasks or route optimisation, the core functions require physical presence, manual skill, and real-world navigation, limiting direct AI automation."
+  },
+  "automobile-drivers": {
+    "exposure": 2,
+    "rationale": "The core task of driving a vehicle and interacting with passengers in unpredictable real-world environments is highly physical and requires human presence. While AI assists with navigation, the direct impact of current digital AI capabilities on the act of driving itself is limited, making it less susceptible to automation compared to knowledge-based roles."
+  },
+  "bus-and-coach-drivers": {
+    "exposure": 2,
+    "rationale": "The role is primarily physical, involving operating a vehicle in unpredictable real-world environments with direct passenger interaction. While AI may assist with route optimisation or minor administrative tasks, the core driving function requires human presence and real-time decision-making, making direct automation unlikely within the next five years in Australia."
+  },
+  "train-and-tram-drivers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring direct operation of machinery in real-world, often unpredictable environments. While AI can assist with scheduling or safety systems, direct automation of train and tram driving in complex Australian networks is not a current digital AI capability for the next five years, keeping exposure low."
+  },
+  "delivery-drivers": {
+    "exposure": 3,
+    "rationale": "The core task of driving and physically delivering goods is highly physical and involves unpredictable real-world environments. While AI significantly optimizes route planning and logistics, the direct automation of the driving and physical handling aspects by current digital AI capabilities is limited, keeping overall exposure low."
+  },
+  "truck-drivers": {
+    "exposure": 2,
+    "rationale": "Truck driving is a highly physical occupation requiring presence in a vehicle and navigating unpredictable real-world environments. While AI can assist with route optimisation and vehicle diagnostics, full automation replacing human drivers across diverse Australian conditions is not expected to be widespread within the next five years."
+  },
+  "storepersons": {
+    "exposure": 2,
+    "rationale": "Storepersons primarily perform physical tasks involving the handling and movement of goods in warehouses, which is not directly automatable by current digital AI capabilities. While AI can assist with inventory management and logistics optimization, the core of the job requires physical presence and manual dexterity."
+  },
+  "car-detailers": {
+    "exposure": 1,
+    "rationale": "Car Detailers perform highly physical and manual tasks involving cleaning and preparing vehicles, which requires direct interaction with the physical world. The core work has minimal digital or knowledge-based components, making it largely impervious to current AI automation. AI's impact on this occupation in Australia will be very limited over the next five years."
+  },
+  "commercial-cleaners": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual tasks and operating heavy-duty equipment in diverse and often unpredictable commercial environments. While some robotic cleaning solutions exist, they are not yet capable of fully automating the varied and complex tasks performed by human commercial cleaners, making direct AI impact minimal."
+  },
+  "domestic-cleaners": {
+    "exposure": 1,
+    "rationale": "The role of a Domestic Cleaner is almost entirely physical, involving hands-on tasks in varied and unpredictable real-world environments. Current digital AI capabilities have minimal direct application to the core cleaning tasks, which require physical presence and manual dexterity rather than digital skills."
+  },
+  "housekeepers": {
+    "exposure": 2,
+    "rationale": "Housekeepers perform highly physical tasks requiring on-site presence and manual dexterity in varied environments. While AI might assist with minor administrative tasks like scheduling, its current capabilities have very limited direct impact on the core cleaning and tidying duties. This aligns with the lower AI exposure typically seen in the Australian hospitality sector."
+  },
+  "laundry-workers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual sorting, cleaning, folding, and ironing of tangible items. Current AI capabilities have minimal direct application to these hands-on tasks, which require physical presence and dexterity rather than digital processing."
+  },
+  "other-cleaners": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring manual skill and presence to operate specialised cleaning equipment in diverse, unpredictable environments. AI's current capabilities offer minimal direct automation for core cleaning tasks like carpets, windows, or pools. Any AI impact would be limited to minor administrative support, not the primary job functions."
+  },
+  "building-and-plumbing-labourers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual tasks on construction sites and in plumbing environments. AI has minimal direct impact on automating the core duties of excavating, clearing, erecting, and maintaining physical systems. The work requires significant physical presence and manual skill in unpredictable real-world settings, which are natural barriers to current AI capabilities."
+  },
+  "concreters": {
+    "exposure": 2,
+    "rationale": "Concreters perform predominantly physical and manual tasks on construction sites, requiring hands-on skill in pouring, spreading, and finishing concrete. Current digital AI capabilities have very limited direct application to these core physical activities. The occupation aligns with other construction trades in Australia, which generally have low AI exposure."
+  },
+  "fencers": {
+    "exposure": 1,
+    "rationale": "Fencers primarily perform highly physical, manual tasks outdoors, involving the erection and repair of fences and gates. This occupation requires significant physical presence and practical skills, with minimal reliance on digital or knowledge-based work that AI could automate or enhance. AI's current capabilities have very limited direct application to the core duties of this role in Australia."
+  },
+  "insulation-and-home-improvement-installers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, requiring on-site presence and manual skills to install insulation and home improvements. AI's current capabilities have minimal direct impact on these core installation tasks, which involve real-world unpredictability. Any AI assistance would be limited to minor administrative support, placing it in the low exposure category similar to other construction trades."
+  },
+  "paving-and-surfacing-labourers": {
+    "exposure": 1,
+    "rationale": "This occupation is highly physical, involving manual labour and operating equipment in outdoor, real-world environments. AI has minimal direct application to the core tasks of laying paving materials, which require physical presence and manual dexterity rather than digital or analytical skills."
+  },
+  "railway-track-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical labour, involving laying and repairing tracks and installing equipment in real-world, often outdoor environments. While some digital tools might assist with diagnostics or planning for signals, the core tasks require significant manual skill and physical presence, making direct AI automation very limited in the Australian context."
+  },
+  "structural-steel-construction-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, involving manual assembly, rigging, and erection of heavy steel structures on construction sites. The core tasks require on-site presence, manual dexterity, and adaptation to unpredictable real-world environments, which are significant barriers to current AI automation. AI's impact would be minimal, perhaps limited to minor administrative or planning support."
+  },
+  "other-construction-and-mining-labourers": {
+    "exposure": 2,
+    "rationale": "These roles are predominantly physical, requiring on-site presence and manual skills in often unpredictable construction and mining environments. While minor digital tools might assist with administrative tasks, the core functions are resistant to current AI automation capabilities, aligning with lower exposure in the Australian context."
+  },
+  "food-and-drink-factory-workers": {
+    "exposure": 2,
+    "rationale": "Food and Drink Factory Workers primarily perform routine physical tasks in a factory setting, which are not easily automated by current AI capabilities. While some administrative or quality control aspects might see minor AI assistance, the core manual work of manufacturing food and beverages requires physical presence and manipulation, limiting direct AI exposure in the Australian context."
+  },
+  "meat-boners-and-slicers-and-slaughterers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, requiring manual dexterity and presence in an abattoir to handle meat and livestock. Current digital AI capabilities have minimal direct impact on the core tasks of boning, slicing, and slaughtering, which are highly hands-on and involve unpredictable biological materials."
+  },
+  "meat-poultry-and-seafood-process-workers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual processing, grading, and packaging of animal products in a plant environment. Current digital AI capabilities have minimal direct application to these hands-on tasks, which require physical presence and dexterity rather than computer-based work."
+  },
+  "packers": {
+    "exposure": 1,
+    "rationale": "Packers primarily perform highly physical and repetitive tasks such as weighing, wrapping, sealing, and labeling products. While automation and robotics pose a threat, current digital AI capabilities have minimal direct impact on these manual operations in the Australian context."
+  },
+  "product-assemblers": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical, requiring manual dexterity to assemble components in a tangible environment. While AI might assist with process optimization or quality control through vision systems, the core task of physically putting parts together is not directly automated by current digital AI capabilities, requiring physical presence and manual skill."
+  },
+  "metal-engineering-process-workers": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves physical, hands-on tasks in manufacturing metal products. While AI might optimize production processes or assist with quality control, the core work requires physical presence and manual skill, limiting direct exposure to current digital AI capabilities in Australia."
+  },
+  "plastics-and-rubber-factory-workers": {
+    "exposure": 2,
+    "rationale": "This occupation involves primarily physical, routine tasks in a factory setting, such as operating machinery and handling materials. While AI can optimize manufacturing processes, the direct hands-on work performed by these labourers has low exposure to current digital AI capabilities."
+  },
+  "product-quality-controllers": {
+    "exposure": 4,
+    "rationale": "Product Quality Controllers involve a mix of physical examination and adherence to standards, often in manufacturing or primary produce settings. While AI could assist with automated visual inspection and data analysis, the core task still requires physical presence and human judgment for nuanced quality assessment, limiting direct automation in the Australian context."
+  },
+  "timber-and-wood-process-workers": {
+    "exposure": 2,
+    "rationale": "This occupation involves routine physical tasks in industrial settings like sawmills and timber yards, requiring physical presence and manual operation of machinery. Current digital AI has minimal direct impact on these hands-on processing activities, which are not computer-based."
+  },
+  "other-factory-process-workers": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves physical tasks like operating machinery and handling materials in a factory environment. While AI might optimize plant processes or assist with quality control systems, its direct impact on the day-to-day physical duties of these workers is expected to be low over the next five years, with limited scope for automation of core tasks."
+  },
+  "aquaculture-workers": {
+    "exposure": 2,
+    "rationale": "Aquaculture Workers perform primarily physical, routine tasks in managing aquatic stock and their environment. While AI could assist with monitoring or data analysis for optimization, the core hands-on work requires physical presence and manual skills, limiting direct AI automation in the Australian context."
+  },
+  "crop-farm-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is predominantly physical, involving outdoor tasks in unpredictable natural environments. While precision agriculture uses AI for analysis, the direct tasks of planting, harvesting, and maintaining crops still heavily rely on manual labour and physical presence, limiting direct AI automation of the core work for the worker."
+  },
+  "forestry-and-logging-workers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual labour, operating heavy machinery, and working outdoors in unpredictable forest environments. Current AI capabilities have minimal direct impact on tasks like felling, sawing, and cultivating trees, which require physical presence and manual skill."
+  },
+  "garden-and-nursery-labourers": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, involving manual tasks like propagating and cultivating plants in varied garden and nursery environments. Current digital AI capabilities have minimal direct application to these hands-on tasks, with AI's role limited to potential minor administrative or inventory support."
+  },
+  "livestock-farm-workers": {
+    "exposure": 1,
+    "rationale": "This role is almost entirely physical, performed outdoors, and involves direct interaction with livestock and farm equipment in unpredictable environments. Current digital AI capabilities have minimal direct impact on the core routine tasks of a livestock farm worker, which require physical presence and manual skills."
+  },
+  "mixed-crop-and-livestock-farm-workers": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical and involves routine tasks in unpredictable outdoor environments, such as crop cultivation and animal production. While AI might assist with some minor administrative or data collection tasks, the core work requires physical presence and manual skills, which are significant barriers to high AI exposure in the Australian context."
+  },
+  "other-farm-forestry-and-garden-workers": {
+    "exposure": 2,
+    "rationale": "The core tasks of hunting, trapping, and pest control are highly physical, performed in varied and unpredictable outdoor environments. Current digital AI has limited capacity to automate these hands-on, real-world problem-solving activities, making exposure low."
+  },
+  "fast-food-cooks": {
+    "exposure": 2,
+    "rationale": "Fast Food Cooks perform highly physical, manual tasks in a fast-paced environment, requiring dexterity and presence. Current digital AI capabilities have minimal direct impact on the core food preparation and assembly, which are not computer-based. Hospitality roles in Australia generally have lower AI exposure."
+  },
+  "food-trades-assistants": {
+    "exposure": 2,
+    "rationale": "This role is predominantly physical, involving hands-on food preparation, cleaning, and storage tasks in a kitchen environment. There is minimal computer-based work, making it largely resistant to current digital AI automation."
+  },
+  "kitchenhands": {
+    "exposure": 2,
+    "rationale": "Kitchenhands primarily perform physical tasks such as food preparation assistance and cleaning in a dynamic kitchen environment. This role requires significant manual dexterity and physical presence, with very limited scope for current digital AI capabilities to automate core functions. Hospitality is also a sector with generally lower AI exposure in Australia."
+  },
+  "freight-and-furniture-handlers": {
+    "exposure": 1,
+    "rationale": "This occupation is highly physical, involving manual loading, unloading, and transferring of freight in real-world environments. Current digital AI capabilities have minimal direct impact on these core manual handling tasks, which require physical presence and dexterity."
+  },
+  "shelf-fillers": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual handling and placement of goods in a real-world retail environment. Current digital AI capabilities have minimal direct impact on the core tasks of physically filling shelves, which requires human dexterity and presence."
+  },
+  "caretakers": {
+    "exposure": 2,
+    "rationale": "Caretakers primarily perform physical tasks such as cleaning and maintenance in varied, unpredictable environments. While AI might assist with minor administrative tasks like scheduling or inventory, the core hands-on work requires physical presence and manual skills, making direct automation or significant productivity gains from current digital AI capabilities very low."
+  },
+  "deck-and-fishing-hands": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual maintenance of ships' equipment and the hands-on task of catching fish in unpredictable marine environments. AI's current digital capabilities have minimal direct application to these core physical and real-world tasks, making exposure very low."
+  },
+  "handypersons": {
+    "exposure": 2,
+    "rationale": "The Handyperson role is predominantly physical, involving manual tasks like cleaning, painting, and repairs in varied, unpredictable environments. While AI might assist with minor administrative tasks such as scheduling or inventory, the core hands-on work requires physical presence and manual skills, limiting direct AI automation."
+  },
+  "motor-vehicle-parts-and-accessories-fitters": {
+    "exposure": 2,
+    "rationale": "This occupation is highly physical, involving hands-on fitting and replacement of parts on motor vehicles. While AI might assist with minor administrative tasks like inventory or ordering, the core manual skills and physical presence required make it largely resistant to automation by current digital AI capabilities."
+  },
+  "printing-assistants-and-table-workers": {
+    "exposure": 2,
+    "rationale": "This occupation primarily involves operating physical machinery and performing manual binding and finishing tasks. While AI might offer minor assistance in machine diagnostics or print optimization, the core physical presence and manual skills required present significant barriers to direct automation by current digital AI capabilities in Australia."
+  },
+  "recycling-and-rubbish-collectors": {
+    "exposure": 1,
+    "rationale": "This occupation is almost entirely physical, involving manual collection and driving in unpredictable real-world environments. While AI might optimize routes, the core tasks of lifting, sorting, and handling waste remain highly manual and resistant to current digital AI capabilities within the Australian context over the next five years."
+  },
+  "vending-machine-attendants": {
+    "exposure": 2,
+    "rationale": "This occupation is primarily physical, involving stocking machines, performing basic maintenance, and collecting cash, which requires physical presence and manual dexterity. While AI could assist with route optimisation or inventory management, it has minimal direct impact on the core physical tasks. The role is not computer-based and has low exposure to current digital AI capabilities."
+  },
+  "other-miscellaneous-labourers": {
+    "exposure": 2,
+    "rationale": "This broad category encompasses predominantly physical and manual roles, such as trolley collectors, mechanics' assistants, and road traffic controllers. The core tasks involve real-world interaction and physical presence, with very limited scope for computer-based work. AI's impact will be minimal, primarily confined to minor administrative support rather than automating core functions."
+  },
+  "_meta": {
+    "run_id": "2026-04-11T05:38:15+00:00",
+    "run_date": "2026-04-11",
+    "model": "gemini-3.1-pro-preview",
+    "prompt_version": "efd6e57ec1c7",
+    "methodology_version": "1.0",
+    "thinking_budget": 2048,
+    "occupations_scored": 0
+  }
+}
