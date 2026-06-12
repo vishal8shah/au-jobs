@@ -18,7 +18,7 @@ from score import (
     prompt_version, archive_previous_scores, archive_name,
     normalize_model_name, SYSTEM_PROMPT,
 )
-from build_site_data import archive_sort_key
+from build_site_data import archive_sort_key, collect_run_history
 
 
 # ── extract_json ───────────────────────────────────────────────────────
@@ -279,6 +279,37 @@ class TestNormalizeModelName:
 
     def test_bare_name_unchanged(self):
         assert normalize_model_name("gemini-3.1-pro-preview") == "gemini-3.1-pro-preview"
+
+
+class TestCollectRunHistory:
+    def _write_archive(self, runs_dir, name, run_date, exposure):
+        runs_dir.mkdir(exist_ok=True)
+        (runs_dir / name).write_text(json.dumps({
+            "_meta": {"run_date": run_date, "model": "gemini-3.1-pro-preview"},
+            "nurse": {"exposure": exposure, "rationale": "r"},
+        }))
+
+    def test_chronological_order_with_current(self, tmp_path):
+        runs_dir = tmp_path / "runs"
+        self._write_archive(runs_dir, "2026-04-11T080617_scores.json", "2026-04-11", 4)
+        self._write_archive(runs_dir, "2026-02-01_scores.json", "2026-02-01", 3)
+        current = {"_meta": {"run_date": "2026-06-11"}, "nurse": {"exposure": 5, "rationale": "r"}}
+        history = collect_run_history(runs_dir, current, current["_meta"])
+        assert [m["run_date"] for m, _ in history] == ["2026-02-01", "2026-04-11", "2026-06-11"]
+        assert [run["nurse"]["exposure"] for _, run in history] == [3, 4, 5]
+
+    def test_same_date_dedupe_keeps_latest(self, tmp_path):
+        runs_dir = tmp_path / "runs"
+        self._write_archive(runs_dir, "2026-04-11_scores.json", "2026-04-11", 3)
+        self._write_archive(runs_dir, "2026-04-11T080617_scores.json", "2026-04-11", 4)
+        history = collect_run_history(runs_dir, {}, None)
+        assert len(history) == 1
+        assert history[0][1]["nurse"]["exposure"] == 4
+
+    def test_no_runs_dir(self, tmp_path):
+        current = {"_meta": {"run_date": "2026-06-11"}, "nurse": {"exposure": 5, "rationale": "r"}}
+        history = collect_run_history(tmp_path / "missing", current, current["_meta"])
+        assert len(history) == 1
 
 
 class TestArchiveSortKey:

@@ -51,6 +51,28 @@ def find_previous_scores(runs_dir: Path) -> tuple[dict, dict | None]:
     return prev, meta
 
 
+def collect_run_history(runs_dir: Path, current_scores: dict, current_meta: dict | None) -> list[tuple[dict, dict]]:
+    """Collect all scoring runs (archived + current) in chronological order.
+
+    Same-date runs are deduped keeping the latest, so transient intra-day
+    reruns don't create noise in trend lines.
+    Returns a list of (meta, scores) tuples sorted by run date.
+    """
+    runs = []
+    if runs_dir.exists():
+        for path in sorted(runs_dir.glob("*_scores.json"), key=archive_sort_key):
+            data = load_json(path)
+            meta = data.get("_meta")
+            if meta and meta.get("run_date"):
+                runs.append((meta, data))
+    if current_meta and current_meta.get("run_date"):
+        runs.append((current_meta, current_scores))
+    by_date = {}
+    for meta, data in runs:
+        by_date[meta["run_date"]] = (meta, data)
+    return [by_date[d] for d in sorted(by_date)]
+
+
 def check_comparison_safety(current_meta: dict | None, previous_meta: dict | None) -> tuple[bool, str]:
     """Check if comparison between two runs is methodologically safe.
 
@@ -108,6 +130,11 @@ def main():
     comparison_safe, comparison_note = check_comparison_safety(current_meta, prev_meta)
     has_previous = bool(prev_meta)
 
+    # Full run history for trend lines (all archived runs + current, one per date)
+    history_runs = collect_run_history(runs_dir, scores, current_meta)
+    if len(history_runs) > 1:
+        print(f"Run history: {len(history_runs)} runs ({', '.join(m['run_date'] for m, _ in history_runs)})")
+
     if has_previous:
         prev_occ_count = sum(1 for k in prev_scores if k != "_meta")
         print(f"Previous run: {prev_occ_count} scores, safe={comparison_safe}")
@@ -133,6 +160,12 @@ def main():
             exposure_delta = current_exposure - previous_exposure
             comparison_count += 1
 
+        # Exposure across all runs, for trend lines (nulls filtered client-side)
+        exposure_history = [
+            {"date": m["run_date"], "exposure": run.get(slug, {}).get("exposure")}
+            for m, run in history_runs
+        ]
+
         entry = {
             "slug": slug,
             "title": str(row.get("title", "")),
@@ -148,6 +181,7 @@ def main():
             "exposure_rationale": score_data.get("rationale"),
             "previous_exposure": previous_exposure,
             "exposure_delta": exposure_delta,
+            "exposure_history": exposure_history,
         }
 
         if entry["exposure"] is not None:
@@ -167,6 +201,14 @@ def main():
         "comparison_safe": comparison_safe if has_previous else False,
         "comparison_note": comparison_note if has_previous and not comparison_safe else "",
         "comparison_count": comparison_count,
+        "run_history": [
+            {
+                "date": m["run_date"],
+                "model": m.get("model"),
+                "prompt_version": m.get("prompt_version"),
+            }
+            for m, _ in history_runs
+        ],
     }
 
     # Write output — new format: { meta, occupations }

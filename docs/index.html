@@ -329,6 +329,8 @@ canvas#canvas {
 .sc-stat { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px 10px; }
 .sc-stat-label { font-size: 10px; color: var(--fg2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
 .sc-stat-value { font-size: 14px; font-weight: 600; }
+.sc-trend { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px 10px; margin-bottom: 16px; }
+.sc-trend-dates { display: flex; justify-content: space-between; font-size: 10px; color: var(--fg2); margin-top: 2px; }
 .sc-rationale {
   font-size: 13px; line-height: 1.6; color: var(--fg2); margin-bottom: 16px;
   padding: 12px 14px; background: rgba(255,255,255,0.03); border-radius: 6px;
@@ -1305,6 +1307,40 @@ function buildCategoryRiskStat(category) {
   return `${Math.round(high/total*100)}% of ${category} workers are in high-AI-exposure roles (7+/10)`;
 }
 
+function formatRunDate(iso) {
+  const m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const parts = (iso || "").split("-");
+  return parts.length >= 2 ? `${m[+parts[1] - 1]} ${parts[0]}` : iso;
+}
+
+function trendPoints(d) {
+  return (d.exposure_history || []).filter(h => h.exposure != null);
+}
+
+function buildTrendBlock(d) {
+  const pts = trendPoints(d);
+  if (pts.length < 2) return "";
+  const w = 250, h = 44, padX = 8, padY = 9;
+  const xs = i => padX + i * (w - 2 * padX) / (pts.length - 1);
+  const ys = v => h - padY - (v / 10) * (h - 2 * padY);
+  const path = pts.map((p, i) => `${i ? "L" : "M"}${xs(i).toFixed(1)} ${ys(p.exposure).toFixed(1)}`).join(" ");
+  const dots = pts.map((p, i) =>
+    `<circle cx="${xs(i).toFixed(1)}" cy="${ys(p.exposure).toFixed(1)}" r="3.5" fill="${exposureColor(p.exposure, 1)}"/>` +
+    `<text x="${xs(i).toFixed(1)}" y="${(ys(p.exposure) - 7).toFixed(1)}" text-anchor="middle" font-size="10" fill="var(--fg2)">${p.exposure}</text>`
+  ).join("");
+  const first = pts[0], last = pts[pts.length - 1];
+  const delta = last.exposure - first.exposure;
+  const dColor = delta === 0 ? "var(--fg2)" : deltaColor(delta, 1);
+  const dText = delta > 0 ? `▲ +${delta}` : delta < 0 ? `▼ ${delta}` : "↔ steady";
+  return `<div class="sc-trend">
+    <div class="sc-stat-label">Exposure Trend <span style="float:right;color:${dColor};text-transform:none">${dText} since ${formatRunDate(first.date)}</span></div>
+    <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="display:block">
+      <path d="${path}" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>${dots}
+    </svg>
+    <div class="sc-trend-dates"><span>${formatRunDate(first.date)}</span><span>${formatRunDate(last.date)}</span></div>
+  </div>`;
+}
+
 function buildShareText(d) {
   const score = d.exposure != null ? d.exposure : "?";
   const growthStr = d.growth != null ? (d.growth > 0 ? "+" : "") + d.growth + "%" : null;
@@ -1320,6 +1356,14 @@ function buildShareText(d) {
   if (d.exposure_rationale) {
     const rat = d.exposure_rationale.length > 260 ? d.exposure_rationale.slice(0, 257) + "..." : d.exposure_rationale;
     text += rat + "\n\n";
+  }
+  const tPts = trendPoints(d);
+  if (tPts.length >= 2) {
+    const tFirst = tPts[0], tLast = tPts[tPts.length - 1];
+    const tDelta = tLast.exposure - tFirst.exposure;
+    if (tDelta !== 0) {
+      text += `${tDelta > 0 ? "📈" : "📉"} Exposure ${tDelta > 0 ? "rising" : "falling"}: ${tFirst.exposure} → ${tLast.exposure} since ${formatRunDate(tFirst.date)}\n`;
+    }
   }
   if (growthStr) text += `📈 Job growth: ${growthStr}/yr.${growthMsg}\n`;
   if (d.pay) text += `💰 Median pay: A$${Math.round(d.pay/1000)}K\n`;
@@ -1355,6 +1399,7 @@ function openScorecard(d) {
         <div class="sc-exposure-bar"><div class="sc-exposure-bar-fill" style="width:${(score||0)*10}%;background:${color}"></div></div>
       </div>
     </div>
+    ${buildTrendBlock(d)}
     <div class="sc-stats">
       <div class="sc-stat"><div class="sc-stat-label">Median Pay</div><div class="sc-stat-value">${formatPay(d.pay)}</div></div>
       <div class="sc-stat"><div class="sc-stat-label">Employment</div><div class="sc-stat-value">${formatNumber(d.jobs)}</div></div>
