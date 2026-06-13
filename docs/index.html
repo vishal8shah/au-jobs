@@ -1334,9 +1334,10 @@ function trendPoints(d) {
 function buildTrendBlock(d) {
   const pts = trendPoints(d);
   if (pts.length < 2) return "";
-  const w = 250, h = 44, padX = 8, padY = 9;
+  // padTop leaves headroom for the score label drawn 7px above each dot
+  const w = 250, h = 52, padX = 10, padTop = 17, padBottom = 9;
   const xs = i => padX + i * (w - 2 * padX) / (pts.length - 1);
-  const ys = v => h - padY - (v / 10) * (h - 2 * padY);
+  const ys = v => h - padBottom - (v / 10) * (h - padBottom - padTop);
   const path = pts.map((p, i) => `${i ? "L" : "M"}${xs(i).toFixed(1)} ${ys(p.exposure).toFixed(1)}`).join(" ");
   const dots = pts.map((p, i) => {
     const c = exposureColor(p.exposure, 1);
